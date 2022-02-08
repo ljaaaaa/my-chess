@@ -1,4 +1,5 @@
 #!/bin/sh
 
-javac Main.java
+javac -d compiled *.java
+cd compiled
 java Main

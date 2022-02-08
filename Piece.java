@@ -1,26 +1,19 @@
+import java.util.ArrayList;
+
 public class Piece {
+	int posX;
+	int posY;
 
-	public class Pawn {
+	public Piece(int posX, int posY){
+		this.posX = posX;
+		this.posY = posY;
+	}
+
+	public void move(){
 
 	}
 
-	public class Rook {
-
-	}
-
-	public class Knight {
-
-	}
-
-	public class Bishop {
-
-	}
-
-	public class Queen {
-
-	}
-
-	public class King {
-
+	public ArrayList<Coords> possibleMoves(){
+		return new ArrayList<Coords>();
 	}
 }
