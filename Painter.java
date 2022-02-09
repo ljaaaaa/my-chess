@@ -1,11 +1,12 @@
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+//Painter Class
 public class Painter extends JPanel {
+	//Background images
 	private ImageIcon[][] bg;
         private Player player;
 
@@ -35,6 +36,7 @@ public class Painter extends JPanel {
                 }
         }
 
+	//Set checkered background
 	private void setBackground(){
 		bg = new ImageIcon[8][8];
                 for (int x = 0; x < bg.length; x++){
