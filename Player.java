@@ -1,12 +1,9 @@
 public class Player {
-	Piece[][] grid;	
+	Set set; //Set of chess pieces
+	Grid grid; //Grid
 
 	public Player(){
-		grid = new Piece[8][8];
-		initPieces();
-	}
-
-	private void initPieces(){
-		
+		grid = new Grid();
+		set = new Set("white");
 	}
 }
