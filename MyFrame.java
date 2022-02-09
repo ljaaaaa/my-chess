@@ -8,10 +8,11 @@ public class MyFrame extends JFrame {
 	public final int HEIGHT = 640 + 36; 
 
 	//Constructor
-	public MyFrame(String title, Painter painter){
+	public MyFrame(String title, Main main){
 		super(title);
                 setLayout(new GridLayout(1, 1));
-		add(painter);
+		add(main.painter);
+		addMouseListener(main.mouseListener);
                 setSize(WIDTH, HEIGHT);
                 setLocationRelativeTo(null);
                 setResizable(false);
