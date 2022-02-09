@@ -1,6 +1,7 @@
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import javax.swing.Timer;
 
 public class Main implements ActionListener{
 	Player player;
