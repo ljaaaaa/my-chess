@@ -1,15 +1,12 @@
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.Timer;
+
 //Main Class
-public class Main {
-	//Player itself
+public class Main implements ActionListener{
 	Player player;
-
-	//paintComponent() that paints to JFrame
-	Painter painter; 
-
-	//Frame itself
+	Painter painter;
 	MyFrame frame;
-
-	//Mouse listener
 	MyMouseListener mouseListener;
 
 	//Run game
@@ -17,11 +14,19 @@ public class Main {
 		new Main();
 	}
 
+	public void actionPerformed(ActionEvent e){
+		
+	}
+
 	//Constructor
 	public Main(){
 		player = new Player();
 		painter = new Painter(player);
-		mouseListener = new MyMouseListener();
-		frame = new MyFrame("Chess", this);
+		frame = new MyFrame("Chess");
+		mouseListener = new MyMouseListener(frame);
+		frame.setUp(this);
+	
+		Timer timer = new Timer(1000, this);
+		timer.start();
 	}
 }
