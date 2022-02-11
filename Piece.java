@@ -15,7 +15,7 @@ public class Piece{
 	}
 
 	//Move piece
-	public void move(int newX, int newY) throws IllegalMoveException{
+	public void move(int newX, int newY) {
 		
 	}
 
@@ -29,8 +29,8 @@ public class Piece{
 		return false;
 	}
 
-	//Check if move is valid
-	protected boolean moveIsLegal(int newX, int newY){
-		return false;
+	//Returns all possible move coordinates
+	public ArrayList<Point> possibleMoves(){
+		return new ArrayList<Point>();
 	}
 }

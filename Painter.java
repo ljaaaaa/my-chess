@@ -8,10 +8,10 @@ import java.awt.Graphics2D;
 public class Painter extends JPanel {
 	//Background images
 	private ImageIcon[][] bg;
-        private Player player;
+        private Set set;
 
-	public Painter(Player player){
-		this.player = player;
+	public Painter(Set set){
+		this.set = set;
 		setBackground();
 	}
 
@@ -28,11 +28,11 @@ public class Painter extends JPanel {
                 }
 
                 //Draw pawns
-                for (int x = 0; x < player.set.pawns.length; x++){
-                        int posX = player.set.pawns[x].posX;
-                        int posY = player.set.pawns[x].posY;
+                for (int x = 0; x < set.pawns.length; x++){
+                        int posX = set.pawns[x].posX;
+                        int posY = set.pawns[x].posY;
 
-                        g2d.drawImage(player.set.pawns[x].imageIcon.getImage(), posX*80, posY*80, null);
+                        g2d.drawImage(set.pawns[x].imageIcon.getImage(), posX*80, posY*80, null);
                 }
         }
 

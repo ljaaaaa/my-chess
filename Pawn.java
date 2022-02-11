@@ -1,4 +1,6 @@
 import javax.swing.ImageIcon;
+import java.util.ArrayList;
+import java.awt.Point;
 
 //Pawn Class
 public class Pawn extends Piece{
@@ -11,21 +13,10 @@ public class Pawn extends Piece{
 	}
 
 	@Override
-	//Move piece
-	public void move(int newX, int newY) throws IllegalMoveException{
-		if (moveIsLegal(newX, newY)){
-			posX = newX;
-			posY = newY;
-		}
-	}
+        public ArrayList<Point> possibleMoves(){
+        
 
-	@Override
-	//Check if move is valid
-	protected boolean moveIsLegal(int newX, int newY){
-		if (newY == posY+1 && newX == posX){
-			return true;	
-                }
-
-		return false;
-	}
+	
+		return new ArrayList<Point>();
+        }
 }

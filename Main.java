@@ -6,7 +6,7 @@ import javax.swing.Timer;
 
 //Main Class
 public class Main implements ActionListener{
-	Player player;
+	Set set;
 	Painter painter;
 	MyFrame frame;
 	MyMouseListener mouseListener;
@@ -17,7 +17,7 @@ public class Main implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e){
-		for (Pawn pawn : player.set.pawns){
+		for (Pawn pawn : set.pawns){
 			Point mPoint = mouseListener.getMousePosition();
                 	if (mPoint.x != -1 && pawn.mouseOn(mPoint)){
                                 pawn.imageIcon = new ImageIcon("images/pawn2.png");
@@ -30,8 +30,8 @@ public class Main implements ActionListener{
 
 	//Constructor
 	public Main(){
-		player = new Player();
-		painter = new Painter(player);
+		set = new Set("white");
+		painter = new Painter(set);
 		frame = new MyFrame("Chess");
 		mouseListener = new MyMouseListener(frame);
 		frame.setUp(this);
