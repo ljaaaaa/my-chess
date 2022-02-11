@@ -23,7 +23,6 @@ public class Piece{
 	public boolean mouseOn(Point p){
 		if (p.x > posX*80 && p.x < posX*80+ICONSIZE 
 			&& p.y > posY*80-36 && p.y < posY*80+ICONSIZE+38){
-			
 			return true;
 		}
 
