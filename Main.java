@@ -16,15 +16,7 @@ public class Main implements ActionListener{
 		new Main();
 	}
 
-	public void actionPerformed(ActionEvent e){
-		for (Pawn pawn : set.pawns){
-			Point mPoint = mouseListener.getMousePosition();
-                	if (mPoint.x != -1 && pawn.mouseOn(mPoint)){
-                                pawn.imageIcon = new ImageIcon("images/pawn2.png");
-                        } else {
-                                pawn.imageIcon = new ImageIcon("images/pawn.png");
-                	}
-		}
+	public void actionPerformed(ActionEvent e){	
 		painter.repaint();
 	}
 
@@ -33,7 +25,7 @@ public class Main implements ActionListener{
 		set = new Set("white");
 		painter = new Painter(set);
 		frame = new MyFrame("Chess");
-		mouseListener = new MyMouseListener(frame);
+		mouseListener = new MyMouseListener(this);
 		frame.setUp(this);
 	
 		Timer timer = new Timer(10, this);

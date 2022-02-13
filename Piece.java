@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.awt.Point;
+import javax.swing.ImageIcon;
 
 //Piece Class
 public class Piece{
@@ -7,6 +8,8 @@ public class Piece{
 	int posY;
 	final int ICONSIZE = 80;
 	final int GRIDSIZE = 8;
+	String imageName;
+	ImageIcon imageIcon;
 
 	//Constructor
 	public Piece(int posX, int posY){
@@ -14,10 +17,11 @@ public class Piece{
 		this.posY = posY;
 	}
 
-	//Move piece
-	public void move(int newX, int newY) {
-		
-	}
+	//Sets image and imagename
+	public void setIcon(String imageName){
+                this.imageName = imageName;
+                imageIcon = new ImageIcon(imageName);
+        }
 
 	//If mouse is touching area
 	public boolean mouseOn(Point p){

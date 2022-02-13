@@ -1,5 +1,6 @@
 //Set Class
 public class Set {
+	Piece selectedPiece;
 	Pawn[] pawns;
 	String color;
 
