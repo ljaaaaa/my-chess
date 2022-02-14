@@ -26,32 +26,22 @@ public class MyMouseListener implements MouseListener{
 
         @Override
         public void mouseEntered(MouseEvent e) {
-                onScreen = true;
+               
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-		onScreen = false;
+		
         }
 
         @Override
         public void mouseClicked(MouseEvent e) {
-		Pawn selected = main.set.pawns[pawnSelected(getMousePosition())];
+		Pawn selected = main.set.pawns[pawnSelected(new Point(e.getX(), e.getY()))];
 		
 		if (selected.imageName == "images/pawn2.png"){
 			selected.setIcon("images/pawn.png");
 		} else {
 			selected.setIcon("images/pawn2.png");
-		}
-	}
-
-	public Point getMousePosition() {	
-		if (onScreen){
-			int posX = MouseInfo.getPointerInfo().getLocation().x - main.frame.getLocationOnScreen().x;
- 			int posY = MouseInfo.getPointerInfo().getLocation().y - main.frame.getLocationOnScreen().y;
-			return new Point(posX, posY);
-		} else {
-			return new Point(-1, -1);
 		}
 	}
 
