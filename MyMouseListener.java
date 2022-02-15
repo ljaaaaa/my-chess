@@ -6,8 +6,7 @@ import javax.swing.ImageIcon;
 
 //MyMouseListener Class
 public class MyMouseListener implements MouseListener{
-	private boolean onScreen = false;
-	private Main main;
+	private Main main; //reference to main
 
 	//Constructor
 	public MyMouseListener(Main main){
@@ -36,11 +35,15 @@ public class MyMouseListener implements MouseListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-		Pawn selected = main.set.pawns[pawnSelected(new Point(e.getX(), e.getY()))];
-		
-		if (selected.imageName == "images/pawn2.png"){
-			selected.setIcon("images/pawn.png");
-		} else {
+		//Set all pawns to not selected
+		for (Pawn pawn : main.set.pawns){
+                 	pawn.isSelected = false;
+			pawn.setIcon("images/pawn.png");
+		}
+
+		if (pawnSelected(e.getPoint()) != -1){
+			Pawn selected = main.set.pawns[pawnSelected(e.getPoint())];
+			selected.isSelected = true;
 			selected.setIcon("images/pawn2.png");
 		}
 	}

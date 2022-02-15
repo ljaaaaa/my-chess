@@ -6,7 +6,7 @@ import javax.swing.Timer;
 
 //Main Class
 public class Main implements ActionListener{
-	Set set;
+	Grid grid;
 	Painter painter;
 	MyFrame frame;
 	MyMouseListener mouseListener;
@@ -22,8 +22,8 @@ public class Main implements ActionListener{
 
 	//Constructor
 	public Main(){
-		set = new Set("white");
-		painter = new Painter(set);
+		grid = new Grid();
+		painter = new Painter(grid);
 		frame = new MyFrame("Chess");
 		mouseListener = new MyMouseListener(this);
 		frame.setUp(this);

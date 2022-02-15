@@ -8,10 +8,10 @@ import java.awt.Graphics2D;
 public class Painter extends JPanel {
 	//Background images
 	private ImageIcon[][] bg;
-        private Set set;
+        private Grid grid;
 
-	public Painter(Set set){
-		this.set = set;
+	public Painter(Grid grid){
+		this.grid = grid;
 		setBackground();
 	}
 
@@ -27,13 +27,14 @@ public class Painter extends JPanel {
                         }
                 }
 
-                //Draw pawns
-                for (int x = 0; x < set.pawns.length; x++){
-                        int posX = set.pawns[x].posX;
-                        int posY = set.pawns[x].posY;
-
-                        g2d.drawImage(set.pawns[x].imageIcon.getImage(), posX*80, posY*80, null);
-                }
+                //Draw grid pieces
+                for (int x = 0; x < grid.grid.length; x++){
+                       	for (int y = 0; x < grid[x].length; y++){
+				if (grid[x][y] != null){
+					g2d.drawImage(grid[x][y].imageIcon.getImage(), x*80, y*80, null);
+				}
+			}
+		}
         }
 
 	//Set checkered background
