@@ -7,8 +7,8 @@ public class Pawn extends Piece{
 	//Constructor
 	public Pawn(int posX, int posY){
 		super(posX, posY);
-		normalIcon = new ImageIcon("images/pawn");
-                selectedIcon = new ImageIcon("images/pawn_selected");
+		normalIcon = new ImageIcon("images/pawn.png");
+                selectedIcon = new ImageIcon("images/pawn_selected.png");
 		setSelected(false);
 	}
 

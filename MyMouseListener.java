@@ -45,16 +45,14 @@ public class MyMouseListener implements MouseListener{
                         for (int y = 0; y < main.grid.grid[x].length; y++){
 				Tile tile = main.grid.grid[x][y];
 
-				if (tile != null){
-					if (tile.mouseOn(mousePoint)){
-						tile.setSelected(true);
-                                        	return new Point(x, y);
-					} else {
-						tile.setSelected(false);
-					}
+				if (tile.mouseOn(mousePoint)){
+					tile.setSelected(true);
+                                       	return new Point(x, y);
+				} else {
+					tile.setSelected(false);
 				}
 			}
-                }
+		}
 		return null;
 	}
 }

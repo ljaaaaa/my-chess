@@ -16,8 +16,8 @@ public class Tile {
 		this.posX = posX;
 		this.posY = posY;
 
-		normalIcon = new ImageIcon("images/clear");
-		selectedIcon = new ImageIcon("images/clear_selected");
+		normalIcon = new ImageIcon("images/clear.png");
+		selectedIcon = new ImageIcon("images/clear_selected.png");
 		currentIcon = normalIcon;
 	}
 
