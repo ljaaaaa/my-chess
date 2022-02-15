@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import javax.swing.ImageIcon;
+import java.util.ArrayList;
 
 //MyMouseListener Class
 public class MyMouseListener implements MouseListener{
@@ -35,25 +36,25 @@ public class MyMouseListener implements MouseListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-		//Set all pawns to not selected
-		for (Pawn pawn : main.set.pawns){
-                 	pawn.isSelected = false;
-			pawn.setIcon("images/pawn.png");
-		}
-
-		if (pawnSelected(e.getPoint()) != -1){
-			Pawn selected = main.set.pawns[pawnSelected(e.getPoint())];
-			selected.isSelected = true;
-			selected.setIcon("images/pawn2.png");
-		}
+		Tile selected = main.grid.grid[pieceCoordsSelected(e.getPoint()).x][pieceCoordsSelected(e.getPoint()).y];
+		selected.setSelected(true);
 	}
 
-	public int pawnSelected(Point mouse){
-		for (int x = 0; x < main.set.pawns.length; x++){
-			if (main.set.pawns[x].mouseOn(mouse)){
-                                return x;
-                        }
-		}
-		return -1;
+	public Point pieceCoordsSelected(Point mousePoint){
+		for (int x = 0; x < main.grid.grid.length; x++){
+                        for (int y = 0; y < main.grid.grid[x].length; y++){
+				Tile tile = main.grid.grid[x][y];
+
+				if (tile != null){
+					if (tile.mouseOn(mousePoint)){
+						tile.setSelected(true);
+                                        	return new Point(x, y);
+					} else {
+						tile.setSelected(false);
+					}
+				}
+			}
+                }
+		return null;
 	}
 }

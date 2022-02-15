@@ -27,12 +27,11 @@ public class Painter extends JPanel {
                         }
                 }
 
-                //Draw grid pieces
-                for (int x = 0; x < grid.grid.length; x++){
-                       	for (int y = 0; x < grid[x].length; y++){
-				if (grid[x][y] != null){
-					g2d.drawImage(grid[x][y].imageIcon.getImage(), x*80, y*80, null);
-				}
+		//Draw grid
+		Tile[][] tiles = grid.grid;
+                for (int x = 0; x < tiles.length; x++){
+                       	for (int y = 0; y < tiles[x].length; y++){
+				g2d.drawImage(tiles[x][y].currentIcon.getImage(), x*80, y*80, null);
 			}
 		}
         }

@@ -4,13 +4,12 @@ import java.awt.Point;
 
 //Pawn Class
 public class Pawn extends Piece{
-	boolean isSelected;
-
 	//Constructor
 	public Pawn(int posX, int posY){
 		super(posX, posY);
-		setIcon("images/pawn.png");
-		isSelected = false;
+		normalIcon = new ImageIcon("images/pawn");
+                selectedIcon = new ImageIcon("images/pawn_selected");
+		setSelected(false);
 	}
 
 	@Override

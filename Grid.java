@@ -1,8 +1,8 @@
 public class Grid {
-	Piece[][] grid;
+	Tile[][] grid;
 
 	public Grid(){
-		grid = new Piece[8][8];
+		grid = new Tile[8][8];
 		initPawns();
 	}
 
