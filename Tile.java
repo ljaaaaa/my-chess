@@ -3,19 +3,15 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 
 public class Tile {
-	int posX;
-	int posY;
-
 	ImageIcon currentIcon;
 	private boolean selected;
 	protected ImageIcon normalIcon;
 	protected ImageIcon selectedIcon;
+	Grid grid;
 
 	//Constructor
-	public Tile(int posX, int posY){
-		this.posX = posX;
-		this.posY = posY;
-
+	public Tile(Grid grid){
+		this.grid = grid;
 		normalIcon = new ImageIcon("images/clear.png");
 		selectedIcon = new ImageIcon("images/clear_selected.png");
 		currentIcon = normalIcon;
@@ -23,8 +19,10 @@ public class Tile {
 
 	//If mouse is touching area
         public boolean mouseOn(Point p){
-                if (p.x > posX*80 && p.x < posX*80+80
-                        && p.y > posY*80+38 && p.y < posY*80+80+38){
+       		Point c = myCoords();
+
+       		if (p.x > c.x*80 && p.x < c.x*80+80
+                        && p.y > c.y*80+38 && p.y < c.y*80+80+38){
                         return true;
                 }
 
@@ -40,6 +38,18 @@ public class Tile {
 		} else {
 			currentIcon = normalIcon;
 		}
+	}
+
+	//Where this tile is on grid
+	protected Point myCoords(){
+		for (int x = 0; x < grid.grid.length; x++){
+                        for (int y = 0; y < grid.grid.length; y++){
+                                if (grid.grid[x][y] == this){
+                                        return new Point(x, y);
+                                }
+                        }
+                }
+		return null;
 	}
 
 	//Get selected status

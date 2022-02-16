@@ -10,14 +10,14 @@ public class Grid {
 	private void setBaseGrid(){
 		for (int x = 0; x < grid.length; x++){
 			for (int y = 0; y < grid[0].length; y++){
-				grid[x][y] = new Tile(x, y);
+				grid[x][y] = new Tile(this);
 			}
 		}
 	}
 
 	private void initPawns(){        
 		for (int x = 0; x < grid.length; x++){
-			grid[x][1] = new Pawn(x, 1);
+			grid[x][1] = new Pawn(this);
 		}
 	}
 

@@ -5,8 +5,8 @@ import javax.swing.ImageIcon;
 //Piece Class
 public class Piece extends Tile{
 	//Constructor
-	public Piece(int posX, int posY){
-		super(posX, posY);
+	public Piece(Grid grid){
+		super(grid);
 	}
 
 	//Returns all possible move coordinates
