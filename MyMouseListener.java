@@ -15,28 +15,26 @@ public class MyMouseListener implements MouseListener{
 	}
 
 	@Override
-        public void mousePressed(MouseEvent e) {
-		
-        }
+        public void mousePressed(MouseEvent e) { }
 
         @Override
-        public void mouseReleased(MouseEvent e) {
-		
-        }
+        public void mouseReleased(MouseEvent e) { }
 
         @Override
-        public void mouseEntered(MouseEvent e) {
-               
-        }
+        public void mouseEntered(MouseEvent e) { }
 
         @Override
-        public void mouseExited(MouseEvent e) {
-		
-        }
+        public void mouseExited(MouseEvent e) { }
 
         @Override
         public void mouseClicked(MouseEvent e) {
-		Tile selected = main.grid.grid[pieceCoordsSelected(e.getPoint()).x][pieceCoordsSelected(e.getPoint()).y];
+		Tile selected = main.grid.grid[pieceCoordsSelected(e.getPoint()).x]
+			[pieceCoordsSelected(e.getPoint()).y];
+
+		//If selected tile is a chess piece
+		if (selected instanceof Piece){
+			ArrayList<Point> possibles = ((Piece)selected).possibleMoves();
+		}
 	}
 
 	public Point pieceCoordsSelected(Point mousePoint){
