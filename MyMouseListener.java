@@ -37,22 +37,23 @@ public class MyMouseListener implements MouseListener{
         @Override
         public void mouseClicked(MouseEvent e) {
 		Tile selected = main.grid.grid[pieceCoordsSelected(e.getPoint()).x][pieceCoordsSelected(e.getPoint()).y];
-		selected.setSelected(true);
 	}
 
 	public Point pieceCoordsSelected(Point mousePoint){
+		Point mouseOn = new Point(0, 0);
+
 		for (int x = 0; x < main.grid.grid.length; x++){
                         for (int y = 0; y < main.grid.grid[x].length; y++){
 				Tile tile = main.grid.grid[x][y];
 
 				if (tile.mouseOn(mousePoint)){
 					tile.setSelected(true);
-                                       	return new Point(x, y);
+					mouseOn = new Point(x, y);
 				} else {
 					tile.setSelected(false);
 				}
 			}
 		}
-		return null;
+		return mouseOn;
 	}
 }
