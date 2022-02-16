@@ -32,6 +32,10 @@ public class Painter extends JPanel {
                 for (int x = 0; x < tiles.length; x++){
                        	for (int y = 0; y < tiles[x].length; y++){
 				g2d.drawImage(tiles[x][y].currentIcon.getImage(), x*80, y*80, null);
+
+				if (tiles[x][y].possible){
+					g2d.drawImage(new ImageIcon("images/possible.png").getImage(), x*80, y*80, null);
+				}
 			}
 		}
         }

@@ -34,6 +34,7 @@ public class MyMouseListener implements MouseListener{
 		//If selected tile is a chess piece
 		if (selected instanceof Piece){
 			ArrayList<Point> possibles = ((Piece)selected).possibleMoves();
+			highlightPossibles(possibles);
 		}
 	}
 
@@ -46,12 +47,20 @@ public class MyMouseListener implements MouseListener{
 
 				if (tile.mouseOn(mousePoint)){
 					tile.setSelected(true);
+					tile.possible = false;
 					mouseOn = new Point(x, y);
 				} else {
 					tile.setSelected(false);
+					tile.possible = false;
 				}
 			}
 		}
 		return mouseOn;
+	}
+
+	public void highlightPossibles(ArrayList<Point> possibles){
+		for (int x = 0; x < possibles.size(); x++){
+			main.grid.grid[possibles.get(x).x][possibles.get(x).y].possible = true;
+		}
 	}
 }

@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 public class Tile {
 	ImageIcon currentIcon;
 	private boolean selected;
+	public boolean possible;
 	protected ImageIcon normalIcon;
 	protected ImageIcon selectedIcon;
 	Grid grid;
