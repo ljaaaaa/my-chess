@@ -62,10 +62,9 @@ public class MyMouseListener implements MouseListener{
                        		selected = main.grid.grid[newPoints.x][newPoints.y];
 
 				if (selected.possible && oldSelected instanceof Piece){
-                                	((Piece)oldSelected).move(oldPoints, newPoints);
+                                	((Piece)oldSelected).move(newPoints.x, newPoints.y);
 				}
 				state = State.NO_SELECTION;
-
 				break;
 		}
 	}

@@ -4,26 +4,28 @@ import javax.swing.ImageIcon;
 
 public class Tile {
 	ImageIcon currentIcon;
+	boolean possible;
 	private boolean selected;
-	public boolean possible;
 	protected ImageIcon normalIcon;
 	protected ImageIcon selectedIcon;
-	Grid grid;
+	protected Grid grid;
+	protected int posX;
+	protected int posY;
 
 	//Constructor
-	public Tile(Grid grid){
+	public Tile(int posX, int posY, Grid grid){
 		this.grid = grid;
+		this.posX = posX;
+		this.posY = posY;
 		normalIcon = new ImageIcon("images/clear.png");
 		selectedIcon = new ImageIcon("images/clear_selected.png");
 		currentIcon = normalIcon;
 	}
 
 	//If mouse is touching area
-        public boolean mouseOn(Point p){
-       		Point c = myCoords();
-
-       		if (p.x > c.x*80 && p.x < c.x*80+80
-                        && p.y > c.y*80+38 && p.y < c.y*80+80+38){
+        public boolean mouseOn(Point mouse){
+       		if (mouse.x > posX*80 && mouse.x < posX*80+80
+                        && mouse.y > posY*80+38 && mouse.y < posY*80+80+38){
                         return true;
                 }
 
@@ -40,19 +42,7 @@ public class Tile {
 			currentIcon = normalIcon;
 		}
 	}
-
-	//Where this tile is on grid
-	protected Point myCoords(){
-		for (int x = 0; x < grid.grid.length; x++){
-                        for (int y = 0; y < grid.grid.length; y++){
-                                if (grid.grid[x][y] == this){
-                                        return new Point(x, y);
-                                }
-                        }
-                }
-		return null;
-	}
-
+	
 	//Get selected status
 	public boolean getSelected(){
 		return selected;

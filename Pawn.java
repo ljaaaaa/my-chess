@@ -5,8 +5,8 @@ import java.awt.Point;
 //Pawn Class
 public class Pawn extends Piece{
 	//Constructor
-	public Pawn(Grid grid){
-		super(grid);
+	public Pawn(int posX, int posY, Grid grid){
+		super(posX, posX, grid);
 		normalIcon = new ImageIcon("images/pawn.png");
                 selectedIcon = new ImageIcon("images/pawn_selected.png");
 		setSelected(false);
@@ -15,17 +15,17 @@ public class Pawn extends Piece{
 	@Override
         public ArrayList<Tile> possibleMoves(){
 		ArrayList<Tile> possibles = new ArrayList<>();
-		Point myCoords = myCoords();
 
 		//Next tile
-		if (!(grid.grid[myCoords.x][myCoords.y+1] instanceof Piece)){
-			possibles.add(grid.grid[myCoords.x][myCoords.y+1]);
+		if (!(grid.grid[posX][posY+1] instanceof Piece)){
+			possibles.add(grid.grid[posX][posY+1]);
 		} 
 
 		//Next two tiles
-		if (myCoords.y == 1){
-			if (!(grid.grid[myCoords.x][myCoords.y+2] instanceof Piece)){
-				possibles.add(grid.grid[myCoords.x][myCoords.y+2]);
+		if (posY == 1){
+			//If next tile is not taken by a piece
+			if (!(grid.grid[posX][posY+2] instanceof Piece)){
+				possibles.add(grid.grid[posX][posY+2]);
 			}
 		}
 

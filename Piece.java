@@ -5,8 +5,8 @@ import javax.swing.ImageIcon;
 //Piece Class
 public class Piece extends Tile{
 	//Constructor
-	public Piece(Grid grid){
-		super(grid);
+	public Piece(int posX, int posY, Grid grid){
+		super(posX, posY, grid);
 	}
 
 	//Returns all possible move coordinates
@@ -14,8 +14,10 @@ public class Piece extends Tile{
 		return new ArrayList<Tile>();
 	}
 
-	public void move(Point oldCoords, Point newCoords){
-		grid.grid[oldCoords.x][oldCoords.y] = new Tile(grid);
-		grid.grid[newCoords.x][newCoords.y] = this;
+	public void move(int newX, int newY){
+		grid.grid[posX][posY] = new Tile(posX, posY, grid);
+		grid.grid[newX][newY] = this;
+		this.posX = newX;
+		this.posY = newY;
 	}
 }
