@@ -8,12 +8,16 @@ import java.util.ArrayList;
 //MyMouseListener Class
 public class MyMouseListener implements MouseListener{
 	private Main main; //reference to main
+	enum State { NO_SELECTION, SELECTED_PIECE }	
+	State state;
 
 	//Constructor
 	public MyMouseListener(Main main){
 		this.main = main;
+		state = State.NO_SELECTION;
 	}
 
+	
 	@Override
         public void mousePressed(MouseEvent e) { }
 
@@ -28,13 +32,40 @@ public class MyMouseListener implements MouseListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-		Tile selected = main.grid.grid[pieceCoordsSelected(e.getPoint()).x]
-			[pieceCoordsSelected(e.getPoint()).y];
+		Point newPoints;
+		Tile selected;
+		
+		switch (state){
+			//No chess piece selected
+			case NO_SELECTION: 
+				//Selected tile and grid points
+				newPoints = pieceCoordsSelected(e.getPoint());
+				selected = main.grid.grid[newPoints.x][newPoints.y];
 
-		//If selected tile is a chess piece
-		if (selected instanceof Piece){
-			ArrayList<Point> possibles = ((Piece)selected).possibleMoves();
-			highlightPossibles(possibles);
+				//Chess piece selected
+				if (selected instanceof Piece){
+					//Update current state
+					state = State.SELECTED_PIECE;
+
+					//Highlight possible moves
+					ArrayList<Point> possibles = ((Piece)selected).possibleMoves();
+                                	highlightPossibles(possibles);
+				}
+				break;
+
+			//Chess piece selected previously
+			case SELECTED_PIECE: 
+				Point oldPoints = getSelectedPoint();
+				Tile oldSelected = main.grid.grid[oldPoints.x][oldPoints.y];
+
+				newPoints = pieceCoordsSelected(e.getPoint());
+                       		selected = main.grid.grid[newPoints.x][newPoints.y];
+
+				if (selected.possible && oldSelected instanceof Piece){
+                                	((Piece)oldSelected).move(oldPoints, newPoints);
+				}
+
+				break;
 		}
 	}
 
@@ -56,6 +87,19 @@ public class MyMouseListener implements MouseListener{
 			}
 		}
 		return mouseOn;
+	}
+
+	public Point getSelectedPoint(){
+		for (int x = 0; x < main.grid.grid.length; x++){
+                        for (int y = 0; y < main.grid.grid[x].length; y++){
+                                Tile tile = main.grid.grid[x][y];
+
+                                if (tile.getSelected()){
+					return new Point(x, y);
+				}	
+                        }
+                }
+		return null;
 	}
 
 	public void highlightPossibles(ArrayList<Point> possibles){

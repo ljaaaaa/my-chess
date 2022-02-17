@@ -13,4 +13,9 @@ public class Piece extends Tile{
 	public ArrayList<Point> possibleMoves(){
 		return new ArrayList<Point>();
 	}
+
+	public void move(Point oldCoords, Point newCoords){
+		grid.grid[oldCoords.x][oldCoords.y] = new Tile(grid);
+		grid.grid[newCoords.x][newCoords.y] = this;
+	}
 }
