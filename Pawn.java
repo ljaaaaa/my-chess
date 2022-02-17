@@ -6,7 +6,7 @@ import java.awt.Point;
 public class Pawn extends Piece{
 	//Constructor
 	public Pawn(int posX, int posY, Grid grid){
-		super(posX, posX, grid);
+		super(posX, posY, grid);
 		normalIcon = new ImageIcon("images/pawn.png");
                 selectedIcon = new ImageIcon("images/pawn_selected.png");
 		setSelected(false);

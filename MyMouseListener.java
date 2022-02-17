@@ -15,8 +15,8 @@ public class MyMouseListener implements MouseListener{
 	public MyMouseListener(Main main){
 		this.main = main;
 		state = State.NO_SELECTION;
+		main.grid.printGrid();
 	}
-
 	
 	@Override
         public void mousePressed(MouseEvent e) { }
@@ -32,15 +32,20 @@ public class MyMouseListener implements MouseListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-		Point newPoints;
-		Tile selected;
-		
+		Tile selected = findSelectedTile(e.getPoint());;
+
+		System.out.println(selected);
+
+		if (selected != null){
+			selected.setSelected(true);
+		}
+
+		/*
 		switch (state){
 			//No chess piece selected
 			case NO_SELECTION: 
 				//Selected tile and grid points
-				newPoints = pieceCoordsSelected(e.getPoint());
-				selected = main.grid.grid[newPoints.x][newPoints.y];
+				selected = findSelectedTile(e.getPoint());
 
 				//Chess piece selected
 				if (selected instanceof Piece){
@@ -55,53 +60,58 @@ public class MyMouseListener implements MouseListener{
 
 			//Chess piece selected previously
 			case SELECTED_PIECE: 
-				Point oldPoints = getSelectedPoint();
-				Tile oldSelected = main.grid.grid[oldPoints.x][oldPoints.y];
+				Tile oldSelected = getSelectedTile();
+                       		selected = findSelectedTile(e.getPoint());
 
-				newPoints = pieceCoordsSelected(e.getPoint());
-                       		selected = main.grid.grid[newPoints.x][newPoints.y];
-
-				if (selected.possible && oldSelected instanceof Piece){
-                                	((Piece)oldSelected).move(newPoints.x, newPoints.y);
+				if (selected.possible && (oldSelected instanceof Piece)){
+                                	((Piece)oldSelected).move(selected.posX, selected.posY);
 				}
 				state = State.NO_SELECTION;
 				break;
 		}
+		*/
 	}
 
-	public Point pieceCoordsSelected(Point mousePoint){
-		Point mouseOn = new Point(0, 0);
-
+	//Returns selected piece by mouse
+	public Tile findSelectedTile(Point mousePoint){
+		Tile selected = null;
+		
 		for (int x = 0; x < main.grid.grid.length; x++){
                         for (int y = 0; y < main.grid.grid[x].length; y++){
 				Tile tile = main.grid.grid[x][y];
 
+				//Mouse on
 				if (tile.mouseOn(mousePoint)){
 					tile.setSelected(true);
 					tile.possible = false;
-					mouseOn = new Point(x, y);
+					selected = tile;
+					System.out.println("bok");
+			
+				//Mouse not on
 				} else {
 					tile.setSelected(false);
 					tile.possible = false;
 				}
 			}
 		}
-		return mouseOn;
+		return selected;
 	}
 
-	public Point getSelectedPoint(){
+	//Get the currently selected piece in grid
+	public Tile getSelectedTile(){
 		for (int x = 0; x < main.grid.grid.length; x++){
                         for (int y = 0; y < main.grid.grid[x].length; y++){
                                 Tile tile = main.grid.grid[x][y];
 
                                 if (tile.getSelected()){
-					return new Point(x, y);
+					return tile;
 				}	
                         }
                 }
 		return null;
 	}
 
+	//Highlight possibles
 	public void highlightPossibles(ArrayList<Tile> possibles){
 		for (int x = 0; x < possibles.size(); x++){
 			possibles.get(x).possible = true;

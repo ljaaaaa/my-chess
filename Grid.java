@@ -21,4 +21,12 @@ public class Grid {
 		}
 	}
 
+	public void printGrid(){
+		for (int x = 0; x < grid.length; x++){
+                        for (int y = 0; y < grid[0].length; y++){
+                                System.out.print("[" + grid[x][y] + "]");
+                        }
+			System.out.println("");
+                }
+	}
 }
