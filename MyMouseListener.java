@@ -48,7 +48,7 @@ public class MyMouseListener implements MouseListener{
 					state = State.SELECTED_PIECE;
 
 					//Highlight possible moves
-					ArrayList<Point> possibles = ((Piece)selected).possibleMoves();
+					ArrayList<Tile> possibles = ((Piece)selected).possibleMoves();
                                 	highlightPossibles(possibles);
 				}
 				break;
@@ -64,6 +64,7 @@ public class MyMouseListener implements MouseListener{
 				if (selected.possible && oldSelected instanceof Piece){
                                 	((Piece)oldSelected).move(oldPoints, newPoints);
 				}
+				state = State.NO_SELECTION;
 
 				break;
 		}
@@ -102,9 +103,9 @@ public class MyMouseListener implements MouseListener{
 		return null;
 	}
 
-	public void highlightPossibles(ArrayList<Point> possibles){
+	public void highlightPossibles(ArrayList<Tile> possibles){
 		for (int x = 0; x < possibles.size(); x++){
-			main.grid.grid[possibles.get(x).x][possibles.get(x).y].possible = true;
+			possibles.get(x).possible = true;
 		}
 	}
 }

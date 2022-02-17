@@ -13,19 +13,19 @@ public class Pawn extends Piece{
 	}
 
 	@Override
-        public ArrayList<Point> possibleMoves(){
-		ArrayList<Point> possibles = new ArrayList<>();
-
+        public ArrayList<Tile> possibleMoves(){
+		ArrayList<Tile> possibles = new ArrayList<>();
 		Point myCoords = myCoords();
 
+		//Next tile
 		if (!(grid.grid[myCoords.x][myCoords.y+1] instanceof Piece)){
-			possibles.add(new Point(myCoords.x, myCoords.y+1));
+			possibles.add(grid.grid[myCoords.x][myCoords.y+1]);
 		} 
 
 		//Next two tiles
 		if (myCoords.y == 1){
 			if (!(grid.grid[myCoords.x][myCoords.y+2] instanceof Piece)){
-				possibles.add(new Point(myCoords.x, myCoords.y+2));
+				possibles.add(grid.grid[myCoords.x][myCoords.y+2]);
 			}
 		}
 

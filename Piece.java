@@ -10,8 +10,8 @@ public class Piece extends Tile{
 	}
 
 	//Returns all possible move coordinates
-	public ArrayList<Point> possibleMoves(){
-		return new ArrayList<Point>();
+	public ArrayList<Tile> possibleMoves(){
+		return new ArrayList<Tile>();
 	}
 
 	public void move(Point oldCoords, Point newCoords){
