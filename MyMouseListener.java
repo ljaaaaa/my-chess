@@ -10,11 +10,13 @@ public class MyMouseListener implements MouseListener{
 	private Main main; //reference to main
 	enum State { NO_SELECTION, SELECTED_PIECE }	
 	State state;
+	Piece lastSelected;
 
 	//Constructor
 	public MyMouseListener(Main main){
 		this.main = main;
 		state = State.NO_SELECTION;
+		lastSelected = null;
 	}
 	
 	@Override
@@ -37,7 +39,7 @@ public class MyMouseListener implements MouseListener{
 			//No chess piece selected
 			case NO_SELECTION: 
 				//Selected tile and grid points
-				selected = findSelectedTile(e.getPoint());
+				selected = currentSelectedTile(e.getPoint());
 				updateTiles(e.getPoint());
 
 				//Chess piece selected
@@ -46,24 +48,22 @@ public class MyMouseListener implements MouseListener{
 					state = State.SELECTED_PIECE;
 
 					//Highlight possible moves
-					ArrayList<Tile> possibles = ((Piece)selected).possibleMoves();
-                                	highlightPossibles(possibles);
+					highlightPossibles(((Piece)selected).possibleMoves());
+					lastSelected = (Piece)selected;
 				}
 				break;
 
 			//Chess piece selected previously
-			case SELECTED_PIECE: 
-				Tile oldSelected = getSelectedTile();
+			case SELECTED_PIECE:
 				updateTiles(e.getPoint());
-				selected = findSelectedTile(e.getPoint());
+				selected = currentSelectedTile(e.getPoint());
 				
-				if (oldSelected instanceof Piece && ((Piece)oldSelected).possibleMoves().contains(selected)){
-					((Piece)oldSelected).move(selected.posX, selected.posY);
+				if (lastSelected.possibleMoves().contains(selected)){
+					lastSelected.move(selected.posX, selected.posY);
 
 				} else if (selected instanceof Piece){
 					//Highlight possible moves
-                                        ArrayList<Tile> possibles = ((Piece)selected).possibleMoves();
-                                       	highlightPossibles(possibles);
+                                        highlightPossibles(((Piece)selected).possibleMoves());
 				}
 				updateTiles(e.getPoint());
 				state = State.NO_SELECTION;
@@ -72,7 +72,7 @@ public class MyMouseListener implements MouseListener{
 	}
 
 	//Return selected tile
-	public Tile findSelectedTile(Point mousePoint){
+	public Tile currentSelectedTile(Point mousePoint){
 		for (int x = 0; x < main.grid.grid.length; x++){
                         for (int y = 0; y < main.grid.grid[x].length; y++){
                                 Tile tile = main.grid.grid[x][y];
@@ -80,20 +80,6 @@ public class MyMouseListener implements MouseListener{
                                 if (tile.mouseOn(mousePoint)){
                                        	return tile;
                                	}
-                        }
-                }
-		return null;
-	}
-
-	//Get the currently selected piece in grid
-	public Tile getSelectedTile(){
-		for (int x = 0; x < main.grid.grid.length; x++){
-                        for (int y = 0; y < main.grid.grid[x].length; y++){
-                                Tile tile = main.grid.grid[x][y];
-
-                                if (tile.getSelected()){
-					return tile;
-				}	
                         }
                 }
 		return null;

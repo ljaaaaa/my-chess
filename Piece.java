@@ -4,6 +4,9 @@ import javax.swing.ImageIcon;
 
 //Piece Class
 public class Piece extends Tile{
+	enum Direction {UP, DOWN}
+	Direction dir;
+
 	//Constructor
 	public Piece(int posX, int posY, Grid grid){
 		super(posX, posY, grid);
