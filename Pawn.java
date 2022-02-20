@@ -5,12 +5,22 @@ import java.awt.Point;
 //Pawn Class
 public class Pawn extends Piece{
 	//Constructor
-	public Pawn(int posX, int posY, Grid grid){
+	public Pawn(String color, int posX, int posY, Grid grid){
 		super(posX, posY, grid);
-		normalIcon = new ImageIcon("images/pawn.png");
-                selectedIcon = new ImageIcon("images/pawn_selected.png");
+		
+		switch(color) {
+			case "white":
+				normalIcon = new ImageIcon("images/w_pawn.png");
+                		selectedIcon = new ImageIcon("images/w_pawn_selected.png");
+				dir = Direction.DOWN;
+				break;
+			case "black":
+				normalIcon = new ImageIcon("images/b_pawn.png");
+                                selectedIcon = new ImageIcon("images/b_pawn_selected.png");
+                                dir = Direction.UP;
+				break;
+		}
 		setSelected(false);
-		dir = Direction.DOWN;
 	}
 
 	@Override
@@ -33,12 +43,12 @@ public class Pawn extends Piece{
 			//Piece is going up
 			case UP:
 				//Next tile
-                                if (posY-1 >= 0 && !(grid.grid[posX][posY+1] instanceof Piece)){
-                                        possibles.add(grid.grid[posX][posY+1]);
+                                if (posY-1 >= 0 && !(grid.grid[posX][posY-1] instanceof Piece)){
+                                        possibles.add(grid.grid[posX][posY-1]);
 
                                 //Next two tiles
-                                } if (posY == 7 && !(grid.grid[posX][posY+2] instanceof Piece)){
-                                        possibles.add(grid.grid[posX][posY+2]);
+                                } if (posY == 6 && !(grid.grid[posX][posY-2] instanceof Piece)){
+                                        possibles.add(grid.grid[posX][posY-2]);
                                 }
 
 				break;

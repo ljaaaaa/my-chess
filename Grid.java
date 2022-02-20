@@ -17,8 +17,12 @@ public class Grid {
 
 	private void initPawns(){        
 		for (int x = 0; x < grid.length; x++){
-			grid[x][1] = new Pawn(x, 1, this);
+			grid[x][1] = new Pawn("white", x, 1, this);
 		}
+
+		for (int x = 0; x < grid.length; x++){
+                        grid[x][6] = new Pawn("black", x, 6, this);
+                }
 	}
 
 	public void printGrid(){
