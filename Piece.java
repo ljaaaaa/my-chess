@@ -4,12 +4,14 @@ import javax.swing.ImageIcon;
 
 //Piece Class
 public class Piece extends Tile{
-	enum Direction {UP, DOWN}
-	Direction dir;
+	public enum Direction {UP, DOWN}
+	public Direction dir;
+	public final String color;
 
 	//Constructor
-	public Piece(int posX, int posY, Grid grid){
+	public Piece(int posX, int posY, Grid grid, String color){
 		super(posX, posY, grid);
+		this.color = color;
 	}
 
 	//Returns all possible move coordinates
