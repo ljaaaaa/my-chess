@@ -60,13 +60,18 @@ public class MyMouseListener implements MouseListener{
 				
 				if (lastSelected.possibleMoves().contains(selected)){
 					lastSelected.move(selected.posX, selected.posY);
+					state = State.NO_SELECTION;
+				
+				} else {
+					state = State.SELECTED_PIECE;
+				}
 
-				} else if (selected instanceof Piece){
+				 if (selected instanceof Piece){
 					//Highlight possible moves
                                         highlightPossibles(((Piece)selected).possibleMoves());
+					state = State.NO_SELECTION;
 				}
 				updateTiles(e.getPoint());
-				state = State.NO_SELECTION;
 				break;
 		}
 	}
