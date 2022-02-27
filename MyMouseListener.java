@@ -7,8 +7,12 @@ import java.util.ArrayList;
 
 //MyMouseListener Class
 public class MyMouseListener implements MouseListener{
-	private Main main; //reference to main
-	enum State { NO_SELECTION, SELECTED_PIECE }	
+	enum State { 
+		NO_SELECTION, 
+		SELECTED_PIECE 
+	}	
+	
+	private Main main; 
 	State state;
 	Piece lastSelected;
 
