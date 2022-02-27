@@ -37,17 +37,16 @@ public class Pawn extends Piece{
 				//Next two tiles
                 		} if (posY == 1 && !(grid.grid[posX][posY+2] instanceof Piece)){
                                 	possibles.add(grid.grid[posX][posY+2]);
-                        	}
 
 				//Diagonal tile
-				if (posY+1 < 8 && posX+1 < 8 && (grid.grid[posX+1][posY+1] instanceof Piece) && ((Piece)grid.grid[posX+1][posY+1]).color != color){
+				}if (posY+1 < 8 && posX+1 < 8 && (grid.grid[posX+1][posY+1] instanceof Piece) && ((Piece)grid.grid[posX+1][posY+1]).color != color){
                                         possibles.add(grid.grid[posX+1][posY+1]);
-                                }
 
 				//Diagonal tile
-                                if (posY+1 < 8 && posX-1 >= 0 && (grid.grid[posX-1][posY+1] instanceof Piece) && ((Piece)grid.grid[posX-1][posY+1]).color != color){
+				} if (posY+1 < 8 && posX-1 >= 0 && (grid.grid[posX-1][posY+1] instanceof Piece) && ((Piece)grid.grid[posX-1][posY+1]).color != color){
                                         possibles.add(grid.grid[posX-1][posY+1]);
-                                }
+                                
+				}
 
 				break;
 
@@ -60,15 +59,13 @@ public class Pawn extends Piece{
                                 //Next two tiles
                                 } if (posY == 6 && !(grid.grid[posX][posY-2] instanceof Piece)){
                                         possibles.add(grid.grid[posX][posY-2]);
-                                }
 
 				//Diagonal tile
-                                if (posY-1 >= 0 && posX+1 < 8 && (grid.grid[posX+1][posY-1] instanceof Piece) && ((Piece)grid.grid[posX+1][posY-1]).color != color){
+				} if (posY-1 >= 0 && posX+1 < 8 && (grid.grid[posX+1][posY-1] instanceof Piece) && ((Piece)grid.grid[posX+1][posY-1]).color != color){
                                         possibles.add(grid.grid[posX+1][posY-1]);
-                                }
 
 				//Diagonal tile
-                                if (posY-1 >= 0 && posX-1 >= 0 && (grid.grid[posX-1][posY-1] instanceof Piece) && ((Piece)grid.grid[posX-1][posY-1]).color != color){
+				} if (posY-1 >= 0 && posX-1 >= 0 && (grid.grid[posX-1][posY-1] instanceof Piece) && ((Piece)grid.grid[posX-1][posY-1]).color != color){
                                         possibles.add(grid.grid[posX-1][posY-1]);
                                 }
 

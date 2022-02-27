@@ -50,28 +50,33 @@ public class MyMouseListener implements MouseListener{
 					//Highlight possible moves
 					highlightPossibles(((Piece)selected).possibleMoves());
 					lastSelected = (Piece)selected;
-				}
+				} 
 				break;
 
 			//Chess piece selected previously
 			case SELECTED_PIECE:
 				updateTiles(e.getPoint());
 				selected = currentSelectedTile(e.getPoint());
-				
+				updateTiles(e.getPoint());
+
+				//Move piece
 				if (lastSelected.possibleMoves().contains(selected)){
 					lastSelected.move(selected.posX, selected.posY);
 					state = State.NO_SELECTION;
 				
+				//Don't move piece
 				} else {
-					state = State.SELECTED_PIECE;
-				}
+					//New selected piece
+					if (selected instanceof Piece){
+						state = State.SELECTED_PIECE;
 
-				 if (selected instanceof Piece){
-					//Highlight possible moves
-                                        highlightPossibles(((Piece)selected).possibleMoves());
-					state = State.NO_SELECTION;
+						//Highlight possible moves
+                                        	highlightPossibles(((Piece)selected).possibleMoves());
+						lastSelected = (Piece)selected;
+					} else {
+						state = State.NO_SELECTION;
+					}
 				}
-				updateTiles(e.getPoint());
 				break;
 		}
 	}
