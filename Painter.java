@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 
 //Painter Class
 public class Painter extends JPanel {
-	//Background images
 	private ImageIcon[][] bg;
         private Grid grid;
 

@@ -5,21 +5,11 @@ import java.awt.Point;
 //Pawn Class
 public class Pawn extends Piece{
 	//Constructor
-	public Pawn(int posX, int posY, Grid grid, String color){
+	public Pawn(int posX, int posY, Grid grid, char color){
 		super(posX, posY, grid, color);
 		
-		switch(color) {
-			case "white":
-				normalIcon = new ImageIcon("images/w_pawn.png");
-                		selectedIcon = new ImageIcon("images/w_pawn_selected.png");
-				dir = Direction.DOWN;
-				break;
-			case "black":
-				normalIcon = new ImageIcon("images/b_pawn.png");
-                                selectedIcon = new ImageIcon("images/b_pawn_selected.png");
-                                dir = Direction.UP;
-				break;
-		}
+		normalIcon = new ImageIcon("images/" + color + "_pawn.png");
+                selectedIcon = new ImageIcon("images/" + color + "_pawn_selected.png");
 		setSelected(false);
 	}
 

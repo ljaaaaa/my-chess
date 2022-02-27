@@ -36,11 +36,7 @@ public class Tile {
 	public void setSelected(boolean selected){
 		this.selected = selected;
 
-		if (selected){
-			currentIcon = selectedIcon;
-		} else {
-			currentIcon = normalIcon;
-		}
+		currentIcon = selected ? selectedIcon : normalIcon;
 	}
 	
 	//Get selected status
