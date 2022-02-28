@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.awt.Point;
-import javax.swing.ImageIcon;
 
 //Piece Class
 public class Piece extends Tile{

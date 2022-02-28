@@ -7,6 +7,7 @@ public class Grid {
 		grid = new Tile[8][8];
 		setBaseGrid();
 		initPawns();
+		initBishops();
 	}
 
 	//Set basic grid to non-null tiles
@@ -27,6 +28,14 @@ public class Grid {
 		for (int x = 0; x < grid.length; x++){
                         grid[x][6] = new Pawn(x, 6, this, 'b');
                 }
+	}
+
+	//Initialize bishops onto grid
+        private void initBishops(){
+                grid[1][0] = new Bishop(1, 0, this, 'w');
+		grid[6][0] = new Bishop(6, 0, this, 'w');
+		grid[1][7] = new Bishop(1, 7, this, 'b');
+		grid[6][7] = new Bishop(6, 7, this, 'b');	
 	}
 
 	//Print grid, for debugging

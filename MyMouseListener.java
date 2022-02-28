@@ -22,20 +22,8 @@ public class MyMouseListener implements MouseListener{
 		state = State.NO_SELECTION;
 		lastSelected = null;
 	}
-	
+
 	@Override
-        public void mousePressed(MouseEvent e) { }
-
-        @Override
-        public void mouseReleased(MouseEvent e) { }
-
-        @Override
-        public void mouseEntered(MouseEvent e) { }
-
-        @Override
-        public void mouseExited(MouseEvent e) { }
-
-        @Override
         public void mouseClicked(MouseEvent e) {
 		Tile selected = null;
 
@@ -124,4 +112,16 @@ public class MyMouseListener implements MouseListener{
 			possibles.get(x).possible = true;
 		}
 	}
+	
+	@Override
+        public void mousePressed(MouseEvent e) { }
+
+        @Override
+        public void mouseReleased(MouseEvent e) { }
+
+        @Override
+        public void mouseEntered(MouseEvent e) { }
+
+        @Override
+        public void mouseExited(MouseEvent e) { }
 }
