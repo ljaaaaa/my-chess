@@ -8,6 +8,7 @@ public class Grid {
 		setBaseGrid();
 		initPawns();
 		initBishops();
+		initRooks();
 	}
 
 	//Set basic grid to non-null tiles
@@ -37,6 +38,14 @@ public class Grid {
 		grid[1][7] = new Bishop(1, 7, this, 'b');
 		grid[6][7] = new Bishop(6, 7, this, 'b');	
 	}
+
+	//Initialize rooks onto grid
+        private void initRooks(){
+                grid[0][0] = new Rook(0, 0, this, 'w');
+                grid[7][0] = new Rook(7, 0, this, 'w');
+                grid[0][7] = new Rook(0, 7, this, 'b');
+                grid[7][7] = new Rook(7, 7, this, 'b');
+        }
 
 	//Print grid, for debugging
 	public void printGrid(){
