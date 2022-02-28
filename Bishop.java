@@ -27,14 +27,14 @@ public class Bishop extends Piece{
 				if (((Piece)grid.grid[posX-add][posY-add]).color == color){
 					possibles.remove(possibles.size()-1);
 				}
-				add = 1;
 				break;
 			}
 			add++;
 		}
+		add = 1;
 
 		//Diagonal up right
-                while (posY-add >= 0 && posX+add < 8){
+		while (posY-add >= 0 && posX+add < 8){
                         possibles.add(grid.grid[posX+add][posY-add]);
 
                         if (grid.grid[posX+add][posY-add] instanceof Piece){
@@ -42,11 +42,11 @@ public class Bishop extends Piece{
                                 if (((Piece)grid.grid[posX+add][posY-add]).color == color){
                                         possibles.remove(possibles.size()-1);
                                 }
-				add = 1;
 				break;
                         }
                         add++;
                 }
+		add = 1;
 
 		//Diagonal down left
 		while (posY+add < 8 && posX-add >= 0 ){
@@ -57,11 +57,11 @@ public class Bishop extends Piece{
                                 if (((Piece)grid.grid[posX-add][posY+add]).color == color){
                                         possibles.remove(possibles.size()-1);
                                 }
-				add = 1;
 				break;
 			}
 			add++;
 		}
+		add = 1;
 
 		//Diagonal down right
                 while (posY+add < 8 && posX+add < 8){
@@ -76,10 +76,6 @@ public class Bishop extends Piece{
                         }
                         add++;
                 }
-
-
-
-
 
 		return possibles;
         }
