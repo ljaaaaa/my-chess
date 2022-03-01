@@ -9,6 +9,7 @@ public class Piece extends Tile{
 
 	public Direction dir;
 	public final char color;
+	public CList[][] possibles;
 
 	//Constructor
 	public Piece(int posX, int posY, Grid grid, char color){
@@ -19,11 +20,6 @@ public class Piece extends Tile{
 		setSelected(false);
 	}
 
-	//Returns all possible move coordinates
-	public ArrayList<Tile> possibleMoves(){
-		return new ArrayList<Tile>();
-	}
-
 	//Move tile to new location
 	public void move(int newX, int newY){
 		grid.grid[posX][posY] = new Tile(posX, posY, grid);
@@ -31,4 +27,8 @@ public class Piece extends Tile{
 		this.posX = newX;
 		this.posY = newY;
 	}
+
+	 public ArrayList<Tile> possibleMoves(){
+		return null;
+	 }
 }

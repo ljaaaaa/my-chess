@@ -6,10 +6,10 @@ public class Grid {
 	public Grid(){
 		grid = new Tile[8][8];
 		setBaseGrid();
-		initPawns();
-		initBishops();
+		//initPawns();
+		//initBishops();
 		initRooks();
-		initKnights();
+		//initKnights();
 	}
 
 	//Set basic grid to non-null tiles
@@ -43,9 +43,9 @@ public class Grid {
 	//Initialize rooks onto grid
         private void initRooks(){
                 grid[0][0] = new Rook(0, 0, this, 'w');
-                grid[7][0] = new Rook(7, 0, this, 'w');
-                grid[0][7] = new Rook(0, 7, this, 'b');
-                grid[7][7] = new Rook(7, 7, this, 'b');
+        //        grid[7][0] = new Rook(7, 0, this, 'w');
+        //        grid[0][7] = new Rook(0, 7, this, 'b');
+        //        grid[7][7] = new Rook(7, 7, this, 'b');
         }
 
 	private void initKnights(){

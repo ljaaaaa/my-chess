@@ -40,7 +40,7 @@ public class MyMouseListener implements MouseListener{
 					state = State.SELECTED_PIECE;
 
 					//Highlight possible moves
-					highlightPossibles(((Piece)selected).possibleMoves());
+					highlightPossibles((Piece)selected, ((Piece)selected).possibleMoves());
 					lastSelected = (Piece)selected;
 				} 
 				break;
@@ -63,7 +63,7 @@ public class MyMouseListener implements MouseListener{
 						state = State.SELECTED_PIECE;
 
 						//Highlight possible moves
-                                        	highlightPossibles(((Piece)selected).possibleMoves());
+                                        	highlightPossibles((Piece)selected, ((Piece)selected).possibleMoves());
 						lastSelected = (Piece)selected;
 					} else {
 						state = State.NO_SELECTION;
@@ -107,10 +107,18 @@ public class MyMouseListener implements MouseListener{
 	}
 
 	//Highlight possibles
-	public void highlightPossibles(ArrayList<Tile> possibles){
+	public void highlightPossibles(Piece piece, ArrayList<Tile> possibles){
+		System.out.print("possibles[" + piece.posX + "][" + piece.posY + "] = new CList(");
 		for (int x = 0; x < possibles.size(); x++){
 			possibles.get(x).possible = true;
+
+			if (x == possibles.size()-1){
+			System.out.print("new C(" + possibles.get(x).posX + ", " + possibles.get(x).posY + "));");
+			} else {
+				System.out.print("new C(" + possibles.get(x).posX + ", " + possibles.get(x).posY + "), ");
+			}
 		}
+		System.out.println();
 	}
 	
 	@Override
