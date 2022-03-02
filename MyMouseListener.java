@@ -7,36 +7,34 @@ import java.util.ArrayList;
 
 //MyMouseListener Class
 public class MyMouseListener implements MouseListener{
-	enum State { 
+	private enum State { 
 		NO_SELECTION, 
 		SELECTED_PIECE 
-	}	
-	
-	private Main main; 
-	State state;
-	Piece lastSelected;
+	}		
+	private Grid grid; 
+	private State state;
+	private Piece lastSelected;
 
 	//Constructor
-	public MyMouseListener(Main main){
-		this.main = main;
+	public MyMouseListener(Grid grid){
+		this.grid = grid;
 		state = State.NO_SELECTION;
 		lastSelected = null;
 	}
 
 	@Override
         public void mouseClicked(MouseEvent e) {
+		painter.repaint();
 		Tile selected = null;
 
 		switch (state){
 			//No chess piece selected
 			case NO_SELECTION: 
-				//Selected tile and grid points
 				selected = currentSelectedTile(e.getPoint());
 				updateTiles(e.getPoint());
 
 				//Chess piece selected
 				if (selected instanceof Piece){
-					//Update current state
 					state = State.SELECTED_PIECE;
 
 					//Highlight possible moves
@@ -51,8 +49,8 @@ public class MyMouseListener implements MouseListener{
 				selected = currentSelectedTile(e.getPoint());
 
 				//Move piece
-				if (((Rook)lastSelected).isPossibleMove(selected.posX, selected.posY)){
-					lastSelected.move(selected.posX, selected.posY);
+				if (((Rook)lastSelected).isValidMove(main.grid, selected.x, selected.x)){
+					lastSelected.move(selected.x, selected.y);
 					state = State.NO_SELECTION;
 				
 				//Don't move piece
@@ -74,11 +72,9 @@ public class MyMouseListener implements MouseListener{
 
 	//Return selected tile
 	public Tile currentSelectedTile(Point mousePoint){
-		for (int x = 0; x < main.grid.grid.length; x++){
-                        for (int y = 0; y < main.grid.grid[x].length; y++){
-                                Tile tile = main.grid.grid[x][y];
-
-                                if (tile.mouseOn(mousePoint)){
+		for (int x = 0; x < grid.grid.length; x++){
+                        for (int y = 0; y < grid.grid[x].length; y++){
+                                if (grid.grid[x][y].mouseOn(mousePoint)){
                                        	return tile;
                                	}
                         }
@@ -88,9 +84,9 @@ public class MyMouseListener implements MouseListener{
 
 	//Update tile selected and possible statuses
 	public void updateTiles(Point mousePoint){
-		for (int x = 0; x < main.grid.grid.length; x++){
-                        for (int y = 0; y < main.grid.grid[x].length; y++){
-				Tile tile = main.grid.grid[x][y];
+		for (int x = 0; x < grid.grid.length; x++){
+                        for (int y = 0; y < grid.grid[x].length; y++){
+				Tile tile = grid.grid[x][y];
 
 				//Mouse on
 				if (tile.mouseOn(mousePoint)){
@@ -109,23 +105,10 @@ public class MyMouseListener implements MouseListener{
         public void highlightPossibles(Piece piece){
 		ArrayList<C> possibles = piece.possibles[piece.posX][piece.posY].list;
 		for (int x = 0; x < possibles.size(); x++){
-			main.grid.grid[possibles.get(x).x][possibles.get(x).y].possible = true;
+			grid.grid[possibles.get(x).x][possibles.get(x).y].possible = true;
 		}
         }
 
-	//Print possibles
-	public void printPossibles(Piece piece, ArrayList<Tile> possibles){
-		System.out.print("possibles[" + piece.posX + "][" + piece.posY + "] = new CList(");
-		for (int x = 0; x < possibles.size(); x++){
-			if (x == possibles.size()-1){
-			System.out.print("new C(" + possibles.get(x).posX + ", " + possibles.get(x).posY + "));");
-			} else {
-				System.out.print("new C(" + possibles.get(x).posX + ", " + possibles.get(x).posY + "), ");
-			}
-		}
-		System.out.println();
-	}
-	
 	@Override
         public void mousePressed(MouseEvent e) { }
 

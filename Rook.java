@@ -3,29 +3,17 @@ import java.util.ArrayList;
 
 //Rook Class
 public class Rook extends Piece{
-	//Constructor
-	public Rook(int posX, int posY, Grid grid, char color){
-		super(posX, posY, grid, color);
-		
+
+	public Rook(int x, int y, char color){
+		super(posX, posY, color);
 		normalIcon = new ImageIcon("images/" + color + "_rook.png");
                 selectedIcon = new ImageIcon("images/" + color + "_rook_selected.png");
 		setSelected(false);
-	
-		possibles = new CList[8][8];
 		setPossibles();
 	}
 
-	public boolean isPossibleMove(int posX, int posY){
-		ArrayList<C> list = possibles[this.posX][this.posY].list;
-		for (int x = 0; x < list.size(); x++){
-			if (list.get(x).x == posX && list.get(x).y == posY){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public void setPossibles(){
+	@Override
+	private void setPossibles(){
 		possibles[0][0] = new CList(new C(0, 1), new C(0, 2), new C(0, 3), new C(0, 4), new C(0, 5), new C(0, 6), new C(0, 7), new C(1, 0), new C(2, 0), new C(3, 0), new C(4, 0), new C(5, 0), new C(6, 0), new C(7, 0));
                 possibles[1][0] = new CList(new C(1, 1), new C(1, 2), new C(1, 3), new C(1, 4), new C(1, 5), new C(1, 6), new C(1, 7), new C(0, 0), new C(2, 0), new C(3, 0), new C(4, 0), new C(5, 0), new C(6, 0), new C(7, 0));
                 possibles[2][0] = new CList(new C(2, 1), new C(2, 2), new C(2, 3), new C(2, 4), new C(2, 5), new C(2, 6), new C(2, 7), new C(1, 0), new C(0, 0), new C(3, 0), new C(4, 0), new C(5, 0), new C(6, 0), new C(7, 0));

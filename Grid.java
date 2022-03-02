@@ -24,20 +24,20 @@ public class Grid {
 	//Initialize pawns onto grid
 	private void initPawns(){        
 		for (int x = 0; x < grid.length; x++){
-			grid[x][1] = new Pawn(x, 1, this, 'w');
+	//		grid[x][1] = new Pawn(x, 1, this, 'w');
 		}
 
 		for (int x = 0; x < grid.length; x++){
-                        grid[x][6] = new Pawn(x, 6, this, 'b');
+        //                grid[x][6] = new Pawn(x, 6, this, 'b');
                 }
 	}
 
 	//Initialize bishops onto grid
         private void initBishops(){
-                grid[1][0] = new Bishop(1, 0, this, 'w');
-		grid[6][0] = new Bishop(6, 0, this, 'w');
-		grid[1][7] = new Bishop(1, 7, this, 'b');
-		grid[6][7] = new Bishop(6, 7, this, 'b');	
+        //        grid[1][0] = new Bishop(1, 0, this, 'w');
+	//	grid[6][0] = new Bishop(6, 0, this, 'w');
+	//	grid[1][7] = new Bishop(1, 7, this, 'b');
+	//	grid[6][7] = new Bishop(6, 7, this, 'b');	
 	}
 
 	//Initialize rooks onto grid
@@ -49,10 +49,10 @@ public class Grid {
         }
 
 	private void initKnights(){
-		grid[2][0] = new Knight(2, 0, this, 'w');
-                grid[5][0] = new Knight(5, 0, this, 'w');
-                grid[2][7] = new Knight(2, 7, this, 'b');
-                grid[5][7] = new Knight(5, 7, this, 'b');
+	//	grid[2][0] = new Knight(2, 0, this, 'w');
+        //        grid[5][0] = new Knight(5, 0, this, 'w');
+        //        grid[2][7] = new Knight(2, 7, this, 'b');
+        //        grid[5][7] = new Knight(5, 7, this, 'b');
 	}
 
 	//Print grid, for debugging
