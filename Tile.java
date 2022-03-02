@@ -13,7 +13,6 @@ public class Tile {
 
 	//Constructor
 	public Tile(int x, int y){
-		this.grid = grid;
 		this.x = x;
 		this.y = y;
 		normalIcon = new ImageIcon("images/clear.png");

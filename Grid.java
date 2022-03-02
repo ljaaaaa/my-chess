@@ -16,7 +16,7 @@ public class Grid {
 	private void setBaseGrid(){
 		for (int x = 0; x < grid.length; x++){
 			for (int y = 0; y < grid[0].length; y++){
-				grid[x][y] = new Tile(x, y, this);
+				grid[x][y] = new Tile(x, y);
 			}
 		}
 	}
@@ -42,7 +42,7 @@ public class Grid {
 
 	//Initialize rooks onto grid
         private void initRooks(){
-                grid[0][0] = new Rook(0, 0, this, 'w');
+                grid[0][0] = new Rook(0, 0, 'w');
         //        grid[7][0] = new Rook(7, 0, this, 'w');
         //        grid[0][7] = new Rook(0, 7, this, 'b');
         //        grid[7][7] = new Rook(7, 7, this, 'b');

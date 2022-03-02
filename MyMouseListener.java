@@ -19,13 +19,13 @@ public class MyMouseListener implements MouseListener{
 	//Constructor
 	public MyMouseListener(Painter painter, Grid grid){
 		this.grid = grid;
+		this.painter = painter;
 		state = State.NO_SELECTION;
 		lastSelected = null;
 	}
 
 	@Override
         public void mouseClicked(MouseEvent e) {
-		painter.repaint();
 		Tile selected = null;
 
 		switch (state){
@@ -50,8 +50,10 @@ public class MyMouseListener implements MouseListener{
 				selected = currentSelectedTile(e.getPoint());
 
 				//Move piece
+				System.out.println("hey");
 				if (lastSelected.isValidMoveLocation(grid, selected.x, selected.x)){
-					lastSelected.move(selected.x, selected.y);
+					System.out.println("waaa");
+					lastSelected.move(grid, selected.x, selected.y);
 					state = State.NO_SELECTION;
 				
 				//Don't move piece
@@ -69,6 +71,7 @@ public class MyMouseListener implements MouseListener{
 				}
 				break;
 		}
+		painter.repaint();
 	}
 
 	//Return selected tile

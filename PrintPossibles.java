@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class PrintPossibles {
 
         public static void printPossibles(Piece piece, ArrayList<Tile> possibles){
-                System.out.print("possibles[" + piece.posX + "][" + piece.posY + "] = new CList(");
+                System.out.print("possibles[" + piece.x + "][" + piece.y + "] = new CList(");
                 for (int x = 0; x < possibles.size(); x++){
                         if (x == possibles.size()-1){
                         System.out.print("new C(" + possibles.get(x).x + ", " + possibles.get(x).y + "));");

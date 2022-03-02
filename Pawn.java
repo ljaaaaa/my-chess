@@ -11,8 +11,8 @@ public class Pawn extends Piece{
         public Direction dir;
 
 	//Constructor
-	public Pawn(int posX, int posY, Grid grid, char color){
-		super(posX, posY, grid, color);
+	public Pawn(int x, int y, char color){
+		super(x, y, color);
 	
 		dir = color == 'w' ? Direction.DOWN : Direction.UP;
 		
