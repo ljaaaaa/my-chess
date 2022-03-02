@@ -22,8 +22,8 @@ public class Tile {
 
 	//If mouse is touching area
         public boolean mouseOn(Point mouse){
-       		if (mouse.x > this.x*80 && mouse.x < this.x*80+80
-                        && mouse.y > this.y*80+38 && mouse.y < this.y*80+80+38){
+       		if (mouse.x >= this.x*80 && mouse.x <= this.x*80+80
+                        && mouse.y >= this.y*80+38 && mouse.y <= this.y*80+80+38){
                         return true;
                 }
 
