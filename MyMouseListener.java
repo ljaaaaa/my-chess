@@ -40,7 +40,7 @@ public class MyMouseListener implements MouseListener{
 					state = State.SELECTED_PIECE;
 
 					//Highlight possible moves
-					highlightPossibles((Piece)selected, ((Piece)selected).possibleMoves());
+					highlightPossibles((Piece)selected);
 					lastSelected = (Piece)selected;
 				} 
 				break;
@@ -49,10 +49,9 @@ public class MyMouseListener implements MouseListener{
 			case SELECTED_PIECE:
 				updateTiles(e.getPoint());
 				selected = currentSelectedTile(e.getPoint());
-				updateTiles(e.getPoint());
 
 				//Move piece
-				if (lastSelected.possibleMoves().contains(selected)){
+				if (((Rook)lastSelected).isPossibleMove(selected.posX, selected.posY)){
 					lastSelected.move(selected.posX, selected.posY);
 					state = State.NO_SELECTION;
 				
@@ -63,7 +62,7 @@ public class MyMouseListener implements MouseListener{
 						state = State.SELECTED_PIECE;
 
 						//Highlight possible moves
-                                        	highlightPossibles((Piece)selected, ((Piece)selected).possibleMoves());
+                                        	highlightPossibles((Piece)selected);
 						lastSelected = (Piece)selected;
 					} else {
 						state = State.NO_SELECTION;
@@ -107,11 +106,17 @@ public class MyMouseListener implements MouseListener{
 	}
 
 	//Highlight possibles
-	public void highlightPossibles(Piece piece, ArrayList<Tile> possibles){
+        public void highlightPossibles(Piece piece){
+		ArrayList<C> possibles = piece.possibles[piece.posX][piece.posY].list;
+		for (int x = 0; x < possibles.size(); x++){
+			main.grid.grid[possibles.get(x).x][possibles.get(x).y].possible = true;
+		}
+        }
+
+	//Print possibles
+	public void printPossibles(Piece piece, ArrayList<Tile> possibles){
 		System.out.print("possibles[" + piece.posX + "][" + piece.posY + "] = new CList(");
 		for (int x = 0; x < possibles.size(); x++){
-			possibles.get(x).possible = true;
-
 			if (x == possibles.size()-1){
 			System.out.print("new C(" + possibles.get(x).posX + ", " + possibles.get(x).posY + "));");
 			} else {

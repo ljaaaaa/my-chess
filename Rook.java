@@ -15,6 +15,16 @@ public class Rook extends Piece{
 		setPossibles();
 	}
 
+	public boolean isPossibleMove(int posX, int posY){
+		ArrayList<C> list = possibles[this.posX][this.posY].list;
+		for (int x = 0; x < list.size(); x++){
+			if (list.get(x).x == posX && list.get(x).y == posY){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void setPossibles(){
 		possibles[0][0] = new CList(new C(0, 1), new C(0, 2), new C(0, 3), new C(0, 4), new C(0, 5), new C(0, 6), new C(0, 7), new C(1, 0), new C(2, 0), new C(3, 0), new C(4, 0), new C(5, 0), new C(6, 0), new C(7, 0));
                 possibles[1][0] = new CList(new C(1, 1), new C(1, 2), new C(1, 3), new C(1, 4), new C(1, 5), new C(1, 6), new C(1, 7), new C(0, 0), new C(2, 0), new C(3, 0), new C(4, 0), new C(5, 0), new C(6, 0), new C(7, 0));
