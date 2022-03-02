@@ -13,7 +13,7 @@ public class Rook extends Piece{
 	}
 
 	@Override
-	private void setPossibles(){
+	protected void setPossibles(){
 		possibles[0][0] = new CList(new C(0, 1), new C(0, 2), new C(0, 3), new C(0, 4), new C(0, 5), new C(0, 6), new C(0, 7), new C(1, 0), new C(2, 0), new C(3, 0), new C(4, 0), new C(5, 0), new C(6, 0), new C(7, 0));
                 possibles[1][0] = new CList(new C(1, 1), new C(1, 2), new C(1, 3), new C(1, 4), new C(1, 5), new C(1, 6), new C(1, 7), new C(0, 0), new C(2, 0), new C(3, 0), new C(4, 0), new C(5, 0), new C(6, 0), new C(7, 0));
                 possibles[2][0] = new CList(new C(2, 1), new C(2, 2), new C(2, 3), new C(2, 4), new C(2, 5), new C(2, 6), new C(2, 7), new C(1, 0), new C(0, 0), new C(3, 0), new C(4, 0), new C(5, 0), new C(6, 0), new C(7, 0));

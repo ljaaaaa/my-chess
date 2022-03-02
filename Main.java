@@ -19,7 +19,7 @@ public class Main {
 		grid = new Grid();
 		painter = new Painter(grid);
 		frame = new MyFrame("Chess", this);
-		mouseListener = new MyMouseListener(grid);
+		mouseListener = new MyMouseListener(painter, grid);
 
 	}
 }
