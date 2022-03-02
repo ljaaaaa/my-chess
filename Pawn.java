@@ -19,6 +19,7 @@ public class Pawn extends Piece{
 		normalIcon = new ImageIcon("images/" + color + "_pawn.png");
                 selectedIcon = new ImageIcon("images/" + color + "_pawn_selected.png");
 		setSelected(false);
+		setPossibles();
 	}
 
 	@Override
