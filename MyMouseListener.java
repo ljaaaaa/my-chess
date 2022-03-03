@@ -38,9 +38,7 @@ public class MyMouseListener implements MouseListener{
 				if (selected instanceof Piece){
 					state = State.SELECTED_PIECE;
 
-					//Highlight possible moves
 					highlightPossibles((Piece)selected);
-					lastSelected = (Piece)selected;
 				} 
 				break;
 
@@ -60,9 +58,7 @@ public class MyMouseListener implements MouseListener{
 					if (selected instanceof Piece){
 						state = State.SELECTED_PIECE;
 
-						//Highlight possible moves
                                         	highlightPossibles((Piece)selected);
-						lastSelected = (Piece)selected;
 					} else {
 						state = State.NO_SELECTION;
 					}
@@ -109,6 +105,9 @@ public class MyMouseListener implements MouseListener{
 		for (int x = 0; x < possibles.size(); x++){
 			grid.grid[possibles.get(x).x][possibles.get(x).y].possible = true;
 		}
+
+		//Update last selected piece
+		lastSelected = piece;
         }
 
 	@Override

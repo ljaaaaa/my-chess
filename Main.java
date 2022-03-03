@@ -1,7 +1,3 @@
-import java.awt.Point;
-import javax.swing.ImageIcon;
-import javax.swing.Timer;
-
 //Main Class
 public class Main {
 	Grid grid;
