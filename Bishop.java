@@ -27,6 +27,7 @@ public class Bishop extends Piece{
 					newPossibles.add(tile);
 					return newPossibles;
 				}
+				return newPossibles;
 			}
 			newPossibles.add(tile);
 		}
