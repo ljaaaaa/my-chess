@@ -6,8 +6,8 @@ public class PrintPossibles {
 	public static void main(String[] args){
 		for (int x = 0; x < 8; x++){
 			for (int y = 0; y < 8; y++){
-				Knight p = new Knight(x, y, 'w');
-				ArrayList<Tile> possibles = new PrintPossibles().knightPossibleMoves(x, y, new Grid());
+				Bishop p = new Bishop(x, y, 'w');
+				ArrayList<Tile> possibles = new PrintPossibles().bishopPossibleMoves(x, y, new Grid());
 				printPossibles(p, possibles);
 			}
 		}
@@ -17,9 +17,9 @@ public class PrintPossibles {
                 System.out.print("possibles[" + piece.x + "][" + piece.y + "] = new CList(");
                 for (int x = 0; x < possibles.size(); x++){
                         if (x == possibles.size()-1){
-                        System.out.print("new C(" + possibles.get(x).x + ", " + possibles.get(x).y + ")");
+                        System.out.print("new C(" + possibles.get(x).x + ", " + possibles.get(x).y + ", " + possibles.get(x).num + ")");
                         } else {
-                                System.out.print("new C(" + possibles.get(x).x + ", " + possibles.get(x).y + "), ");
+                                System.out.print("new C(" + possibles.get(x).x + ", " + possibles.get(x).y + ", " + possibles.get(x).num + "), ");
                         }
                 }
                 System.out.print(");\n");
@@ -67,12 +67,13 @@ public class PrintPossibles {
 		return possibles;
         }
 
-        public ArrayList<Tile> bishopPossibleMoves(int posX, int posY, Grid grid, char color){
+        public ArrayList<Tile> bishopPossibleMoves(int posX, int posY, Grid grid){
 		ArrayList<Tile> possibles = new ArrayList<>();
 		int add = 1;
 
 		//Diagonal up left
 		while (posY-add >= 0 && posX-add >= 0){
+			grid.grid[posX-add][posY-add].num = 0;
 			possibles.add(grid.grid[posX-add][posY-add]);
 			add++;
 		}
@@ -80,6 +81,7 @@ public class PrintPossibles {
 
 		//Diagonal up right
 		while (posY-add >= 0 && posX+add < 8){
+			grid.grid[posX+add][posY-add].num = 1;
                         possibles.add(grid.grid[posX+add][posY-add]); 
                         add++;
                 }
@@ -87,6 +89,7 @@ public class PrintPossibles {
 
 		//Diagonal down left
 		while (posY+add < 8 && posX-add >= 0 ){
+			grid.grid[posX-add][posY+add].num = 2;
 			possibles.add(grid.grid[posX-add][posY+add]);
 
 			add++;
@@ -95,6 +98,7 @@ public class PrintPossibles {
 
 		//Diagonal down right
                 while (posY+add < 8 && posX+add < 8){
+			grid.grid[posX+add][posY+add].num = 3;
 			possibles.add(grid.grid[posX+add][posY+add]);
                         add++;
                 }

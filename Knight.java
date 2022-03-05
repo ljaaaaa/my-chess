@@ -14,6 +14,22 @@ public class Knight extends Piece{
 	}
 
 	@Override
+        public ArrayList<Tile> getPossibles(Grid grid){
+                ArrayList<C> list = possibles[this.x][this.y].list;
+                ArrayList<Tile> newPossibles = new ArrayList<Tile>();
+
+                for (int x = 0; x < list.size(); x++){
+                        Tile tile = grid.grid[list.get(x).x][list.get(x).y];
+
+                        if (tile instanceof Piece && ((Piece)tile).color == this.color){
+                         	continue;
+			}
+                        newPossibles.add(tile);
+                }
+                return newPossibles;
+        }
+	
+	@Override
         protected void setPossibles(){
 		possibles[0][0] = new CList(new C(1, 2), new C(2, 1));
 		possibles[0][1] = new CList(new C(1, 3), new C(2, 0), new C(2, 2));

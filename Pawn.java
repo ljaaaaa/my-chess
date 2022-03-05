@@ -23,6 +23,43 @@ public class Pawn extends Piece{
 	}
 
 	@Override
+        public ArrayList<Tile> getPossibles(Grid grid){
+                ArrayList<C> list = possibles[this.x][this.y].list;
+                ArrayList<Tile> newPossibles = new ArrayList<Tile>();
+
+                for (int x = 0; x < list.size(); x++){
+                        Tile tile = grid.grid[list.get(x).x][list.get(x).y];
+
+                        if (tile instanceof Piece){
+				continue;
+                        }
+                        newPossibles.add(tile);
+                }
+
+		//Add sideways eating
+		switch (dir){
+			case UP:
+				if (this.x-1 >= 0 && this.y-1 >= 0 && grid.grid[this.x-1][this.y-1] instanceof Piece){
+					newPossibles.add(grid.grid[this.x-1][this.y-1]);
+				
+				} if (this.x+1 < 8 && this.y-1 >= 0 && grid.grid[this.x+1][this.y-1] instanceof Piece){
+                                        newPossibles.add(grid.grid[this.x+1][this.y-1]);
+                                }
+				break;
+			case DOWN:
+				if (this.x-1 >= 0 && this.y+1 < 8 && grid.grid[this.x-1][this.y+1] instanceof Piece){
+                                        newPossibles.add(grid.grid[this.x-1][this.y+1]);
+
+                                } if (this.x+1 < 8 && this.y+1 < 8 && grid.grid[this.x+1][this.y+1] instanceof Piece){
+                                        newPossibles.add(grid.grid[this.x+1][this.y+1]);
+                                }
+				break;
+		}
+
+                return newPossibles;
+        }
+
+	@Override
         protected void setPossibles(){
 		switch (dir){
 			case UP:
