@@ -11,8 +11,6 @@ public class Tile {
 	protected int x;
 	protected int y;
 
-	int num; //testing
-
 	//Constructor
 	public Tile(int x, int y){
 		this.x = x;
@@ -21,16 +19,6 @@ public class Tile {
 		selectedIcon = new ImageIcon("images/clear_selected.png");
 		currentIcon = normalIcon;
 	}
-
-	//Constructor
-        public Tile(int x, int y, int num){
-                this.x = x;
-                this.y = y;
-		this.num = num;
-                normalIcon = new ImageIcon("images/clear.png");
-                selectedIcon = new ImageIcon("images/clear_selected.png");
-                currentIcon = normalIcon;
-        }
 
 	//If mouse is touching area
         public boolean mouseOn(Point mouse){
