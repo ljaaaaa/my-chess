@@ -39,6 +39,14 @@ public class Grid {
 		grid[6][7] = new Bishop(6, 7, this, 'b');	
 	}
 
+	//Initialize knights onto grid
+	private void initKnights(){
+		grid[2][0] = new Knight(2, 0, this, 'w');
+                grid[5][0] = new Knight(5, 0, this, 'w');
+                grid[2][7] = new Knight(2, 7, this, 'b');
+                grid[5][7] = new Knight(5, 7, this, 'b');
+	}
+
 	//Initialize rooks onto grid
         private void initRooks(){
                 grid[0][0] = new Rook(0, 0, this, 'w');
