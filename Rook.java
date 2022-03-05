@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Rook extends Piece{
 
 	public Rook(int x, int y, char color){
-		super(x, y, color);
+		super(x, x, color);
 		normalIcon = new ImageIcon("images/" + color + "_rook.png");
                 selectedIcon = new ImageIcon("images/" + color + "_rook_selected.png");
 		setSelected(false);
