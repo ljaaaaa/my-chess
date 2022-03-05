@@ -82,9 +82,13 @@ public class MyMouseListener implements MouseListener{
 
 	//Highlight possibles
         public void highlightPossibles(Piece piece){
-		ArrayList<Tile> possibles = piece.getPossibles(grid);
+		ArrayList<C> possibles = piece.getPossibles();
 		for (int x = 0; x < possibles.size(); x++){
-			possibles.get(x).possible = true;	
+			Tile tile = grid.grid[possibles.get(x).x][possibles.get(x).y];
+				
+			if (!tile.isOfSameColorAs(lastSelected)){
+				tile.possible = true;
+			}
 		}
 
 		//Update last selected piece
