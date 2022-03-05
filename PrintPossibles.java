@@ -6,8 +6,8 @@ public class PrintPossibles {
 	public static void main(String[] args){
 		for (int x = 0; x < 8; x++){
 			for (int y = 0; y < 8; y++){
-				Knight p = new Knight(x, y, 'w');
-				ArrayList<Tile> possibles = new PrintPossibles().knightPossibleMoves(x, y, new Grid());
+				Pawn p = new Pawn(x, y, 'w');
+				ArrayList<Tile> possibles = new PrintPossibles().pawnPossibleMoves(x, y, new Grid(), 'b', Pawn.Direction.UP);
 				printPossibles(p, possibles);
 			}
 		}
@@ -56,7 +56,7 @@ public class PrintPossibles {
                 }
 
 		//Right
-                if (posX + 2 < 8){
+                if (posX + 2 >= 0){
                         if (posY - 1 >= 0){
                                 possibles.add(grid.grid[posX+2][posY-1]);
                         } if (posY + 1 < 8){
