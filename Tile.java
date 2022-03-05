@@ -3,19 +3,20 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 
 public class Tile {
-	public boolean possible;
-	public ImageIcon currentIcon;
+	ImageIcon currentIcon;
+	boolean possible;
 	private boolean selected;
 	protected ImageIcon normalIcon;
 	protected ImageIcon selectedIcon;
-	protected int x;
-	protected int y;
+	protected Grid grid;
+	protected int posX;
+	protected int posY;
 
 	//Constructor
-	public Tile(int x, int y){
+	public Tile(int posX, int posY, Grid grid){
 		this.grid = grid;
-		this.x = x;
-		this.y = y;
+		this.posX = posX;
+		this.posY = posY;
 		normalIcon = new ImageIcon("images/clear.png");
 		selectedIcon = new ImageIcon("images/clear_selected.png");
 		currentIcon = normalIcon;
@@ -23,8 +24,8 @@ public class Tile {
 
 	//If mouse is touching area
         public boolean mouseOn(Point mouse){
-       		if (mouse.x > this.x*80 && mouse.x < this.x*80+80
-                        && mouse.y > this.y*80+38 && mouse.y < this.y*80+80+38){
+       		if (mouse.x > posX*80 && mouse.x < posX*80+80
+                        && mouse.y > posY*80+38 && mouse.y < posY*80+80+38){
                         return true;
                 }
 
@@ -34,6 +35,7 @@ public class Tile {
 	//Set selected status
 	public void setSelected(boolean selected){
 		this.selected = selected;
+
 		currentIcon = selected ? selectedIcon : normalIcon;
 	}
 	

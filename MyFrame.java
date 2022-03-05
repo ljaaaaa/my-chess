@@ -4,10 +4,10 @@ import javax.swing.JFrame;
 //MyFrame Class
 public class MyFrame extends JFrame {
 	public final int WIDTH = 640;
-	public final int HEIGHT = 640 + 36;
+	public final int HEIGHT = 640 + 36; 
 
 	//Constructor
-	public MyFrame(String title, Main main){
+	public MyFrame(String title){
 		super(title);
 		setLayout(new GridLayout(1, 1));
                 setSize(WIDTH, HEIGHT);
@@ -15,8 +15,11 @@ public class MyFrame extends JFrame {
                 setResizable(false);
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 setVisible(true);
+	}
 
-		add(main.painter);
-		addMouseListener(main.mouseListener);
+	//SEt up Painter and MyMouseListener
+	public void setUp(Main main){
+                add(main.painter);
+                addMouseListener(main.mouseListener);
 	}
 }
