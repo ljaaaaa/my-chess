@@ -41,16 +41,18 @@ public class MyMouseListener implements MouseListener{
 			//Chess piece selected previously
 			case SELECTED_PIECE:
 				//Move piece
-				if (lastSelected.getPossibles(grid).contains(selected)){
+				if (lastSelected.isValidMoveLocation(grid, selected.x, selected.y)){
 					lastSelected.move(grid, selected.x, selected.y);
 					state = State.NO_SELECTION;
 				
-				//Don't move new selected piece
-				} else if (selected instanceof Piece){
-                                        highlightPossibles((Piece)selected);
-
+				//Don't move piece
 				} else {
-					state = State.NO_SELECTION;
+					//New selected piece
+					if (selected instanceof Piece){
+                                        	highlightPossibles((Piece)selected);
+					} else {
+						state = State.NO_SELECTION;
+					}
 				}
 				break;
 		}
@@ -82,13 +84,9 @@ public class MyMouseListener implements MouseListener{
 
 	//Highlight possibles
         public void highlightPossibles(Piece piece){
-		ArrayList<C> possibles = piece.getPossibles();
+		ArrayList<C> possibles = piece.possibles[piece.x][piece.y].list;
 		for (int x = 0; x < possibles.size(); x++){
-			Tile tile = grid.grid[possibles.get(x).x][possibles.get(x).y];
-				
-			if (!tile.isOfSameColorAs(lastSelected)){
-				tile.possible = true;
-			}
+			grid.grid[possibles.get(x).x][possibles.get(x).y].possible = true;
 		}
 
 		//Update last selected piece

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 //Piece Class
 public class Piece extends Tile{
 	public final char color;
-	protected CList[][] possibles;
+	public CList[][] possibles;
 
 	//Constructor
 	public Piece(int x, int y, char color){
@@ -36,10 +36,5 @@ public class Piece extends Tile{
 	//Set all possible moves for each grid position
 	protected void setPossibles(){
 
-	}
-
-	//Get the possible moves 
-	public ArrayList<Tile> getPossibles(Grid grid){
-		return null;
 	}
 }

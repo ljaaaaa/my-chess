@@ -14,26 +14,6 @@ public class Bishop extends Piece{
 	}
 
 	@Override
-	public ArrayList<Tile> getPossibles(Grid grid){
-		ArrayList<C> list = possibles[this.x][this.y].list;
-		ArrayList<Tile> newPossibles = new ArrayList<Tile>();
-
-		for (int x = 0; x < list.size(); x++){
-			Tile tile = grid.grid[list.get(x).x][list.get(x).y];
-
-			//Stop collecting possibles
-			if (tile instanceof Piece){
-				if (((Piece)tile).color != this.color){
-					newPossibles.add(tile);
-					return newPossibles;
-				}
-			}
-			newPossibles.add(tile);
-		}
-		return newPossibles;
-	}
-
-	@Override
         protected void setPossibles(){
 		possibles[0][0] = new CList(new C(1, 1), new C(2, 2), new C(3, 3), new C(4, 4), new C(5, 5), new C(6, 6), new C(7, 7));
 		possibles[0][1] = new CList(new C(1, 0), new C(1, 2), new C(2, 3), new C(3, 4), new C(4, 5), new C(5, 6), new C(6, 7));
