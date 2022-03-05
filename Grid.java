@@ -8,6 +8,7 @@ public class Grid {
 		setBaseGrid();
 		initPawns();
 		initBishops();
+		initKnights();
 		initRooks();
 	}
 
