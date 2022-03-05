@@ -14,7 +14,7 @@ public class Piece extends Tile{
 	}
 
 	//Move tile to new location
-	public void move(Grid grid, int x, int y){
+	public void move(int x, int y){
 		grid.grid[this.x][this.y] = new Tile(this.x, this.y);
 		grid.grid[x][y] = this;
 		this.x = y;

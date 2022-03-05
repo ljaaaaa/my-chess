@@ -18,7 +18,8 @@ public class Main {
 	public Main(){
 		grid = new Grid();
 		painter = new Painter(grid);
-		mouseListener = new MyMouseListener(painter, grid);
 		frame = new MyFrame("Chess", this);
+		mouseListener = new MyMouseListener(painter, grid);
+
 	}
 }
