@@ -32,10 +32,10 @@ public class Grid {
 	}
 
         private void initBishops(){
-                grid[1][0] = new Bishop(1, 0,  'w');
-		grid[6][0] = new Bishop(6, 0,  'w');
-		grid[1][7] = new Bishop(1, 7,  'b');
-		grid[6][7] = new Bishop(6, 7,  'b');	
+                grid[1][0] = new Bishop(1, 0, 'w');
+		grid[6][0] = new Bishop(6, 0, 'w');
+		grid[1][7] = new Bishop(1, 7, 'b');
+		grid[6][7] = new Bishop(6, 7, 'b');	
 	}
 
         private void initRooks(){
