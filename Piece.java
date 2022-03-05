@@ -17,16 +17,16 @@ public class Piece extends Tile{
 	public void move(Grid grid, int x, int y){
 		grid.grid[this.x][this.y] = new Tile(this.x, this.y);
 		grid.grid[x][y] = this;
-		this.x = x;
+		this.x = y;
 		this.y = y;
 	}
 
 	//Tell if a move is possible
 	public boolean isValidMoveLocation(Grid grid, int x, int y){
 		ArrayList<C> list = possibles[this.x][this.y].list;
-	
-		for (int i = 0; i < list.size(); i++){
-                        if (list.get(i).x == x && list.get(i).y == y){
+
+                for (int i = 0; i < list.size(); i++){
+                        if (list.get(i).x == this.x && list.get(i).y == this.y){
                                 return true;
                         }
                 }

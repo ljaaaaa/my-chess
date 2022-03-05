@@ -50,7 +50,9 @@ public class MyMouseListener implements MouseListener{
 				selected = currentSelectedTile(e.getPoint());
 
 				//Move piece
-				if (lastSelected.isValidMoveLocation(grid, selected.x, selected.y)){
+				System.out.println("hey");
+				if (lastSelected.isValidMoveLocation(grid, selected.x, selected.x)){
+					System.out.println("waaa");
 					lastSelected.move(grid, selected.x, selected.y);
 					state = State.NO_SELECTION;
 				
