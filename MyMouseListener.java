@@ -40,7 +40,7 @@ public class MyMouseListener implements MouseListener{
 					state = State.SELECTED_PIECE;
 
 					//Highlight possible moves
-					highlightPossibles((Piece)selected);
+					highlightPossibles(((Piece)selected).possibleMoves());
 					lastSelected = (Piece)selected;
 				} 
 				break;
@@ -49,9 +49,10 @@ public class MyMouseListener implements MouseListener{
 			case SELECTED_PIECE:
 				updateTiles(e.getPoint());
 				selected = currentSelectedTile(e.getPoint());
+				updateTiles(e.getPoint());
 
 				//Move piece
-				if (((Rook)lastSelected).isPossibleMove(selected.posX, selected.posY)){
+				if (lastSelected.possibleMoves().contains(selected)){
 					lastSelected.move(selected.posX, selected.posY);
 					state = State.NO_SELECTION;
 				
@@ -62,7 +63,7 @@ public class MyMouseListener implements MouseListener{
 						state = State.SELECTED_PIECE;
 
 						//Highlight possible moves
-                                        	highlightPossibles((Piece)selected);
+                                        	highlightPossibles(((Piece)selected).possibleMoves());
 						lastSelected = (Piece)selected;
 					} else {
 						state = State.NO_SELECTION;
@@ -106,24 +107,10 @@ public class MyMouseListener implements MouseListener{
 	}
 
 	//Highlight possibles
-        public void highlightPossibles(Piece piece){
-		ArrayList<C> possibles = piece.possibles[piece.posX][piece.posY].list;
+	public void highlightPossibles(ArrayList<Tile> possibles){
 		for (int x = 0; x < possibles.size(); x++){
-			main.grid.grid[possibles.get(x).x][possibles.get(x).y].possible = true;
+			possibles.get(x).possible = true;
 		}
-        }
-
-	//Print possibles
-	public void printPossibles(Piece piece, ArrayList<Tile> possibles){
-		System.out.print("possibles[" + piece.posX + "][" + piece.posY + "] = new CList(");
-		for (int x = 0; x < possibles.size(); x++){
-			if (x == possibles.size()-1){
-			System.out.print("new C(" + possibles.get(x).posX + ", " + possibles.get(x).posY + "));");
-			} else {
-				System.out.print("new C(" + possibles.get(x).posX + ", " + possibles.get(x).posY + "), ");
-			}
-		}
-		System.out.println();
 	}
 	
 	@Override

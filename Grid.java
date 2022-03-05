@@ -9,7 +9,6 @@ public class Grid {
 		initPawns();
 		initBishops();
 		initRooks();
-		initKnights();
 	}
 
 	//Set basic grid to non-null tiles
@@ -47,13 +46,6 @@ public class Grid {
                 grid[0][7] = new Rook(0, 7, this, 'b');
                 grid[7][7] = new Rook(7, 7, this, 'b');
         }
-
-	private void initKnights(){
-		grid[2][0] = new Knight(2, 0, this, 'w');
-                grid[5][0] = new Knight(5, 0, this, 'w');
-                grid[2][7] = new Knight(2, 7, this, 'b');
-                grid[5][7] = new Knight(5, 7, this, 'b');
-	}
 
 	//Print grid, for debugging
 	public void printGrid(){
