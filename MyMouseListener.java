@@ -12,12 +12,11 @@ public class MyMouseListener implements MouseListener{
 		SELECTED_PIECE 
 	}		
 	private Grid grid; 
-	private Painter painter;
 	private State state;
 	private Piece lastSelected;
 
 	//Constructor
-	public MyMouseListener(Painter painter, Grid grid){
+	public MyMouseListener(Grid grid){
 		this.grid = grid;
 		state = State.NO_SELECTION;
 		lastSelected = null;
@@ -50,7 +49,7 @@ public class MyMouseListener implements MouseListener{
 				selected = currentSelectedTile(e.getPoint());
 
 				//Move piece
-				if (lastSelected.isValidMoveLocation(grid, selected.x, selected.x)){
+				if (((Rook)lastSelected).isValidMove(main.grid, selected.x, selected.x)){
 					lastSelected.move(selected.x, selected.y);
 					state = State.NO_SELECTION;
 				
@@ -76,7 +75,7 @@ public class MyMouseListener implements MouseListener{
 		for (int x = 0; x < grid.grid.length; x++){
                         for (int y = 0; y < grid.grid[x].length; y++){
                                 if (grid.grid[x][y].mouseOn(mousePoint)){
-                                       	return grid.grid[x][y];
+                                       	return tile;
                                	}
                         }
                 }
@@ -104,7 +103,7 @@ public class MyMouseListener implements MouseListener{
 
 	//Highlight possibles
         public void highlightPossibles(Piece piece){
-		ArrayList<C> possibles = piece.possibles[piece.x][piece.y].list;
+		ArrayList<C> possibles = piece.possibles[piece.posX][piece.posY].list;
 		for (int x = 0; x < possibles.size(); x++){
 			grid.grid[possibles.get(x).x][possibles.get(x).y].possible = true;
 		}
