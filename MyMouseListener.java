@@ -26,20 +26,27 @@ public class MyMouseListener implements MouseListener{
 
 	@Override
         public void mouseClicked(MouseEvent e) {
-		Tile selected = currentSelectedTile(e.getPoint());
+		Tile selected = null;
 
 		switch (state){
 			//No chess piece selected
 			case NO_SELECTION: 
+				selected = currentSelectedTile(e.getPoint());
+				updateTiles(e.getPoint());
+
 				//Chess piece selected
 				if (selected instanceof Piece){
 					state = State.SELECTED_PIECE;
+
 					highlightPossibles((Piece)selected);
-				}
+				} 
 				break;
 
 			//Chess piece selected previously
 			case SELECTED_PIECE:
+				updateTiles(e.getPoint());
+				selected = currentSelectedTile(e.getPoint());
+
 				//Move piece
 				if (lastSelected.isValidMoveLocation(grid, selected.x, selected.y)){
 					lastSelected.move(grid, selected.x, selected.y);
@@ -49,6 +56,8 @@ public class MyMouseListener implements MouseListener{
 				} else {
 					//New selected piece
 					if (selected instanceof Piece){
+						state = State.SELECTED_PIECE;
+
                                         	highlightPossibles((Piece)selected);
 					} else {
 						state = State.NO_SELECTION;
@@ -58,11 +67,21 @@ public class MyMouseListener implements MouseListener{
 		}
 		painter.repaint();
 	}
-	
-	//Return selected tile and update tile selected and possible statuses
+
+	//Return selected tile
 	public Tile currentSelectedTile(Point mousePoint){
-		Tile selected = null;
-		
+		for (int x = 0; x < grid.grid.length; x++){
+                        for (int y = 0; y < grid.grid[x].length; y++){
+                                if (grid.grid[x][y].mouseOn(mousePoint)){
+                                       	return grid.grid[x][y];
+                               	}
+                        }
+                }
+		return null;
+	}
+
+	//Update tile selected and possible statuses
+	public void updateTiles(Point mousePoint){
 		for (int x = 0; x < grid.grid.length; x++){
                         for (int y = 0; y < grid.grid[x].length; y++){
 				Tile tile = grid.grid[x][y];
@@ -71,7 +90,6 @@ public class MyMouseListener implements MouseListener{
 				if (tile.mouseOn(mousePoint)){
 					tile.setSelected(true);
 					tile.possible = false;
-					selected = tile;
 				//Mouse not on
 				} else {
 					tile.setSelected(false);
@@ -79,7 +97,6 @@ public class MyMouseListener implements MouseListener{
 				}
 			}
 		}
-		return selected;
 	}
 
 	//Highlight possibles
