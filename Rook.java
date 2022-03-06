@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 //Rook Class
 public class Rook extends Piece{
-	//Constructor
 	public Rook(int posX, int posY, char color){
 		super(posX, posY, color);
 		
@@ -14,69 +13,29 @@ public class Rook extends Piece{
 
 	@Override
         public ArrayList<Tile> possibleMoves(Grid grid){
-		ArrayList<Tile> possibles = new ArrayList<>(); 
-		int add = 1;
+                ArrayList<Tile> possibles = new ArrayList<>();
 
-		//Up
-		while (posY-add >= 0){	
-			possibles.add(grid.grid[posX][posY-add]);
+                int[][] moves = new int[][] { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
-			//Has hit a piece, stop
-			if (grid.grid[posX][posY-add] instanceof Piece){
-				//If piece is of own color, don't eat
-				if (((Piece)grid.grid[posX][posY-add]).color == color){
-					possibles.remove(possibles.size()-1);
-				}
-				break;
-			}
-			add++;
-		}
-		add = 1;
+                for (int x = 0; x < moves.length; x++){
+                        int add = 1;
+                        int currentX = posX+(moves[x][0]*add);
+                        int currentY = posY+(moves[x][1]*add);
 
-		//Down
-		while (posY+add < 8){
-                        possibles.add(grid.grid[posX][posY+add]);
+                        while (currentX >= 0 && currentX < 8 && currentY >= 0 && currentY < 8){
+                                possibles.add(grid.grid[currentX][currentY]);
 
-                        if (grid.grid[posX][posY+add] instanceof Piece){
-				//If piece is of own color, don't eat
-                                if (((Piece)grid.grid[posX][posY+add]).color == color){
-                                        possibles.remove(possibles.size()-1);
+                                if (grid.grid[currentX][currentY] instanceof Piece){
+                                        if (((Piece)grid.grid[currentX][currentY]).color == color){
+                                                possibles.remove(possibles.size()-1);
+                                        }
+                                        break;
                                 }
-				break;
+                                add++;
+                                currentX = posX+(moves[x][0]*add);
+                                currentY = posY+(moves[x][1]*add);
                         }
-                        add++;
                 }
-		add = 1;
-
-		//Left
-		while (posX-add >= 0 ){
-			possibles.add(grid.grid[posX-add][posY]);
-
-			if (grid.grid[posX-add][posY] instanceof Piece){
-				//If piece is of own color, don't eat
-                                if (((Piece)grid.grid[posX-add][posY]).color == color){
-                                        possibles.remove(possibles.size()-1);
-                                }
-				break;
-			}
-			add++;
-		}
-		add = 1;
-
-		//Right
-                while (posX+add < 8){
-                        possibles.add(grid.grid[posX+add][posY]);
-
-                        if (grid.grid[posX+add][posY] instanceof Piece){
-				//If piece is of own color, don't eat
-                                if (((Piece)grid.grid[posX+add][posY]).color == color){
-                                        possibles.remove(possibles.size()-1);
-                                }
-				break;
-                        }
-                        add++;
-                }
-
-		return possibles;
+                return possibles;
         }
 }

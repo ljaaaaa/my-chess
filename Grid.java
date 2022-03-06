@@ -6,7 +6,7 @@ public class Grid {
 	public Grid(){
 		grid = new Tile[8][8];
 		setBaseGrid();
-		initPawns();
+		//initPawns();
 		initBishops();
 		initKnights();
 		initRooks();

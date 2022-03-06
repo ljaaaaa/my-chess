@@ -14,44 +14,24 @@ public class Knight extends Piece{
 
 	@Override
         public ArrayList<Tile> possibleMoves(Grid grid){
-		ArrayList<Tile> possibles = new ArrayList<>(); 
+                ArrayList<Tile> possibles = new ArrayList<>();
 
-		//Top
-		if (posY - 2 >= 0){
-			if (posX - 1 >= 0){
-				possibles.add(grid.grid[posX-1][posY-2]);	
-			} if (posX + 1 < 8){
-				possibles.add(grid.grid[posX+1][posY-2]);
+                int[][] moves = new int[][] { {-2, -1}, {-1, -2}, {1, -2}, {2, -1}, 
+						{2, 1}, {1, 2}, {-1, 2}, {-2, 1} };
+
+                for (int x = 0; x < moves.length; x++){
+                        int add = 1;
+                        int currentX = posX+(moves[x][0]*add);
+                        int currentY = posY+(moves[x][1]*add);
+
+			if (currentX >= 0 && currentX < 8 && currentY >= 0 && currentY < 8
+					&& ((grid.grid[currentX][currentY] instanceof Piece && ((Piece)grid.grid[currentX][currentY]).color != color) || 
+						!(grid.grid[currentX][currentY] instanceof Piece))){
+
+					possibles.add(grid.grid[currentX][currentY]);
 			}
 		}
 
-		//Bottom
-                if (posY + 2 < 8){
-                        if (posX - 1 >= 0){
-                                possibles.add(grid.grid[posX-1][posY+2]);
-                        } if (posX + 1 < 8){
-                                possibles.add(grid.grid[posX+1][posY+2]);
-                        }
-                }
-
-		//Left
-                if (posX - 2 >= 0){
-                        if (posY - 1 >= 0){
-                                possibles.add(grid.grid[posX-2][posY-1]);
-                        } if (posY + 1 < 8){
-                                possibles.add(grid.grid[posX-2][posY+1]);
-                        }
-                }
-
-		//Right
-                if (posX + 2 >= 0){
-                        if (posY - 1 >= 0){
-                                possibles.add(grid.grid[posX+2][posY-1]);
-                        } if (posY + 1 < 8){
-                                possibles.add(grid.grid[posX+2][posY+1]);
-                        }
-                }
-
-		return possibles;
+                return possibles;
         }
 }
