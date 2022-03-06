@@ -12,13 +12,16 @@ public class MyMouseListener implements MouseListener{
 		SELECTED_PIECE 
 	}	
 	
-	private Main main; 
+	private Grid grid;
+	private Painter painter;
 	State state;
 	Piece lastSelected;
 
 	//Constructor
-	public MyMouseListener(Main main){
-		this.main = main;
+	public MyMouseListener(Grid grid, Painter painter){
+
+		this.grid = grid;
+		this.painter = painter;
 		state = State.NO_SELECTION;
 		lastSelected = null;
 	}
@@ -52,8 +55,8 @@ public class MyMouseListener implements MouseListener{
 				updateTiles(e.getPoint());
 
 				//Move piece
-				if (lastSelected.possibleMoves().contains(selected)){
-					lastSelected.move(selected.posX, selected.posY);
+				if (lastSelected.possibleMoves(grid).contains(selected)){
+					lastSelected.move(grid, selected.posX, selected.posY);
 					state = State.NO_SELECTION;
 				
 				//Don't move piece
@@ -71,13 +74,14 @@ public class MyMouseListener implements MouseListener{
 				}
 				break;
 		}
+		painter.repaint();
 	}
 
 	//Return selected tile
 	public Tile currentSelectedTile(Point mousePoint){
-		for (int x = 0; x < main.grid.grid.length; x++){
-                        for (int y = 0; y < main.grid.grid[x].length; y++){
-                                Tile tile = main.grid.grid[x][y];
+		for (int x = 0; x < grid.grid.length; x++){
+                        for (int y = 0; y < grid.grid[x].length; y++){
+                                Tile tile = grid.grid[x][y];
 
                                 if (tile.mouseOn(mousePoint)){
                                        	return tile;
@@ -89,9 +93,9 @@ public class MyMouseListener implements MouseListener{
 
 	//Update tile selected and possible statuses
 	public void updateTiles(Point mousePoint){
-		for (int x = 0; x < main.grid.grid.length; x++){
-                        for (int y = 0; y < main.grid.grid[x].length; y++){
-				Tile tile = main.grid.grid[x][y];
+		for (int x = 0; x < grid.grid.length; x++){
+                        for (int y = 0; y < grid.grid[x].length; y++){
+				Tile tile = grid.grid[x][y];
 
 				//Mouse on
 				if (tile.mouseOn(mousePoint)){
