@@ -4,8 +4,8 @@ import java.util.ArrayList;
 //Rook Class
 public class Rook extends Piece{
 	//Constructor
-	public Rook(int posX, int posY, Grid grid, char color){
-		super(posX, posY, grid, color);
+	public Rook(int posX, int posY, char color){
+		super(posX, posY, color);
 		
 		normalIcon = new ImageIcon("images/" + color + "_rook.png");
                 selectedIcon = new ImageIcon("images/" + color + "_rook_selected.png");
@@ -13,7 +13,7 @@ public class Rook extends Piece{
 	}
 
 	@Override
-        public ArrayList<Tile> possibleMoves(){
+        public ArrayList<Tile> possibleMoves(Grid grid){
 		ArrayList<Tile> possibles = new ArrayList<>(); 
 		int add = 1;
 

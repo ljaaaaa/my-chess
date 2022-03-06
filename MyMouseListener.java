@@ -40,7 +40,7 @@ public class MyMouseListener implements MouseListener{
 					state = State.SELECTED_PIECE;
 
 					//Highlight possible moves
-					highlightPossibles(((Piece)selected).possibleMoves());
+					highlightPossibles(((Piece)selected).possibleMoves(grid));
 					lastSelected = (Piece)selected;
 				} 
 				break;
@@ -63,7 +63,7 @@ public class MyMouseListener implements MouseListener{
 						state = State.SELECTED_PIECE;
 
 						//Highlight possible moves
-                                        	highlightPossibles(((Piece)selected).possibleMoves());
+                                        	highlightPossibles(((Piece)selected).possibleMoves(grid));
 						lastSelected = (Piece)selected;
 					} else {
 						state = State.NO_SELECTION;

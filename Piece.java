@@ -11,8 +11,8 @@ public class Piece extends Tile{
 	public final char color;
 
 	//Constructor
-	public Piece(int posX, int posY, Grid grid, char color){
-		super(posX, posY, grid);
+	public Piece(int posX, int posY, char color){
+		super(posX, posY);
 		this.color = color;
 		dir = color == 'w' ? Direction.DOWN : Direction.UP;
 
@@ -20,13 +20,13 @@ public class Piece extends Tile{
 	}
 
 	//Returns all possible move coordinates
-	public ArrayList<Tile> possibleMoves(){
+	public ArrayList<Tile> possibleMoves(Grid grid){
 		return new ArrayList<Tile>();
 	}
 
 	//Move tile to new location
-	public void move(int newX, int newY){
-		grid.grid[posX][posY] = new Tile(posX, posY, grid);
+	public void move(Grid grid, int newX, int newY){
+		grid.grid[posX][posY] = new Tile(posX, posY);
 		grid.grid[newX][newY] = this;
 		this.posX = newX;
 		this.posY = newY;

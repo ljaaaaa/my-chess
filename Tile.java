@@ -8,13 +8,11 @@ public class Tile {
 	private boolean selected;
 	protected ImageIcon normalIcon;
 	protected ImageIcon selectedIcon;
-	protected Grid grid;
 	protected int posX;
 	protected int posY;
 
 	//Constructor
-	public Tile(int posX, int posY, Grid grid){
-		this.grid = grid;
+	public Tile(int posX, int posY){
 		this.posX = posX;
 		this.posY = posY;
 		normalIcon = new ImageIcon("images/clear.png");

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 //Pawn Class
 public class Pawn extends Piece{
 	//Constructor
-	public Pawn(int posX, int posY, Grid grid, char color){
-		super(posX, posY, grid, color);
+	public Pawn(int posX, int posY, char color){
+		super(posX, posY, color);
 		
 		normalIcon = new ImageIcon("images/" + color + "_pawn.png");
                 selectedIcon = new ImageIcon("images/" + color + "_pawn_selected.png");
@@ -14,7 +14,7 @@ public class Pawn extends Piece{
 	}
 
 	@Override
-        public ArrayList<Tile> possibleMoves(){
+        public ArrayList<Tile> possibleMoves(Grid grid){
 		ArrayList<Tile> possibles = new ArrayList<>(); 
 
 		switch(dir){

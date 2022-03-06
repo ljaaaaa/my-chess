@@ -4,8 +4,8 @@ import java.util.ArrayList;
 //Bishop Class
 public class Bishop extends Piece{
 	//Constructor
-	public Bishop(int posX, int posY, Grid grid, char color){
-		super(posX, posY, grid, color);
+	public Bishop(int posX, int posY, char color){
+		super(posX, posY, color);
 		
 		normalIcon = new ImageIcon("images/" + color + "_bishop.png");
                 selectedIcon = new ImageIcon("images/" + color + "_bishop_selected.png");
@@ -13,9 +13,16 @@ public class Bishop extends Piece{
 	}
 
 	@Override
-        public ArrayList<Tile> possibleMoves(){
+        public ArrayList<Tile> possibleMoves(Grid grid){
 		ArrayList<Tile> possibles = new ArrayList<>(); 
 		int add = 1;
+
+		//Diagonal left up, right up, left down, right down
+		int[][] moves = new int[][] { {-1, -1}, {1, -1}, {-1, 1}, {1, 1} };
+
+		for (int x = 0; x < moves.length; x++){
+
+		}
 
 		//Diagonal up left
 		while (posY-add >= 0 && posX-add >= 0){	
