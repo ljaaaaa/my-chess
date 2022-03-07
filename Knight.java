@@ -4,8 +4,8 @@ import java.util.ArrayList;
 //Bishop Class
 public class Knight extends Piece{
 	//Constructor
-	public Knight(int posX, int posY, char color){
-		super(posX, posY, color);
+	public Knight(int x, int y, char color){
+		super(x, y, color);
 		
 		normalIcon = new ImageIcon("images/" + color + "_knight.png");
                 selectedIcon = new ImageIcon("images/" + color + "_knight_selected.png");
@@ -21,8 +21,8 @@ public class Knight extends Piece{
 
                 for (int x = 0; x < moves.length; x++){
                         int add = 1;
-                        int currentX = posX+(moves[x][0]*add);
-                        int currentY = posY+(moves[x][1]*add);
+                        int currentX = this.x+(moves[x][0]*add);
+                        int currentY = this.y+(moves[x][1]*add);
 
 			if (currentX >= 0 && currentX < 8 && currentY >= 0 && currentY < 8
 					&& ((grid.grid[currentX][currentY] instanceof Piece && ((Piece)grid.grid[currentX][currentY]).color != color) || 

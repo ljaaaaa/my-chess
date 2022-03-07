@@ -56,7 +56,7 @@ public class MyMouseListener implements MouseListener{
 
 				//Move piece
 				if (lastSelected.possibleMoves(grid).contains(selected)){
-					lastSelected.move(grid, selected.posX, selected.posY);
+					lastSelected.move(grid, selected.x, selected.y);
 					state = State.NO_SELECTION;
 				
 				//Don't move piece

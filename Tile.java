@@ -8,13 +8,13 @@ public class Tile {
 	private boolean selected;
 	protected ImageIcon normalIcon;
 	protected ImageIcon selectedIcon;
-	protected int posX;
-	protected int posY;
+	protected int x;
+	protected int y;
 
 	//Constructor
-	public Tile(int posX, int posY){
-		this.posX = posX;
-		this.posY = posY;
+	public Tile(int x, int y){
+		this.x = x;
+		this.y = y;
 		normalIcon = new ImageIcon("images/clear.png");
 		selectedIcon = new ImageIcon("images/clear_selected.png");
 		currentIcon = normalIcon;
@@ -22,8 +22,8 @@ public class Tile {
 
 	//If mouse is touching area
         public boolean mouseOn(Point mouse){
-       		if (mouse.x > posX*80 && mouse.x < posX*80+80
-                        && mouse.y > posY*80+38 && mouse.y < posY*80+80+38){
+       		if (mouse.x > this.x*80 && mouse.x < this.x*80+80
+                        && mouse.y > this.y*80+38 && mouse.y < this.y*80+80+38){
                         return true;
                 }
 

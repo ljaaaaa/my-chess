@@ -2,20 +2,12 @@ import java.util.ArrayList;
 
 //Piece Class
 public class Piece extends Tile{
-	public enum Direction {
-		UP, 
-		DOWN 
-	}
-
-	public Direction dir;
 	public final char color;
 
 	//Constructor
-	public Piece(int posX, int posY, char color){
-		super(posX, posY);
+	public Piece(int x, int y, char color){
+		super(x, y);
 		this.color = color;
-		dir = color == 'w' ? Direction.DOWN : Direction.UP;
-
 		setSelected(false);
 	}
 
@@ -26,9 +18,9 @@ public class Piece extends Tile{
 
 	//Move tile to new location
 	public void move(Grid grid, int newX, int newY){
-		grid.grid[posX][posY] = new Tile(posX, posY);
 		grid.grid[newX][newY] = this;
-		this.posX = newX;
-		this.posY = newY;
+		grid.grid[this.x][this.y] = new Tile(this.x, this.y);
+		this.x = newX;
+		this.y = newY;
 	}
 }

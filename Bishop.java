@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 //Bishop Class
 public class Bishop extends Piece{
-	public Bishop(int posX, int posY, char color){
-		super(posX, posY, color);
+	public Bishop(int x, int y, char color){
+		super(x, y, color);
 		
 		normalIcon = new ImageIcon("images/" + color + "_bishop.png");
                 selectedIcon = new ImageIcon("images/" + color + "_bishop_selected.png");
@@ -19,8 +19,8 @@ public class Bishop extends Piece{
 
 		for (int x = 0; x < moves.length; x++){	
 			int add = 1;
-			int currentX = posX+(moves[x][0]*add);
-		       	int currentY = posY+(moves[x][1]*add);	
+			int currentX = this.x+(moves[x][0]*add);
+		       	int currentY = this.y+(moves[x][1]*add);	
 		
 	                while (currentX >= 0 && currentX < 8 && currentY >= 0 && currentY < 8){
 				possibles.add(grid.grid[currentX][currentY]);
@@ -32,8 +32,8 @@ public class Bishop extends Piece{
                                 	break;
                         	}
                         	add++;
-				currentX = posX+(moves[x][0]*add);
-                        	currentY = posY+(moves[x][1]*add);
+				currentX = this.x+(moves[x][0]*add);
+                        	currentY = this.y+(moves[x][1]*add);
                 	}
 		}
 		return possibles;
