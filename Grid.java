@@ -10,6 +10,7 @@ public class Grid {
 		initBishops();
 		initKnights();
 		initRooks();
+		initRoyals();
 	}
 
 	//Set basic grid to non-null tiles
@@ -19,6 +20,11 @@ public class Grid {
 				grid[x][y] = new Tile(x, y);
 			}
 		}
+	}
+
+	private void initRoyals(){
+		grid[3][0] = new Queen(3, 0, 'w');
+                grid[3][7] = new Queen(3, 7, 'b');
 	}
 
 	//Initialize pawns onto grid
