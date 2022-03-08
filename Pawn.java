@@ -25,31 +25,6 @@ public class Pawn extends Piece{
         public ArrayList<Tile> possibleMoves(Grid grid){
 		ArrayList<Tile> possibles = new ArrayList<>(); 
 
-		int[][] movesDiagonal = dir == Direction.DOWN ? new int[][] { {-1, 1}, {1, 1} } : new int[][] { {1, -1}, {-1, -1} };
-		int[][] movesForward = dir == Direction.DOWN ? new int[][] { {0, 1}, {1, 2} : new int[][] { {0, -1}, {0, -2} };
-		int startX = dir == Direction.DOWN ? 1 : 6;
-
-	       	int currentX = this.x+movesForward[1][0];
-		int currentY = this.y+movesForward[1][1];
-
-		if (!(grid.grid[currentX][currentY] instanceof Piece)){
-			possibles.add(grid.grid[currentX][currentY]);
-		}
-
-		if (!(grid.grid[currentX+1][currentY] instanceof Piece && this.x == startX)){
-                        possibles.add(grid.grid[currentX][currentY]);
-                }
-
-                for (int x = 0; x < movesDiagonal.length; x++){
-                        int add = 1;
-                        int currentX = this.x+(movesDiagonal[x][0]*add);
-                        int currentY = this.y+(movesDiagonal[x][1]*add);
-
-			if (grid.grid[currentX][currentY] instanceof Piece){
-                        	possibles.add(grid.grid[currentX][currentY]);
-			}
-		}
-
 		switch(dir){
 			//Piece is going down
 			case DOWN:
@@ -96,6 +71,6 @@ public class Pawn extends Piece{
 
 				break;
 		}
-		return possibles;
-        }
+		return possibles;	
+	}
 }
