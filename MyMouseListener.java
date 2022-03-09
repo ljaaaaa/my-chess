@@ -25,18 +25,30 @@ public class MyMouseListener implements MouseListener{
 		this.frame = frame;
 		this.painter = painter;
 		state = State.NO_SELECTION;
-		frame.addMouseListener(this);
+		frame.addMouseListener(this);	
+                frame.setTitle("Player WHITE Turn");
 	}
 
 	@Override
         public void mouseClicked(MouseEvent e) {
 		Tile selected = currentSelectedTile(e.getPoint());
+		
+		//This list will contain pieces that:
+		//- Are of the turn color (w/b)
+		//- Moving them won't endanger the king
+		//	- Can at least be moved to one square
+		//
+		//If pieces selected are not in this list, they have no possibles list
+		//
+		//
+
+		ArrayList<Piece> piecesThatCanBeMoved = new ArrayList<>();
 
 		switch (state){
 			//No chess piece selected
 			case NO_SELECTION: 
 				//Chess piece selected
-				if (selected instanceof Piece){
+				if (selected instanceof Piece && ((Piece)selected).color == turn){
 					state = State.SELECTED_PIECE;
 					lastSelected = (Piece)selected;
 					highlightPossibles(((Piece)selected).possibleMoves(grid));
@@ -49,10 +61,15 @@ public class MyMouseListener implements MouseListener{
 				if (lastSelected.possibleMoves(grid).contains(selected)){
 					lastSelected.move(grid, selected.x, selected.y);
 					state = State.NO_SELECTION;
+					
+					String text = lastSelected.color == 'w' ? "Player BLACK Turn" : "Player WHITE Turn";
+					turn = lastSelected.color == 'w' ? 'b' : 'w';
+                                        frame.setTitle(text);
 				
 				//Don't move new selected piece
-				} else if (selected instanceof Piece){
-                                        highlightPossibles(((Piece)selected).possibleMoves(grid));
+				} else if (selected instanceof Piece && ((Piece)selected).color == turn){
+                                        lastSelected = (Piece)selected;
+					highlightPossibles(((Piece)selected).possibleMoves(grid));
 
 				} else {
 					state = State.NO_SELECTION;
