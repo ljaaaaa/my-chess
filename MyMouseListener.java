@@ -10,8 +10,9 @@ public class MyMouseListener implements MouseListener{
 	enum State { 
 		NO_SELECTION, 
 		SELECTED_PIECE 
-	}	
-	
+	}
+
+	char turn = 'w'; //Player who's turn it is
 	private Grid grid;
 	private MyFrame frame;
 	private Painter painter;
@@ -61,8 +62,8 @@ public class MyMouseListener implements MouseListener{
 		painter.repaint();
 
 		System.out.println("---");
-                System.out.println("White king can be eaten: " + grid.wKing.canBeEaten(grid));
-                System.out.println("Black king can be eaten: " + grid.bKing.canBeEaten(grid));
+                System.out.println("White king can be eaten: " + grid.setW.king.canBeEaten(grid));
+                System.out.println("Black king can be eaten: " + grid.setB.king.canBeEaten(grid));
                 System.out.println("---");
 	}
 

@@ -1,18 +1,28 @@
 //Grid Class
 public class Grid {
 	Tile[][] grid;
-	King bKing;
-	King wKing;
+	Set setW;
+	Set setB;
 
 	//Constructor
 	public Grid(){
 		grid = new Tile[8][8];
+		setW = new Set('w');
+		setB = new Set('b');
 		setBaseGrid();
 		initPawns();
 		initBishops();
 		initKnights();
 		initRooks();
 		initRoyals();
+
+		setW.initAllPieces();
+		setB.initAllPieces();
+
+		for (int x = 0; x < setW.pieces.length; x++){
+			grid[setW.pieces[x].x][setW.pieces[x].y] = setW.pieces[x];
+			grid[setB.pieces[x].x][setB.pieces[x].y] = setB.pieces[x];
+		}
 	}
 
 	//Set basic grid to non-null tiles
@@ -24,49 +34,47 @@ public class Grid {
 		}
 	}
 
+	//Initialize kings and queens onto grid
 	private void initRoyals(){
-		grid[3][0] = new Queen(3, 0, 'w');
-                grid[3][7] = new Queen(3, 7, 'b');
-		
-		wKing = new King(4, 0, 'w');
-		bKing = new King(4, 7, 'b');
-		grid[4][0] = wKing;
-                grid[4][7] = bKing;
+		setW.queen = new Queen(3, 0, 'w');
+                setB.queen = new Queen(3, 7, 'b');
+		setW.king = new King(4, 0, 'w');
+		setB.king = new King(4, 7, 'b');
 	}
 
 	//Initialize pawns onto grid
 	private void initPawns(){        
 		for (int x = 0; x < grid.length; x++){
-			grid[x][1] = new Pawn(x, 1, 'w');
+			setW.pawns[x] = new Pawn(x, 1, 'w');
 		}
 
 		for (int x = 0; x < grid.length; x++){
-                        grid[x][6] = new Pawn(x, 6, 'b');
+                        setB.pawns[x] = new Pawn(x, 6, 'b');
                 }
 	}
 
 	//Initialize bishops onto grid
         private void initBishops(){
-                grid[1][0] = new Bishop(1, 0, 'w');
-		grid[6][0] = new Bishop(6, 0, 'w');
-		grid[1][7] = new Bishop(1, 7, 'b');
-		grid[6][7] = new Bishop(6, 7, 'b');	
+                setW.bishop1 = new Bishop(1, 0, 'w');
+		setW.bishop2 = new Bishop(6, 0, 'w');
+		setB.bishop1 = new Bishop(1, 7, 'b');
+		setB.bishop2 = new Bishop(6, 7, 'b');	
 	}
 
 	//Initialize knights onto grid
 	private void initKnights(){
-		grid[2][0] = new Knight(2, 0, 'w');
-                grid[5][0] = new Knight(5, 0, 'w');
-                grid[2][7] = new Knight(2, 7, 'b');
-                grid[5][7] = new Knight(5, 7, 'b');
+		setW.knight1 = new Knight(2, 0, 'w');
+                setW.knight2 = new Knight(5, 0, 'w');
+                setB.knight1 = new Knight(2, 7, 'b');
+                setB.knight2 = new Knight(5, 7, 'b');
 	}
 
 	//Initialize rooks onto grid
         private void initRooks(){
-                grid[0][0] = new Rook(0, 0, 'w');
-                grid[7][0] = new Rook(7, 0, 'w');
-                grid[0][7] = new Rook(0, 7, 'b');
-                grid[7][7] = new Rook(7, 7, 'b');
+                setW.rook1 = new Rook(0, 0, 'w');
+                setW.rook2 = new Rook(7, 0, 'w');
+                setB.rook1 = new Rook(0, 7, 'b');
+               	setB.rook2 = new Rook(7, 7, 'b');
         }
 
 	//Print grid, for debugging
