@@ -1,5 +1,6 @@
 import java.awt.GridLayout;
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 
 //MyFrame Class
 public class MyFrame extends JFrame {
@@ -15,8 +16,7 @@ public class MyFrame extends JFrame {
                 setResizable(false);
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 setVisible(true);
-
 		add(main.painter);
-                addMouseListener(main.mouseListener);
+		setIconImage(new ImageIcon("images/w_king.png").getImage());
 	}	
 }

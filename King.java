@@ -13,7 +13,7 @@ public class King extends Piece{
         public ArrayList<Tile> possibleMoves(Grid grid){
                 ArrayList<Tile> possibles = new ArrayList<>();
 
-                int[][] moves = new int[][] { {}, {}, {}, {}, {}, {}, {}, {} };
+                int[][] moves = new int[][] { {-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1} };
 
                 for (int x = 0; x < moves.length; x++){
                         int add = 1;

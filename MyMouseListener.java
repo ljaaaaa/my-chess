@@ -13,17 +13,18 @@ public class MyMouseListener implements MouseListener{
 	}	
 	
 	private Grid grid;
+	private MyFrame frame;
 	private Painter painter;
 	State state;
 	Piece lastSelected;
 
 	//Constructor
-	public MyMouseListener(Grid grid, Painter painter){
-
+	public MyMouseListener(Grid grid, Painter painter, MyFrame frame){
 		this.grid = grid;
+		this.frame = frame;
 		this.painter = painter;
 		state = State.NO_SELECTION;
-		lastSelected = null;
+		frame.addMouseListener(this);
 	}
 
 	@Override
