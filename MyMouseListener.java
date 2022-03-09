@@ -59,6 +59,11 @@ public class MyMouseListener implements MouseListener{
 				break;
 		}
 		painter.repaint();
+
+		System.out.println("---");
+                System.out.println("White king can be eaten: " + grid.wKing.canBeEaten(grid));
+                System.out.println("Black king can be eaten: " + grid.bKing.canBeEaten(grid));
+                System.out.println("---");
 	}
 
 	//Return selected tile and update tile selected and possible statuses
