@@ -8,7 +8,6 @@ public class Piece extends Tile{
 	public Piece(int x, int y, char color){
 		super(x, y);
 		this.color = color;
-		setSelected(false);
 	}
 
 	//Returns all possible move coordinates

@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 public class Painter extends JPanel {
 	private ImageIcon[][] bg;
         private Grid grid;
+	final int SIZE = 100; //Icon size
 
 	public Painter(Grid grid){
 		this.grid = grid;
@@ -22,7 +23,7 @@ public class Painter extends JPanel {
 		//Draw background
                 for (int x = 0; x < bg.length; x++){
                         for (int y = 0; y < bg[x].length; y++){
-                                g2d.drawImage(bg[x][y].getImage(), x*80, y*80, null);
+                                g2d.drawImage(bg[x][y].getImage(), x*SIZE, y*SIZE, null);
                         }
                 }
 
@@ -30,14 +31,18 @@ public class Painter extends JPanel {
 		Tile[][] tiles = grid.grid;
                 for (int x = 0; x < tiles.length; x++){
                        	for (int y = 0; y < tiles[x].length; y++){
-				g2d.drawImage(tiles[x][y].currentIcon.getImage(), tiles[x][y].x*80, tiles[x][y].y*80, null);
+				g2d.drawImage(tiles[x][y].currentIcon.getImage(), tiles[x][y].x*SIZE, tiles[x][y].y*SIZE, null);
+
+				if (tiles[x][y].selected){
+					g2d.drawImage(new ImageIcon("images/selected.png").getImage(), x*SIZE, y*SIZE, null);
+				}	
 
 				if (tiles[x][y].possible){
 					if (tiles[x][y] instanceof Piece){
-						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), x*80, y*80, null);
+						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), x*SIZE, y*SIZE, null);
 						
 					} else {
-						g2d.drawImage(new ImageIcon("images/possible.png").getImage(), x*80, y*80, null);
+						g2d.drawImage(new ImageIcon("images/possible.png").getImage(), x*SIZE, y*SIZE, null);
 					}
 				}
 			}

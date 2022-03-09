@@ -1,20 +1,19 @@
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 
-//Knight Class
-public class Knight extends Piece{
+//King Class
+public class King extends Piece{
 	//Constructor
-	public Knight(int x, int y, char color){
+	public King(int x, int y, char color){
 		super(x, y, color);
-		currentIcon = new ImageIcon("images/" + color + "_knight.png");
+		currentIcon = new ImageIcon("images/" + color + "_king.png");
 	}
 
 	@Override
         public ArrayList<Tile> possibleMoves(Grid grid){
                 ArrayList<Tile> possibles = new ArrayList<>();
 
-                int[][] moves = new int[][] { {-2, -1}, {-1, -2}, {1, -2}, {2, -1}, 
-						{2, 1}, {1, 2}, {-1, 2}, {-2, 1} };
+                int[][] moves = new int[][] { {}, {}, {}, {}, {}, {}, {}, {} };
 
                 for (int x = 0; x < moves.length; x++){
                         int add = 1;

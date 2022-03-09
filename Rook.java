@@ -3,12 +3,10 @@ import java.util.ArrayList;
 
 //Rook Class
 public class Rook extends Piece{
+	//Constructor
 	public Rook(int x, int y, char color){
 		super(x, y, color);
-		
-		normalIcon = new ImageIcon("images/" + color + "_rook.png");
-                selectedIcon = new ImageIcon("images/" + color + "_rook_selected.png");
-		setSelected(false);
+		currentIcon = new ImageIcon("images/" + color + "_rook.png");
 	}
 
 	@Override

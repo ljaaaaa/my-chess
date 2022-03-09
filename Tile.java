@@ -2,43 +2,30 @@ import java.util.ArrayList;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 
+//Tile Class
 public class Tile {
-	ImageIcon currentIcon;
-	boolean possible;
-	private boolean selected;
-	protected ImageIcon normalIcon;
-	protected ImageIcon selectedIcon;
+	public ImageIcon currentIcon;
+	public boolean possible;
+	public boolean selected;
 	protected int x;
 	protected int y;
+	private final int SIZE = 100; //Icon size
 
 	//Constructor
 	public Tile(int x, int y){
 		this.x = x;
 		this.y = y;
-		normalIcon = new ImageIcon("images/clear.png");
-		selectedIcon = new ImageIcon("images/clear_selected.png");
-		currentIcon = normalIcon;
+		selected = false;
+		currentIcon = new ImageIcon("images/clear.png");
 	}
 
 	//If mouse is touching area
         public boolean mouseOn(Point mouse){
-       		if (mouse.x > this.x*80 && mouse.x < this.x*80+80
-                        && mouse.y > this.y*80+38 && mouse.y < this.y*80+80+38){
+       		if (mouse.x > this.x*SIZE && mouse.x < this.x*SIZE+SIZE
+                        && mouse.y > this.y*SIZE+38 && mouse.y < this.y*SIZE+SIZE+38){
                         return true;
                 }
 
                 return false;
         }
-
-	//Set selected status
-	public void setSelected(boolean selected){
-		this.selected = selected;
-
-		currentIcon = selected ? selectedIcon : normalIcon;
-	}
-	
-	//Get selected status
-	public boolean getSelected(){
-		return selected;
-	}
 }

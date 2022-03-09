@@ -8,17 +8,13 @@ public class Pawn extends Piece{
                 UP,
                 DOWN
         }
-
 	public Direction dir;
 	
-	//Constructor
+	//Construcotr
 	public Pawn(int x, int y, char color){
 		super(x, y, color);
-		
 		dir = color == 'w' ? Direction.DOWN : Direction.UP;
-		normalIcon = new ImageIcon("images/" + color + "_pawn.png");
-                selectedIcon = new ImageIcon("images/" + color + "_pawn_selected.png");
-		setSelected(false);
+		currentIcon = new ImageIcon("images/" + color + "_pawn.png");
 	}
 
 	@Override

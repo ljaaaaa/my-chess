@@ -3,8 +3,8 @@ import javax.swing.JFrame;
 
 //MyFrame Class
 public class MyFrame extends JFrame {
-	public final int WIDTH = 640;
-	public final int HEIGHT = 640 + 36; 
+	public final int WIDTH = 800;
+	public final int HEIGHT = 800 + 36; 
 
 	//Constructor
 	public MyFrame(String title, Main main){

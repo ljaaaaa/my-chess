@@ -99,11 +99,11 @@ public class MyMouseListener implements MouseListener{
 
 				//Mouse on
 				if (tile.mouseOn(mousePoint)){
-					tile.setSelected(true);
+					tile.selected = true;
 					tile.possible = false;
 				//Mouse not on
 				} else {
-					tile.setSelected(false);
+					tile.selected = false;
 					tile.possible = false;
 				}
 			}
