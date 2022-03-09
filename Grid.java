@@ -1,6 +1,8 @@
 //Grid Class
 public class Grid {
 	Tile[][] grid;
+	King bKing;
+	King wKing;
 
 	//Constructor
 	public Grid(){
@@ -25,8 +27,11 @@ public class Grid {
 	private void initRoyals(){
 		grid[3][0] = new Queen(3, 0, 'w');
                 grid[3][7] = new Queen(3, 7, 'b');
-		grid[4][0] = new King(4, 0, 'w');
-                grid[4][7] = new King(4, 7, 'b');
+		
+		wKing = new King(4, 0, 'w');
+		bKing = new King(4, 7, 'b');
+		grid[4][0] = wKing;
+                grid[4][7] = bKing;
 	}
 
 	//Initialize pawns onto grid
