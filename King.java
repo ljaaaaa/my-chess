@@ -4,13 +4,13 @@ import java.util.ArrayList;
 //King Class
 public class King extends Piece{
 	//Constructor
-	public King(int x, int y, char color){
-		super(x, y, color);
+	public King(int x, int y, char color, Grid grid){
+		super(x, y, color, grid);
 		currentIcon = new ImageIcon("images/" + color + "_king.png");
 	}
 
 	@Override
-        public ArrayList<Tile> possibleMoves(Grid grid){
+        public ArrayList<Tile> possibleMoves(){
                 ArrayList<Tile> possibles = new ArrayList<>();
 
                 int[][] moves = new int[][] { {-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1} };
@@ -32,11 +32,11 @@ public class King extends Piece{
         }
 
 	//Return true if king can be eaten
-	public boolean canBeEaten(Grid grid){
+	public boolean canBeEaten(){
 		Set otherSet = color == 'w' ? grid.setB : grid.setW;
 
 		for (int x = 0; x < otherSet.pieces.length; x++){
-			if (otherSet.pieces[x].possibleMoves(grid).contains(this)){
+			if (otherSet.pieces[x].possibleMoves().contains(this)){
 				return true;
 			}
 		}

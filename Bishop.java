@@ -4,13 +4,13 @@ import java.util.ArrayList;
 //Bishop Class
 public class Bishop extends Piece{
 	//Constructor
-	public Bishop(int x, int y, char color){
-		super(x, y, color);
+	public Bishop(int x, int y, char color, Grid grid){
+		super(x, y, color, grid);
 		currentIcon = new ImageIcon("images/" + color + "_bishop.png");
 	}
 
 	@Override
-        public ArrayList<Tile> possibleMoves(Grid grid){
+        public ArrayList<Tile> possibleMoves(){
 		ArrayList<Tile> possibles = new ArrayList<>(); 
 
 		int[][] moves = new int[][] { {-1, -1}, {1, -1}, {-1, 1}, {1, 1} };

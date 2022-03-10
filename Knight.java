@@ -4,13 +4,13 @@ import java.util.ArrayList;
 //Knight Class
 public class Knight extends Piece{
 	//Constructor
-	public Knight(int x, int y, char color){
-		super(x, y, color);
+	public Knight(int x, int y, char color, Grid grid){
+		super(x, y, color, grid);
 		currentIcon = new ImageIcon("images/" + color + "_knight.png");
 	}
 
 	@Override
-        public ArrayList<Tile> possibleMoves(Grid grid){
+        public ArrayList<Tile> possibleMoves(){
                 ArrayList<Tile> possibles = new ArrayList<>();
 
                 int[][] moves = new int[][] { {-2, -1}, {-1, -2}, {1, -2}, {2, -1}, 

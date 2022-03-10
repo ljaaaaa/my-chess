@@ -4,13 +4,13 @@ import java.util.ArrayList;
 //Rook Class
 public class Rook extends Piece{
 	//Constructor
-	public Rook(int x, int y, char color){
-		super(x, y, color);
+	public Rook(int x, int y, char color, Grid grid){
+		super(x, y, color, grid);
 		currentIcon = new ImageIcon("images/" + color + "_rook.png");
 	}
 
 	@Override
-        public ArrayList<Tile> possibleMoves(Grid grid){
+        public ArrayList<Tile> possibleMoves(){
                 ArrayList<Tile> possibles = new ArrayList<>();
 
                 int[][] moves = new int[][] { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };

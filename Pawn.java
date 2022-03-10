@@ -11,17 +11,15 @@ public class Pawn extends Piece{
 	public Direction dir;
 	
 	//Construcotr
-	public Pawn(int x, int y, char color){
-		super(x, y, color);
+	public Pawn(int x, int y, char color, Grid grid){
+		super(x, y, color, grid);
 		dir = color == 'w' ? Direction.DOWN : Direction.UP;
 		currentIcon = new ImageIcon("images/" + color + "_pawn.png");
 	}
 
 	@Override
-        public ArrayList<Tile> possibleMoves(Grid grid){
+        public ArrayList<Tile> possibleMoves(){
 		ArrayList<Tile> possibles = new ArrayList<>(); 
-
-	!!!Here check if all moves will put king in trouble
 
 		switch(dir){
 			//Piece is going down

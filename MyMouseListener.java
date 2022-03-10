@@ -40,20 +40,15 @@ public class MyMouseListener implements MouseListener{
 				if (selected instanceof Piece && ((Piece)selected).color == turn){
 					state = State.SELECTED_PIECE;
 					lastSelected = (Piece)selected;
-					highlightPossibles(((Piece)selected).possibleMoves(grid));
+					highlightPossibles(((Piece)selected).possibleMoves());
 				}
 				break;
 
 			//Chess piece selected previously
 			case SELECTED_PIECE:
 				//Move piece
-				if (lastSelected.possibleMoves(grid).contains(selected)){
-
-					//Test if moving piece is going to put OWN king in trouble
-					Tile[][] dummyGrid = grid.getDummyGrid();
-
-
-					lastSelected.move(grid, selected.x, selected.y);
+				if (lastSelected.possibleMoves().contains(selected)){
+					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
 					String text = lastSelected.color == 'w' ? "Player BLACK Turn" : "Player WHITE Turn";
 					turn = lastSelected.color == 'w' ? 'b' : 'w';
@@ -62,7 +57,7 @@ public class MyMouseListener implements MouseListener{
 				//Don't move new selected piece
 				} else if (selected instanceof Piece && ((Piece)selected).color == turn){
                                         lastSelected = (Piece)selected;
-					highlightPossibles(((Piece)selected).possibleMoves(grid));
+					highlightPossibles(((Piece)selected).possibleMoves());
 
 				} else {
 					state = State.NO_SELECTION;
@@ -72,8 +67,8 @@ public class MyMouseListener implements MouseListener{
 		painter.repaint();
 
 		System.out.println("---");
-                System.out.println("White king can be eaten: " + grid.setW.king.canBeEaten(grid));
-                System.out.println("Black king can be eaten: " + grid.setB.king.canBeEaten(grid));
+                System.out.println("White king can be eaten: " + grid.setW.king.canBeEaten());
+                System.out.println("Black king can be eaten: " + grid.setB.king.canBeEaten());
                 System.out.println("---");
 	}
 
