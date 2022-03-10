@@ -33,17 +33,6 @@ public class MyMouseListener implements MouseListener{
         public void mouseClicked(MouseEvent e) {
 		Tile selected = currentSelectedTile(e.getPoint());
 		
-		//This list will contain pieces that:
-		//- Are of the turn color (w/b)
-		//- Moving them won't endanger the king
-		//	- Can at least be moved to one square
-		//
-		//If pieces selected are not in this list, they have no possibles list
-		//
-		//
-
-		ArrayList<Piece> piecesThatCanBeMoved = new ArrayList<>();
-
 		switch (state){
 			//No chess piece selected
 			case NO_SELECTION: 
@@ -59,9 +48,13 @@ public class MyMouseListener implements MouseListener{
 			case SELECTED_PIECE:
 				//Move piece
 				if (lastSelected.possibleMoves(grid).contains(selected)){
+
+					//Test if moving piece is going to put OWN king in trouble
+					Tile[][] dummyGrid = grid.getDummyGrid();
+
+
 					lastSelected.move(grid, selected.x, selected.y);
 					state = State.NO_SELECTION;
-					
 					String text = lastSelected.color == 'w' ? "Player BLACK Turn" : "Player WHITE Turn";
 					turn = lastSelected.color == 'w' ? 'b' : 'w';
                                         frame.setTitle(text);

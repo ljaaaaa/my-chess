@@ -21,6 +21,8 @@ public class Pawn extends Piece{
         public ArrayList<Tile> possibleMoves(Grid grid){
 		ArrayList<Tile> possibles = new ArrayList<>(); 
 
+	!!!Here check if all moves will put king in trouble
+
 		switch(dir){
 			//Piece is going down
 			case DOWN:

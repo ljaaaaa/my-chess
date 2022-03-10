@@ -23,7 +23,7 @@ public class Grid {
 			grid[setW.pieces[x].x][setW.pieces[x].y] = setW.pieces[x];
 			grid[setB.pieces[x].x][setB.pieces[x].y] = setB.pieces[x];
 		}
-	}
+	}	
 
 	//Set basic grid to non-null tiles
 	private void setBaseGrid(){

@@ -33,12 +33,11 @@ public class King extends Piece{
 
 	//Return true if king can be eaten
 	public boolean canBeEaten(Grid grid){
-		for (int x = 0; x < grid.grid.length; x++){
-			for (int y = 0; y < grid.grid[x].length; y++){
-				if (grid.grid[x][y] instanceof Piece &&
-						((Piece)grid.grid[x][y]).possibleMoves(grid).contains(this)){
-					return true;
-				}
+		Set otherSet = color == 'w' ? grid.setB : grid.setW;
+
+		for (int x = 0; x < otherSet.pieces.length; x++){
+			if (otherSet.pieces[x].possibleMoves(grid).contains(this)){
+				return true;
 			}
 		}
 		return false;

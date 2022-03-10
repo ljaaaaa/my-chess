@@ -22,4 +22,19 @@ public class Piece extends Tile{
 		this.x = newX;
 		this.y = newY;
 	}
+
+	public boolean moveWillPutKingInTrouble(Grid grid, int newX, int newY){
+		int oldX = this.x;
+		int oldY = this.y;
+
+		move(grid, newX, newY);
+		Set mySet = color == 'w' ? grid.setW : grid.setB;
+
+		//King can be eaten with this move
+		if (grid.mySet.king.canBeEaten(grid)){
+			return true;	
+		}
+
+		return false;
+	}
 }
