@@ -26,17 +26,16 @@ public class Piece extends Tile{
 	}
 
 	public boolean moveWillPutKingInTrouble(int newX, int newY){
-		int oldX = this.x;
-		int oldY = this.y;
+		Grid dummy = grid.getCopy();
 
-		move(newX, newY);
+		((Piece)dummy.grid[this.x][this.y]).move(newX, newY);
+
 		Set mySet = color == 'w' ? grid.setW : grid.setB;
 
 		//King can be eaten with this move
 		if (mySet.king.canBeEaten()){
 			return true;	
 		}
-
 		return false;
 	}
 }

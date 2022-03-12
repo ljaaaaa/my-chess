@@ -18,6 +18,7 @@ public class MyMouseListener implements MouseListener{
 	private Painter painter;
 	State state;
 	Piece lastSelected;
+	ArrayList<Tile> lastSelectedPossibles;
 
 	//Constructor
 	public MyMouseListener(Grid grid, Painter painter, MyFrame frame){
@@ -27,6 +28,7 @@ public class MyMouseListener implements MouseListener{
 		state = State.NO_SELECTION;
 		frame.addMouseListener(this);	
                 frame.setTitle("Player WHITE Turn");
+		lastSelectedPossibles = new ArrayList<>();
 	}
 
 	@Override
@@ -40,14 +42,21 @@ public class MyMouseListener implements MouseListener{
 				if (selected instanceof Piece && ((Piece)selected).color == turn){
 					state = State.SELECTED_PIECE;
 					lastSelected = (Piece)selected;
-					highlightPossibles(((Piece)selected).possibleMoves());
+					highlightPossibles((Piece)selected);
 				}
 				break;
 
 			//Chess piece selected previously
 			case SELECTED_PIECE:
 				//Move piece
-				if (lastSelected.possibleMoves().contains(selected)){
+				
+				//System.out.println("---");
+				//grid.printGrid();
+				//System.out.println("---");
+				
+				//System.out.println(lastSelectedPossibles);
+				//System.out.println(selected);
+				if (lastSelectedPossibles.contains(selected)){
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
 					String text = lastSelected.color == 'w' ? "Player BLACK Turn" : "Player WHITE Turn";
@@ -57,7 +66,7 @@ public class MyMouseListener implements MouseListener{
 				//Don't move new selected piece
 				} else if (selected instanceof Piece && ((Piece)selected).color == turn){
                                         lastSelected = (Piece)selected;
-					highlightPossibles(((Piece)selected).possibleMoves());
+					highlightPossibles((Piece)selected);
 
 				} else {
 					state = State.NO_SELECTION;
@@ -65,11 +74,6 @@ public class MyMouseListener implements MouseListener{
 				break;
 		}
 		painter.repaint();
-
-		System.out.println("---");
-                System.out.println("White king can be eaten: " + grid.setW.king.canBeEaten());
-                System.out.println("Black king can be eaten: " + grid.setB.king.canBeEaten());
-                System.out.println("---");
 	}
 
 	//Return selected tile and update tile selected and possible statuses
@@ -96,9 +100,16 @@ public class MyMouseListener implements MouseListener{
 	}
 
 	//Highlight possibles
-	public void highlightPossibles(ArrayList<Tile> possibles){
-		for (int x = 0; x < possibles.size(); x++){
-			possibles.get(x).possible = true;
+	public void highlightPossibles(Piece selected){
+		ArrayList<Tile> possibles = selected.possibleMoves();
+		lastSelectedPossibles = new ArrayList<>();
+
+		for (int x = 0; x < possibles.size(); x++){	
+			if (!lastSelected.moveWillPutKingInTrouble(possibles.get(x).x, possibles.get(x).y)){
+				System.out.println("move will not put king in trouble");
+				possibles.get(x).possible = true;
+				lastSelectedPossibles.add(possibles.get(x));
+			}
 		}
 	}
 	

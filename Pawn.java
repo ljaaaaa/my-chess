@@ -21,6 +21,8 @@ public class Pawn extends Piece{
         public ArrayList<Tile> possibleMoves(){
 		ArrayList<Tile> possibles = new ArrayList<>(); 
 
+		
+
 		switch(dir){
 			//Piece is going down
 			case DOWN:

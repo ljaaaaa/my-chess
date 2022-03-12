@@ -15,7 +15,6 @@ public class Tile {
 	public Tile(int x, int y){
 		this.x = x;
 		this.y = y;
-		selected = false;
 		currentIcon = new ImageIcon("images/clear.png");
 	}
 
@@ -28,4 +27,9 @@ public class Tile {
 
                 return false;
         }
+
+	//Return copy of this object
+	public Tile getCopy(){
+		return new Tile(this.x, this.y);
+	}
 }

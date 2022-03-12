@@ -25,6 +25,40 @@ public class Grid {
 		}
 	}	
 
+	public Grid getCopy(){
+		Grid copy = new Grid();
+
+		//Copy pieces to this.grid
+		for (int x = 0; x < grid.length; x++){
+			for (int y = 0; y < grid[x].length; y++){
+				Tile tile = grid[x][y];
+
+				if (grid[x][y] instanceof Pawn){
+					copy.grid[x][y] = new Pawn(tile.x, tile.y, ((Piece)tile).color, copy);
+
+				} else if (grid[x][y] instanceof Knight){
+					copy.grid[x][y] = new Knight(tile.x, tile.y, ((Piece)tile).color, copy);
+                                
+				} else if (grid[x][y] instanceof Bishop){
+					copy.grid[x][y] = new Bishop(tile.x, tile.y, ((Piece)tile).color, copy);
+				
+				} else if (grid[x][y] instanceof Rook){
+					copy.grid[x][y] = new Rook(tile.x, tile.y, ((Piece)tile).color, copy);
+                                
+				} else if (grid[x][y] instanceof Queen){
+					copy.grid[x][y] = new Queen(tile.x, tile.y, ((Piece)tile).color, copy);
+                                
+				} else if (grid[x][y] instanceof King){
+					copy.grid[x][y] = new King(tile.x, tile.y, ((Piece)tile).color, copy);
+				
+				} else {
+					copy.grid[x][y] = new Tile(tile.x, tile.y);
+				}
+			}
+		}
+		return copy;
+	}
+
 	//Set basic grid to non-null tiles
 	private void setBaseGrid(){
 		for (int x = 0; x < grid.length; x++){
@@ -81,7 +115,7 @@ public class Grid {
 	public void printGrid(){
 		for (int x = 0; x < grid.length; x++){
                         for (int y = 0; y < grid[0].length; y++){
-                                System.out.print("[" + grid[x][y] + "]");
+                                System.out.print("[" + grid[y][x] + "]");
                         }
 			System.out.println("");
                 }
