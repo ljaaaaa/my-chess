@@ -18,7 +18,13 @@ public class Piece extends Tile{
 	
 		switch (type){
 			case "pawn":
-				
+				if (color == 'w'){ //Down
+					moves = new int[][] { {0, 1}, {0, 2}, {-1, 1}, {1, 1}, {1}};
+		
+				} else { //Up
+					moves = new int[][] { {0, -1}, {0, -2}, {-1, -1}, {1, -1}, {6}};
+				}
+
 				break;
 			case "bishop":
 				moves = new int[][] { {-1, -1}, {1, -1}, {-1, 1}, {1, 1} };
@@ -40,7 +46,6 @@ public class Piece extends Tile{
 
 	//Returns all possible move coordinates
 	public ArrayList<Tile> possibleMoves(){
-	
 		ArrayList<Tile> possibles = new ArrayList<Tile>();
 			
 		//Loop in line for each possible
@@ -80,55 +85,35 @@ public class Piece extends Tile{
                         	}
                 	}
 		//Pawn
-		} else {
-			switch(color){
-				//Piece is going down
-				case 'w':
-					//Next tile
-					if (this.y+1 < 8 && !(grid.grid[this.x][this.y+1] instanceof Piece)){
-						possibles.add(grid.grid[this.x][this.y+1]);
+		} else { //Forward
+			if (this.y+moves[0][1] < 8 && this.y+moves[0][1] >= 0 && 
+					!(grid.grid[this.x][this.y+moves[0][1]] instanceof Piece)){
+				possibles.add(grid.grid[this.x][this.y+moves[0][1]]);
 
-						//Next two tiles
-						if (this.y == 1 && !(grid.grid[this.x][this.y+2] instanceof Piece)){
-							possibles.add(grid.grid[this.x][this.y+2]);
-						}
-					}
+				//Next two tiles
+				if (this.y == moves[4][0] && !(grid.grid[this.x][this.y+moves[1][1]] instanceof Piece)){
+					possibles.add(grid.grid[this.x][this.y+moves[1][1]]);
+				}
+			}
 
-					//Diagonal tile
-					if (this.y+1 < 8 && this.x+1 < 8 && (grid.grid[this.x+1][this.y+1] instanceof Piece) && ((Piece)grid.grid[this.x+1][this.y+1]).color != color){
-						possibles.add(grid.grid[this.x+1][this.y+1]);
+			//Diagonal
+			if (this.y+moves[2][1] < 8 && this.y+moves[2][1] >= 0 && this.x+moves[2][0] < 8 && this.x+moves[2][0] >= 0 &&
+					(grid.grid[this.x+moves[2][0]][this.y+moves[2][1]] instanceof Piece) && ((Piece)grid.grid[this.x+moves[2][0]][this.y+moves[2][1]]).color != color){
+				possibles.add(grid.grid[this.x+moves[2][0]][this.y+moves[2][1]]);
 
-					//Diagonal tile
-					} if (this.y+1 < 8 && this.x-1 >= 0 && (grid.grid[this.x-1][this.y+1] instanceof Piece) && ((Piece)grid.grid[this.x-1][this.y+1]).color != color){
-						possibles.add(grid.grid[this.x-1][this.y+1]);
-					}
+			}
 
-					break;
-
-				//Piece is going up
-				case 'b':
-					//Next tile
-					if (this.y-1 >= 0 && !(grid.grid[this.x][this.y-1] instanceof Piece)){
-						possibles.add(grid.grid[this.x][this.y-1]);
-
-						//Next two tiles
-						if (this.y == 6 && !(grid.grid[this.x][this.y-2] instanceof Piece)){
-							possibles.add(grid.grid[this.x][this.y-2]);
-						}
-					}
-					//Diagonal tile
-					if (this.y-1 >= 0 && this.x+1 < 8 && (grid.grid[this.x+1][this.y-1] instanceof Piece) && ((Piece)grid.grid[this.x+1][this.y-1]).color != color){
-						possibles.add(grid.grid[this.x+1][this.y-1]);
-
-					//Diagonal tile
-					} if (this.y-1 >= 0 && this.x-1 >= 0 && (grid.grid[this.x-1][this.y-1] instanceof Piece) && ((Piece)grid.grid[this.x-1][this.y-1]).color != color){
-						possibles.add(grid.grid[this.x-1][this.y-1]);
-					}
-
-					break;
+			//Diagonal
+                        if (this.y+moves[3][1] < 8 && this.y+moves[3][1] >= 0 && this.x+moves[3][0] < 8 && this.x+moves[3][0] >= 0 &&
+                                        (grid.grid[this.x+moves[3][0]][this.y+moves[3][1]] instanceof Piece) && ((Piece)grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]).color != color){
+                                possibles.add(grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]);
 			}
 		}
 		return possibles;	
+	}
+
+	public boolean kingInTrouble(){
+		return false;
 	}
 
 	//Move tile to new location
