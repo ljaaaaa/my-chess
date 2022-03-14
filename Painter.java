@@ -31,7 +31,7 @@ public class Painter extends JPanel {
 		Tile[][] tiles = grid.grid;
                 for (int x = 0; x < tiles.length; x++){
                        	for (int y = 0; y < tiles[x].length; y++){
-				g2d.drawImage(tiles[x][y].currentIcon.getImage(), tiles[x][y].x*SIZE, tiles[x][y].y*SIZE, null);
+				g2d.drawImage(tiles[x][y].icon.getImage(), tiles[x][y].x*SIZE, tiles[x][y].y*SIZE, null);
 
 				if (tiles[x][y].selected){
 					g2d.drawImage(new ImageIcon("images/selected.png").getImage(), x*SIZE, y*SIZE, null);

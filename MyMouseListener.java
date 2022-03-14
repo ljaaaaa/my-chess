@@ -1,6 +1,5 @@
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
-import java.awt.MouseInfo;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
@@ -48,14 +47,6 @@ public class MyMouseListener implements MouseListener{
 
 			//Chess piece selected previously
 			case SELECTED_PIECE:
-				//Move piece
-				
-				//System.out.println("---");
-				//grid.printGrid();
-				//System.out.println("---");
-				
-				//System.out.println(lastSelectedPossibles);
-				//System.out.println(selected);
 				if (lastSelectedPossibles.contains(selected)){
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
@@ -102,13 +93,9 @@ public class MyMouseListener implements MouseListener{
 	//Highlight possibles
 	public void highlightPossibles(Piece selected){
 		ArrayList<Tile> possibles = selected.possibleMoves();
-		lastSelectedPossibles = new ArrayList<>();
 
 		for (int x = 0; x < possibles.size(); x++){
-			if (!lastSelected.moveWillPutKingInTrouble(possibles.get(x).x, possibles.get(x).y)){
-				possibles.get(x).possible = true;
-				lastSelectedPossibles.add(possibles.get(x));
-			}
+			possibles.add(possibles.get(x));
 		}
 	}
 	

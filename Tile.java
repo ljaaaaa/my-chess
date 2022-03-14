@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 //Tile Class
 public class Tile {
-	public ImageIcon currentIcon;
+	public ImageIcon icon;
 	public boolean possible;
 	public boolean selected;
 	protected int x;
@@ -15,7 +15,7 @@ public class Tile {
 	public Tile(int x, int y){
 		this.x = x;
 		this.y = y;
-		currentIcon = new ImageIcon("images/clear.png");
+		icon = new ImageIcon("images/clear.png");
 	}
 
 	//If mouse is touching area

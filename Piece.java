@@ -1,20 +1,134 @@
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 //Piece Class
 public class Piece extends Tile{
 	public final char color;
-	protected Grid grid;
+	private Grid grid;
+	private String type;
+	int[][] moves; //Possible moves for piece
 
 	//Constructor
-	public Piece(int x, int y, char color, Grid grid){
+	public Piece(int x, int y, char color, String type, Grid grid){
 		super(x, y);
 		this.grid = grid;
 		this.color = color;
+		this.type = type;
+		icon = new ImageIcon("images/" + color + "_" + type + ".png");
+	
+		switch (type){
+			case "pawn":
+				
+				break;
+			case "bishop":
+				moves = new int[][] { {-1, -1}, {1, -1}, {-1, 1}, {1, 1} };
+				break;
+			case "knight":
+				moves = new int[][] { {-2, -1}, {-1, -2}, {1, -2}, {2, -1}, {2, 1}, {1, 2}, {-1, 2}, {-2, 1} };
+				break;
+			case "rook": 
+				moves = new int[][] { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+				break;
+			case "queen":
+				moves = new int[][] { {-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {1, -1}, {-1, 1}, {1, 1} };
+				break;
+			case "king":
+				moves = new int[][] { {-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1} };
+				break;
+		}
 	}
 
 	//Returns all possible move coordinates
 	public ArrayList<Tile> possibleMoves(){
-		return new ArrayList<Tile>();
+	
+		ArrayList<Tile> possibles = new ArrayList<Tile>();
+			
+		//Loop in line for each possible
+		if (type == "bishop" || type == "rook" || type == "queen"){
+			for (int x = 0; x < moves.length; x++){
+                        	int add = 1;
+                        	int currentX = this.x+(moves[x][0]*add);
+                        		int currentY = this.y+(moves[x][1]*add);
+
+                        	while (currentX >= 0 && currentX < 8 && currentY >= 0 && currentY < 8){
+                                	possibles.add(grid.grid[currentX][currentY]);
+
+                                	if (grid.grid[currentX][currentY] instanceof Piece){
+                                	        if (((Piece)grid.grid[currentX][currentY]).color == color){
+                                	                possibles.remove(possibles.size()-1);
+                                	        }
+                                	        break;
+                                	}
+                                	add++;
+                                	currentX = this.x+(moves[x][0]*add);
+                                	currentY = this.y+(moves[x][1]*add);
+                        	}
+                	}
+
+		//Only loop through possibilities
+		} else if (type == "knight" || type == "king"){
+			for (int x = 0; x < moves.length; x++){
+                        	int add = 1;
+                        	int currentX = this.x+(moves[x][0]*add);
+                        	int currentY = this.y+(moves[x][1]*add);
+
+                        	if (currentX >= 0 && currentX < 8 && currentY >= 0 && currentY < 8
+                                        	&& ((grid.grid[currentX][currentY] instanceof Piece && ((Piece)grid.grid[currentX][currentY]).color != color) ||
+                                	                !(grid.grid[currentX][currentY] instanceof Piece))){
+
+                                	        possibles.add(grid.grid[currentX][currentY]);
+                        	}
+                	}
+		//Pawn
+		} else {
+			switch(color){
+				//Piece is going down
+				case 'w':
+					//Next tile
+					if (this.y+1 < 8 && !(grid.grid[this.x][this.y+1] instanceof Piece)){
+						possibles.add(grid.grid[this.x][this.y+1]);
+
+						//Next two tiles
+						if (this.y == 1 && !(grid.grid[this.x][this.y+2] instanceof Piece)){
+							possibles.add(grid.grid[this.x][this.y+2]);
+						}
+					}
+
+					//Diagonal tile
+					if (this.y+1 < 8 && this.x+1 < 8 && (grid.grid[this.x+1][this.y+1] instanceof Piece) && ((Piece)grid.grid[this.x+1][this.y+1]).color != color){
+						possibles.add(grid.grid[this.x+1][this.y+1]);
+
+					//Diagonal tile
+					} if (this.y+1 < 8 && this.x-1 >= 0 && (grid.grid[this.x-1][this.y+1] instanceof Piece) && ((Piece)grid.grid[this.x-1][this.y+1]).color != color){
+						possibles.add(grid.grid[this.x-1][this.y+1]);
+					}
+
+					break;
+
+				//Piece is going up
+				case 'b':
+					//Next tile
+					if (this.y-1 >= 0 && !(grid.grid[this.x][this.y-1] instanceof Piece)){
+						possibles.add(grid.grid[this.x][this.y-1]);
+
+						//Next two tiles
+						if (this.y == 6 && !(grid.grid[this.x][this.y-2] instanceof Piece)){
+							possibles.add(grid.grid[this.x][this.y-2]);
+						}
+					}
+					//Diagonal tile
+					if (this.y-1 >= 0 && this.x+1 < 8 && (grid.grid[this.x+1][this.y-1] instanceof Piece) && ((Piece)grid.grid[this.x+1][this.y-1]).color != color){
+						possibles.add(grid.grid[this.x+1][this.y-1]);
+
+					//Diagonal tile
+					} if (this.y-1 >= 0 && this.x-1 >= 0 && (grid.grid[this.x-1][this.y-1] instanceof Piece) && ((Piece)grid.grid[this.x-1][this.y-1]).color != color){
+						possibles.add(grid.grid[this.x-1][this.y-1]);
+					}
+
+					break;
+			}
+		}
+		return possibles;	
 	}
 
 	//Move tile to new location
@@ -23,28 +137,5 @@ public class Piece extends Tile{
 		grid.grid[this.x][this.y] = new Tile(this.x, this.y);
 		this.x = newX;
 		this.y = newY;
-	}
-
-	public boolean moveWillPutKingInTrouble(int newX, int newY){
-		Grid dummy = grid.getCopy();
-
-		((Piece)dummy.grid[this.x][this.y]).move(newX, newY);
-		King dummyKing = null;
-
-		//Find king from dummy set
-		for (int x = 0; x < dummy.grid.length; x++){
-			for (int y = 0; y < dummy.grid[x].length; y++){
-				if (dummy.grid[x][y] instanceof King && ((Piece)dummy.grid[x][y]).color == this.color){
-					dummyKing = (King)dummy.grid[x][y];
-					break;
-				}
-			}
-		}
-
-		//King can be eaten with this move
-		if (dummyKing.canBeEaten()){
-			return true;
-		}
-		return false;
 	}
 }
