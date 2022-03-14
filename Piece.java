@@ -122,6 +122,7 @@ public class Piece extends Tile{
 
 	public boolean movePutsOwnKingInDanger(int newX, int newY){
 		Grid dummy = grid.getDummyGrid();
+
 		((Piece)dummy.grid[this.x][this.y]).move(newX, newY);
 
 		Set thisSet = color == 'w' ? dummy.setW : dummy.setB;

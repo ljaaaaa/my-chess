@@ -31,7 +31,7 @@ public class Grid {
 
 		for (int x = 0; x < copy.setW.pieces.length; x++){
 			Piece equivalentW = this.setW.pieces[x];
-			Piece equivalentB = this.setW.pieces[x];
+			Piece equivalentB = this.setB.pieces[x];
 
 			copy.setW.pieces[x] = new Piece(equivalentW.x, equivalentW.y, 'w', equivalentW.type, copy);
 			copy.setB.pieces[x] = new Piece(equivalentB.x, equivalentB.y, 'b', equivalentB.type, copy);
