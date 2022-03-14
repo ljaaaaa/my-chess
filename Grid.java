@@ -1,8 +1,8 @@
 //Grid Class
 public class Grid {
-	Tile[][] grid;
-	Set setW;
-	Set setB;
+	public Tile[][] grid;
+	public Set setW;
+	public Set setB;
 
 	//Constructor
 	public Grid(){
@@ -19,6 +19,30 @@ public class Grid {
 			grid[setB.pieces[x].x][setB.pieces[x].y] = setB.pieces[x];
 		}
 	}	
+
+	//Retrun a copy of this grid
+	public Grid getDummyGrid(){
+		Grid copy = new Grid();
+		copy.grid = new Tile[8][8];
+		copy.setW = new Set('w');
+		copy.setB = new Set('b');
+
+		copy.setBaseGrid();
+
+		for (int x = 0; x < copy.setW.pieces.length; x++){
+			Piece equivalentW = this.setW.pieces[x];
+			Piece equivalentB = this.setW.pieces[x];
+
+			copy.setW.pieces[x] = new Piece(equivalentW.x, equivalentW.y, 'w', equivalentW.type, copy);
+			copy.setB.pieces[x] = new Piece(equivalentB.x, equivalentB.y, 'b', equivalentB.type, copy);
+
+			copy.grid[copy.setW.pieces[x].x][copy.setW.pieces[x].y] = copy.setW.pieces[x];
+                        copy.grid[copy.setB.pieces[x].x][copy.setB.pieces[x].y] = copy.setB.pieces[x];
+		}
+
+		return copy;
+
+	}
 
 	//Set basic grid to non-null tiles
 	private void setBaseGrid(){

@@ -4,8 +4,8 @@ import javax.swing.ImageIcon;
 //Piece Class
 public class Piece extends Tile{
 	public final char color;
+	public String type;
 	private Grid grid;
-	private String type;
 	int[][] moves; //Possible moves for piece
 
 	//Constructor
@@ -118,5 +118,19 @@ public class Piece extends Tile{
 		grid.grid[this.x][this.y] = new Tile(this.x, this.y);
 		this.x = newX;
 		this.y = newY;
+	}
+
+	public boolean movePutsOwnKingInDanger(int newX, int newY){
+		Grid dummy = grid.getDummyGrid();
+		((Piece)dummy.grid[this.x][this.y]).move(newX, newY);
+
+		Set thisSet = color == 'w' ? dummy.setW : dummy.setB;
+		Set otherSet = color == 'w' ? dummy.setB : dummy.setW;
+
+		if (thisSet.kingCanBeEaten(otherSet)){
+			return true;
+		}
+
+		return false;
 	}
 }
