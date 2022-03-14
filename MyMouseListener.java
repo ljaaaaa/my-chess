@@ -17,7 +17,6 @@ public class MyMouseListener implements MouseListener{
 	private Painter painter;
 	State state;
 	Piece lastSelected;
-	ArrayList<Tile> lastSelectedPossibles;
 
 	//Constructor
 	public MyMouseListener(Grid grid, Painter painter, MyFrame frame){
@@ -25,9 +24,8 @@ public class MyMouseListener implements MouseListener{
 		this.frame = frame;
 		this.painter = painter;
 		state = State.NO_SELECTION;
-		frame.addMouseListener(this);	
+		frame.addMouseListener(this);
                 frame.setTitle("Player WHITE Turn");
-		lastSelectedPossibles = new ArrayList<>();
 	}
 
 	@Override
@@ -36,7 +34,7 @@ public class MyMouseListener implements MouseListener{
 		
 		switch (state){
 			//No chess piece selected
-			case NO_SELECTION: 
+			case NO_SELECTION:
 				//Chess piece selected
 				if (selected instanceof Piece && ((Piece)selected).color == turn){
 					state = State.SELECTED_PIECE;
@@ -47,7 +45,7 @@ public class MyMouseListener implements MouseListener{
 
 			//Chess piece selected previously
 			case SELECTED_PIECE:
-				if (lastSelectedPossibles.contains(selected)){
+				if (lastSelected.possibleMoves().contains(selected)){
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
 					String text = lastSelected.color == 'w' ? "Player BLACK Turn" : "Player WHITE Turn";
@@ -95,7 +93,7 @@ public class MyMouseListener implements MouseListener{
 		ArrayList<Tile> possibles = selected.possibleMoves();
 
 		for (int x = 0; x < possibles.size(); x++){
-			possibles.add(possibles.get(x));
+			possibles.get(x).possible = true;
 		}
 	}
 	

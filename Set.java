@@ -5,5 +5,6 @@ public class Set {
 
 	public Set(char color){
 		this.color = color;
+		pieces = new Piece[16];
 	}
 }
