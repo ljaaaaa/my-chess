@@ -112,10 +112,6 @@ public class Piece extends Tile{
 		return possibles;	
 	}
 
-	public boolean kingInTrouble(){
-		return false;
-	}
-
 	//Move tile to new location
 	public void move(int newX, int newY){
 		grid.grid[newX][newY] = this;
