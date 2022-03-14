@@ -27,33 +27,49 @@ public class Grid {
 
 	public Grid getCopy(){
 		Grid copy = new Grid();
+		copy.setW = null;
+		copy.setB = null;
+
+		for (int x = 0; x < this.setW.pieces.length; x++){
+			Piece setPiece = this.setW.pieces[x];
+			
+			Class classy = this.setW.pieces[x].getClass();
+			System.out.println(classy);
+
+
+			Piece copyPiece = new Piece(setPiece.x, setPiece.y, setPiece.color, copy);
+			//System.out.println((classy)copyPiece);
+			//copy.setW.pieces[x] = ()
+		}
 
 		//Copy pieces to this.grid
 		for (int x = 0; x < grid.length; x++){
 			for (int y = 0; y < grid[x].length; y++){
 				Tile tile = grid[x][y];
 
-				if (grid[x][y] instanceof Pawn){
-					copy.grid[x][y] = new Pawn(tile.x, tile.y, ((Piece)tile).color, copy);
+				if (grid[x][y] instanceof Piece){
+					if (grid[x][y] instanceof Pawn){
+						copy.grid[x][y] = new Pawn(tile.x, tile.y, ((Piece)tile).color, copy);
 
-				} else if (grid[x][y] instanceof Knight){
-					copy.grid[x][y] = new Knight(tile.x, tile.y, ((Piece)tile).color, copy);
+					} else if (grid[x][y] instanceof Knight){
+						copy.grid[x][y] = new Knight(tile.x, tile.y, ((Piece)tile).color, copy);
                                 
-				} else if (grid[x][y] instanceof Bishop){
-					copy.grid[x][y] = new Bishop(tile.x, tile.y, ((Piece)tile).color, copy);
+					} else if (grid[x][y] instanceof Bishop){
+						copy.grid[x][y] = new Bishop(tile.x, tile.y, ((Piece)tile).color, copy);
 				
-				} else if (grid[x][y] instanceof Rook){
-					copy.grid[x][y] = new Rook(tile.x, tile.y, ((Piece)tile).color, copy);
+					} else if (grid[x][y] instanceof Rook){
+						copy.grid[x][y] = new Rook(tile.x, tile.y, ((Piece)tile).color, copy);
                                 
-				} else if (grid[x][y] instanceof Queen){
-					copy.grid[x][y] = new Queen(tile.x, tile.y, ((Piece)tile).color, copy);
+					} else if (grid[x][y] instanceof Queen){
+						copy.grid[x][y] = new Queen(tile.x, tile.y, ((Piece)tile).color, copy);
                                 
-				} else if (grid[x][y] instanceof King){
-					copy.grid[x][y] = new King(tile.x, tile.y, ((Piece)tile).color, copy);
-				
+					} else if (grid[x][y] instanceof King){
+						copy.grid[x][y] = new King(tile.x, tile.y, ((Piece)tile).color, copy);
+					}
 				} else {
 					copy.grid[x][y] = new Tile(tile.x, tile.y);
 				}
+
 			}
 		}
 		return copy;

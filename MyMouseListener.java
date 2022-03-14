@@ -104,9 +104,8 @@ public class MyMouseListener implements MouseListener{
 		ArrayList<Tile> possibles = selected.possibleMoves();
 		lastSelectedPossibles = new ArrayList<>();
 
-		for (int x = 0; x < possibles.size(); x++){	
+		for (int x = 0; x < possibles.size(); x++){
 			if (!lastSelected.moveWillPutKingInTrouble(possibles.get(x).x, possibles.get(x).y)){
-				System.out.println("move will not put king in trouble");
 				possibles.get(x).possible = true;
 				lastSelectedPossibles.add(possibles.get(x));
 			}

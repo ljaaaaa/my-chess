@@ -29,12 +29,21 @@ public class Piece extends Tile{
 		Grid dummy = grid.getCopy();
 
 		((Piece)dummy.grid[this.x][this.y]).move(newX, newY);
+		King dummyKing = null;
 
-		Set mySet = color == 'w' ? grid.setW : grid.setB;
+		//Find king from dummy set
+		for (int x = 0; x < dummy.grid.length; x++){
+			for (int y = 0; y < dummy.grid[x].length; y++){
+				if (dummy.grid[x][y] instanceof King && ((Piece)dummy.grid[x][y]).color == this.color){
+					dummyKing = (King)dummy.grid[x][y];
+					break;
+				}
+			}
+		}
 
 		//King can be eaten with this move
-		if (mySet.king.canBeEaten()){
-			return true;	
+		if (dummyKing.canBeEaten()){
+			return true;
 		}
 		return false;
 	}

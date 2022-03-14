@@ -27,7 +27,6 @@ public class King extends Piece{
 					possibles.add(grid.grid[currentX][currentY]);
 			}
 		}
-
                 return possibles;
         }
 
