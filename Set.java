@@ -8,12 +8,13 @@ public class Set {
 		pieces = new Piece[16];
 	}
 
-	public boolean kingCanBeEaten(Set otherSet){
+	public boolean kingCanBeEaten(Grid grid, Set otherSet){	
 		for (int x = 0; x < otherSet.pieces.length; x++){
 			if (otherSet.pieces[x].possibleMoves().contains(king)){
 				return true;
 			}
 		}
+		Sys
 		return false;
 	}
 }

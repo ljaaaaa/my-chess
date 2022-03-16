@@ -38,6 +38,11 @@ public class Grid {
 
 			copy.grid[copy.setW.pieces[x].x][copy.setW.pieces[x].y] = copy.setW.pieces[x];
                         copy.grid[copy.setB.pieces[x].x][copy.setB.pieces[x].y] = copy.setB.pieces[x];
+
+			if (equivalentW.type.equals("king")){
+				copy.setW.king = copy.setW.pieces[x];
+				copy.setB.king = copy.setB.pieces[x];
+			}
 		}
 
 		return copy;

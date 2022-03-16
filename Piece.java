@@ -128,7 +128,9 @@ public class Piece extends Tile{
 		Set thisSet = color == 'w' ? dummy.setW : dummy.setB;
 		Set otherSet = color == 'w' ? dummy.setB : dummy.setW;
 
-		if (thisSet.kingCanBeEaten(otherSet)){
+		System.out.println("checking...");
+		if (thisSet.kingCanBeEaten(grid, otherSet)){
+			System.out.println( newX + " : " + newY + " will put own king in danger");
 			return true;
 		}
 
