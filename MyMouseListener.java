@@ -93,7 +93,6 @@ public class MyMouseListener implements MouseListener{
 		ArrayList<Tile> possibles = selected.possibleMoves();
 
 		for (int x = 0; x < possibles.size(); x++){
-
 			//Move doesn't kill own king
 			if (!lastSelected.movePutsOwnKingInDanger(possibles.get(x).x, possibles.get(x).y)){
 				possibles.get(x).possible = true;
