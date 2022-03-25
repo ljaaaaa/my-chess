@@ -11,7 +11,6 @@ public class MyMouseListener implements MouseListener{
 		SELECTED_PIECE 
 	}
 
-	char turn = 'w'; //Player who's turn it is
 	private Grid grid;
 	private MyFrame frame;
 	private Painter painter;
@@ -36,7 +35,7 @@ public class MyMouseListener implements MouseListener{
 			//No chess piece selected
 			case NO_SELECTION:
 				//Chess piece selected
-				if (selected instanceof Piece && ((Piece)selected).color == turn){
+				if (selected instanceof Piece){
 					state = State.SELECTED_PIECE;
 					lastSelected = (Piece)selected;
 					highlightPossibles((Piece)selected);
@@ -49,11 +48,10 @@ public class MyMouseListener implements MouseListener{
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
 					String text = lastSelected.color == 'w' ? "Player BLACK Turn" : "Player WHITE Turn";
-					turn = lastSelected.color == 'w' ? 'b' : 'w';
                                         frame.setTitle(text);
 				
 				//Don't move new selected piece
-				} else if (selected instanceof Piece && ((Piece)selected).color == turn){
+				} else if (selected instanceof Piece){
                                         lastSelected = (Piece)selected;
 					highlightPossibles((Piece)selected);
 
