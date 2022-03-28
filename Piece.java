@@ -115,12 +115,12 @@ public class Piece extends Tile{
 	//Move tile to new location
 	public void move(int newX, int newY){
 
-		if (grid.grid[newX][newY] instanceof Piece){ //Turn piece to null or remove piece from array
+		if (grid.grid[newX][newY] instanceof Piece){ //Removed piece eaten from array
 			Set otherSet = color == 'w' ? grid.setB : grid.setW;
 			
 			for (int x = 0; x < otherSet.pieces.size(); x++){
 				if (otherSet.pieces.get(x) == grid.grid[newX][newY]){
-					otherSet.pieces.set(x, null);
+					otherSet.pieces.remove(x);
 				}
 			}	
 
@@ -140,11 +140,9 @@ public class Piece extends Tile{
 		Set thisSet = color == 'w' ? dummy.setW : dummy.setB;
 		Set otherSet = color == 'w' ? dummy.setB : dummy.setW;
 
-		if (thisSet.kingCanBeEaten(otherSet)){
-			System.out.println( newX + " : " + newY + " will put own king in danger");
+		if (thisSet.kingCanBeEaten(otherSet)){ //Will put king in danger
 			return true;
 		}
-
 		return false;
 	}
 }

@@ -29,21 +29,26 @@ public class Grid {
 
 		copy.setBaseGrid();
 
-		for (int x = 0; x < copy.setW.pieces.size(); x++){
+		for (int x = 0; x < this.setW.pieces.size(); x++){ //Copy whites
 			Piece equivalentW = this.setW.pieces.get(x);
-			Piece equivalentB = this.setB.pieces.get(x);
-
-			copy.setW.pieces.add(new Piece(equivalentW.x, equivalentW.y, 'w', equivalentW.type, copy));
-			copy.setB.pieces.add(new Piece(equivalentB.x, equivalentB.y, 'b', equivalentB.type, copy));
-
+			copy.setW.pieces.add(new Piece(equivalentW.x, equivalentW.y, 'w', equivalentW.type, copy));	
 			copy.grid[copy.setW.pieces.get(x).x][copy.setW.pieces.get(x).y] = copy.setW.pieces.get(x);
-                        copy.grid[copy.setB.pieces.get(x).x][copy.setB.pieces.get(x).y] = copy.setB.pieces.get(x);
-
+                       
 			if (equivalentW.type.equals("king")){
 				copy.setW.king = copy.setW.pieces.get(x);
-				copy.setB.king = copy.setB.pieces.get(x);
 			}
 		}
+
+		for (int x = 0; x < this.setB.pieces.size(); x++){ //Copy blacks
+                        Piece equivalentB = this.setB.pieces.get(x);
+                        copy.setB.pieces.add(new Piece(equivalentB.x, equivalentB.y, 'b', equivalentB.type, copy));
+                        copy.grid[copy.setB.pieces.get(x).x][copy.setB.pieces.get(x).y] = copy.setB.pieces.get(x);
+
+                        if (equivalentB.type.equals("king")){
+                                copy.setB.king = copy.setB.pieces.get(x);
+                        }
+		}
+
 		return copy;
 	}
 
@@ -59,11 +64,11 @@ public class Grid {
 	private void initPieces(){
 		//Pawns
 		for (int x = 0; x < grid.length; x++){
-                        setW.pieces.set(x, new Piece(x, 1, 'w', "pawn", this));
+                        setW.pieces.add(new Piece(x, 1, 'w', "pawn", this));
                 }
 
                 for (int x = 0; x < grid.length; x++){
-                        setB.pieces.set(x, new Piece(x, 6, 'b', "pawn", this));
+                        setB.pieces.add(new Piece(x, 6, 'b', "pawn", this));
                 }
 
 		//Bishops
