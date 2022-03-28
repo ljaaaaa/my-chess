@@ -24,7 +24,7 @@ public class MyMouseListener implements MouseListener{
 		this.painter = painter;
 		state = State.NO_SELECTION;
 		frame.addMouseListener(this);
-                frame.setTitle("Player WHITE Turn");
+                frame.setTitle("Chess");
 	}
 
 	@Override
@@ -47,8 +47,6 @@ public class MyMouseListener implements MouseListener{
 				if (lastSelected.possibleMoves().contains(selected)){
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
-					String text = lastSelected.color == 'w' ? "Player BLACK Turn" : "Player WHITE Turn";
-                                        frame.setTitle(text);
 				
 				//Don't move new selected piece
 				} else if (selected instanceof Piece){

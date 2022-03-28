@@ -114,6 +114,18 @@ public class Piece extends Tile{
 
 	//Move tile to new location
 	public void move(int newX, int newY){
+
+		if (grid.grid[newX][newY] instanceof Piece){ //Turn piece to null or remove piece from array
+			Set otherSet = color == 'w' ? grid.setB : grid.setW;
+			
+			for (int x = 0; x < otherSet.pieces.length; x++){
+				if (otherSet.pieces[x] == grid.grid[newX][newY]){
+					otherSet.pieces[x] = null;
+				}
+			}	
+
+		}
+
 		grid.grid[newX][newY] = this;
 		grid.grid[this.x][this.y] = new Tile(this.x, this.y);
 		this.x = newX;
