@@ -24,7 +24,6 @@ public class Tile {
                         && mouse.y >= this.y*SIZE+38 && mouse.y <= this.y*SIZE+SIZE+38){
                         return true;
                 }
-
                 return false;
         }
 
