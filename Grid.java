@@ -14,9 +14,9 @@ public class Grid {
 		initPieces();
 
 		//Add pieces to grid
-		for (int x = 0; x < setW.pieces.length; x++){
-			grid[setW.pieces[x].x][setW.pieces[x].y] = setW.pieces[x];
-			grid[setB.pieces[x].x][setB.pieces[x].y] = setB.pieces[x];
+		for (int x = 0; x < setW.pieces.size(); x++){
+			grid[setW.pieces.get(x).x][setW.pieces.get(x).y] = setW.pieces.get(x);
+			grid[setB.pieces.get(x).x][setB.pieces.get(x).y] = setB.pieces.get(x);
 		}
 	}	
 
@@ -29,24 +29,22 @@ public class Grid {
 
 		copy.setBaseGrid();
 
-		for (int x = 0; x < copy.setW.pieces.length; x++){
-			Piece equivalentW = this.setW.pieces[x];
-			Piece equivalentB = this.setB.pieces[x];
+		for (int x = 0; x < copy.setW.pieces.size(); x++){
+			Piece equivalentW = this.setW.pieces.get(x);
+			Piece equivalentB = this.setB.pieces.get(x);
 
-			copy.setW.pieces[x] = new Piece(equivalentW.x, equivalentW.y, 'w', equivalentW.type, copy);
-			copy.setB.pieces[x] = new Piece(equivalentB.x, equivalentB.y, 'b', equivalentB.type, copy);
+			copy.setW.pieces.add(new Piece(equivalentW.x, equivalentW.y, 'w', equivalentW.type, copy));
+			copy.setB.pieces.add(new Piece(equivalentB.x, equivalentB.y, 'b', equivalentB.type, copy));
 
-			copy.grid[copy.setW.pieces[x].x][copy.setW.pieces[x].y] = copy.setW.pieces[x];
-                        copy.grid[copy.setB.pieces[x].x][copy.setB.pieces[x].y] = copy.setB.pieces[x];
+			copy.grid[copy.setW.pieces.get(x).x][copy.setW.pieces.get(x).y] = copy.setW.pieces.get(x);
+                        copy.grid[copy.setB.pieces.get(x).x][copy.setB.pieces.get(x).y] = copy.setB.pieces.get(x);
 
 			if (equivalentW.type.equals("king")){
-				copy.setW.king = copy.setW.pieces[x];
-				copy.setB.king = copy.setB.pieces[x];
+				copy.setW.king = copy.setW.pieces.get(x);
+				copy.setB.king = copy.setB.pieces.get(x);
 			}
 		}
-
 		return copy;
-
 	}
 
 	//Set basic grid to non-null tiles
@@ -61,40 +59,40 @@ public class Grid {
 	private void initPieces(){
 		//Pawns
 		for (int x = 0; x < grid.length; x++){
-                        setW.pieces[x] = new Piece(x, 1, 'w', "pawn", this);
+                        setW.pieces.set(x, new Piece(x, 1, 'w', "pawn", this));
                 }
 
                 for (int x = 0; x < grid.length; x++){
-                        setB.pieces[x] = new Piece(x, 6, 'b', "pawn", this);
+                        setB.pieces.set(x, new Piece(x, 6, 'b', "pawn", this));
                 }
 
 		//Bishops
-		setW.pieces[8] = new Piece(1, 0, 'w', "bishop", this);
-                setW.pieces[9] = new Piece(6, 0, 'w', "bishop", this);
-                setB.pieces[8] = new Piece(1, 7, 'b', "bishop", this);
-                setB.pieces[9] = new Piece(6, 7, 'b', "bishop", this);
+		setW.pieces.add(new Piece(1, 0, 'w', "bishop", this));
+                setW.pieces.add(new Piece(6, 0, 'w', "bishop", this));
+                setB.pieces.add(new Piece(1, 7, 'b', "bishop", this));
+                setB.pieces.add(new Piece(6, 7, 'b', "bishop", this));
 
 		//Knights
-		setW.pieces[10] = new Piece(2, 0, 'w', "knight", this);
-                setW.pieces[11] = new Piece(5, 0, 'w', "knight", this);
-                setB.pieces[10] = new Piece(2, 7, 'b', "knight", this);
-                setB.pieces[11] = new Piece(5, 7, 'b', "knight", this);
+		setW.pieces.add(new Piece(2, 0, 'w', "knight", this));
+                setW.pieces.add(new Piece(5, 0, 'w', "knight", this));
+                setB.pieces.add(new Piece(2, 7, 'b', "knight", this));
+                setB.pieces.add(new Piece(5, 7, 'b', "knight", this));
 	
 		//Rooks
-		setW.pieces[12] = new Piece(0, 0, 'w', "rook", this);
-                setW.pieces[13] = new Piece(7, 0, 'w', "rook", this);
-                setB.pieces[12] = new Piece(0, 7, 'b', "rook", this);
-                setB.pieces[13] = new Piece(7, 7, 'b', "rook", this);
+		setW.pieces.add(new Piece(0, 0, 'w', "rook", this));
+                setW.pieces.add(new Piece(7, 0, 'w', "rook", this));
+                setB.pieces.add(new Piece(0, 7, 'b', "rook", this));
+                setB.pieces.add(new Piece(7, 7, 'b', "rook", this));
 	
 		//Queens
-		setW.pieces[14] = new Piece(3, 0, 'w', "queen", this);
-                setB.pieces[14] = new Piece(3, 7, 'b', "queen", this);
+		setW.pieces.add(new Piece(3, 0, 'w', "queen", this));
+                setB.pieces.add(new Piece(3, 7, 'b', "queen", this));
                 
 		setW.king = new Piece(4, 0, 'w', "king", this);
-		setW.pieces[15] = setW.king;
+		setW.pieces.add(setW.king);
 
 		setB.king = new Piece(4, 7, 'b', "king", this);
-                setB.pieces[15] = setB.king;
+                setB.pieces.add(setB.king);
 	}
 
 	//Print grid for debugging

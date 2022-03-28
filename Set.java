@@ -1,16 +1,18 @@
+import java.util.ArrayList;
+
 public class Set {
 	public char color;
 	public Piece king;
-	public Piece[] pieces;
+	public ArrayList<Piece> pieces;
 
 	public Set(char color){
 		this.color = color;
-		pieces = new Piece[16];
+		pieces = new ArrayList<Piece>();
 	}
 
-	public boolean kingCanBeEaten(Grid grid, Set otherSet){
-		for (int x = 0; x < otherSet.pieces.length; x++){
-			if (otherSet.pieces[x] != null && otherSet.pieces[x].possibleMoves().contains(king)){
+	public boolean kingCanBeEaten(Set otherSet){
+		for (int x = 0; x < otherSet.pieces.size(); x++){
+			if (otherSet.pieces.get(x).possibleMoves().contains(king)){
 				return true;
 			}
 		}
