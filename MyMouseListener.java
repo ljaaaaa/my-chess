@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 //MyMouseListener Class
 public class MyMouseListener implements MouseListener{
-	enum State { 
+	private enum State { 
 		NO_SELECTION, 
 		SELECTED_PIECE 
 	}
@@ -14,8 +14,9 @@ public class MyMouseListener implements MouseListener{
 	private Grid grid;
 	private MyFrame frame;
 	private Painter painter;
-	State state;
-	Piece lastSelected;
+	private State state;
+	private Piece lastSelected;
+	private boolean gameOver;
 
 	//Constructor
 	public MyMouseListener(Grid grid, Painter painter, MyFrame frame){
@@ -58,6 +59,15 @@ public class MyMouseListener implements MouseListener{
 				}
 				break;
 		}
+
+		if (grid.setW.gameOver(grid.setB)){
+			frame.setTitle("Game Over - Black");
+			frame.removeMouseListener(this);
+		} else if (grid.setB.gameOver(grid.setW)){
+			frame.setTitle("Game Over - White");
+                        frame.removeMouseListener(this);
+		}
+
 		painter.repaint();
 	}
 
