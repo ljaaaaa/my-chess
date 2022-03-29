@@ -22,16 +22,22 @@ public class Set {
 
 	//Returns true if this color has died
 	public boolean gameOver(Set otherSet){
-		for (int x = 0; x < pieces.size(); x++){ //Loops through this set's pieces
-			ArrayList<Tile> possibles = pieces.get(x).possibleMoves();
-			for (int y = 0; y < possibles.size(); y++){ //Loops through possible moves for this piece
+		
+		//If king is in trouble AND no piece can move
+		if (kingCanBeEaten(otherSet)){
+			for (int x = 0; x < pieces.size(); x++){ //Loops through this set's pieces
+                        	ArrayList<Tile> possibles = pieces.get(x).possibleMoves();
+                        	for (int y = 0; y < possibles.size(); y++){ //Loops through possible moves for this piece
 
-				//If move can be done without endangering king, game is not over
-				if (!pieces.get(x).movePutsOwnKingInDanger(possibles.get(x).x, possibles.get(y).y)){ //If a move can be done without endangering king, game is not over
-					return false;
-				}
+                        	        //If move can be done without endangering king, game is not over
+                        	        if (!pieces.get(x).movePutsOwnKingInDanger(possibles.get(y).x, possibles.get(y).y)){
+                        	                return false;
+                        	        }
+                        	}
 			}
+			return true;
+		} else {
+			return false;
 		}
-		return true;
 	}
 }
