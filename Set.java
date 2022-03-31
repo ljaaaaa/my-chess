@@ -20,9 +20,8 @@ public class Set {
 		return false;
 	}
 
-	//Returns true if this color has died
-	public boolean gameOver(Set otherSet){
-		
+	//Returns true if this color has been checkmated
+	public boolean gameOver(Set otherSet){	
 		//If king is in trouble AND no piece can move
 		if (kingCanBeEaten(otherSet)){
 			for (int x = 0; x < pieces.size(); x++){ //Loops through this set's pieces

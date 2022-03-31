@@ -39,20 +39,21 @@ public class MyMouseListener implements MouseListener{
 				if (selected instanceof Piece){
 					state = State.SELECTED_PIECE;
 					lastSelected = (Piece)selected;
-					highlightPossibles((Piece)selected);
+					lastSelected.possibleMoves();
 				}
 				break;
 
 			//Chess piece selected previously
 			case SELECTED_PIECE:
+				//Move selected piece
 				if (lastSelected.possibleMoves().contains(selected)){
-					lastSelected.move(selected.x, selected.y); //Move last selected piece
+					lastSelected.move(selected.x, selected.y);
 					state = State.NO_SELECTION;
 				
 				//Don't move new selected piece
 				} else if (selected instanceof Piece){
                                         lastSelected = (Piece)selected;
-					highlightPossibles((Piece)selected);
+					lastSelected.possibleMoves();
 
 				} else {
 					state = State.NO_SELECTION;
@@ -60,13 +61,27 @@ public class MyMouseListener implements MouseListener{
 				break;
 		}
 
+		//Win - black
 		if (grid.setW.gameOver(grid.setB)){
 			frame.setTitle("Game Over - Black");
 			frame.removeMouseListener(this);
+
+		//Win - white
 		} else if (grid.setB.gameOver(grid.setW)){
 			frame.setTitle("Game Over - White");
                         frame.removeMouseListener(this);
-		}
+
+		//Draw	- Two kings left (dead position) or
+		//	- Stalmate or 
+		//	- Fifty move rule or
+		//	- Threefold repition
+		} else if (false || 
+				false || 
+				false || 
+				false){
+			frame.setTitle("Draw");
+			frame.removeMouseListener(this);
+		} 
 
 		painter.repaint();
 	}
@@ -92,18 +107,6 @@ public class MyMouseListener implements MouseListener{
 			}
 		}
 		return selected;
-	}
-
-	//Highlight possibles
-	public void highlightPossibles(Piece selected){
-		ArrayList<Tile> possibles = selected.possibleMoves();
-
-		for (int x = 0; x < possibles.size(); x++){
-			//Move doesn't kill own king
-			if (!lastSelected.movePutsOwnKingInDanger(possibles.get(x).x, possibles.get(x).y)){
-				possibles.get(x).possible = true;
-			}
-		}
 	}
 	
 	@Override

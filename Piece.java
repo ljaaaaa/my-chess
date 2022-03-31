@@ -109,6 +109,15 @@ public class Piece extends Tile{
                                 possibles.add(grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]);
 			}
 		}
+
+		//Go through each possible and check if move puts king in danger
+		for (int x = 0; x < possibles.size(); x++){
+                        //Move doesn't kill own king
+                        if (!movePutsOwnKingInDanger(possibles.get(x).x, possibles.get(x).y)){
+                                possibles.get(x).possible = true;
+                        }
+                }
+
 		return possibles;	
 	}
 
