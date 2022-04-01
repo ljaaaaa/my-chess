@@ -13,7 +13,7 @@ public class Set {
 	//Returns true if this set's king can be eaten
 	public boolean kingCanBeEaten(Set otherSet){
 		for (int x = 0; x < otherSet.pieces.size(); x++){
-			if (otherSet.pieces.get(x).possibleMoves().contains(king)){
+			if (otherSet.pieces.get(x).basePossibleMoves().contains(king)){
 				return true;
 			}
 		}
@@ -26,7 +26,7 @@ public class Set {
 		//If king is in trouble AND no piece can move
 		if (kingCanBeEaten(otherSet)){
 			for (int x = 0; x < pieces.size(); x++){ //Loops through this set's pieces
-                        	ArrayList<Tile> possibles = pieces.get(x).possibleMoves();
+                        	ArrayList<Tile> possibles = pieces.get(x).basePossibleMoves();
                         	for (int y = 0; y < possibles.size(); y++){ //Loops through possible moves for this piece
 
                         	        //If move can be done without endangering king, game is not over

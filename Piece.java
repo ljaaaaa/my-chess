@@ -44,9 +44,23 @@ public class Piece extends Tile{
 		}
 	}
 
-	//Returns all possible move coordinates
-	public ArrayList<Tile> possibleMoves(){
-		ArrayList<Tile> possibles = new ArrayList<Tile>();
+	//Returns legal possible move coordinates, so king doesn't get eaten
+	public ArrayList<Tile> validPossibleMoves(){
+		ArrayList<Tile> possibles = basePossibleMoves();
+		ArrayList<Tile> validPossibles = new ArrayList<>();
+
+		//Check that move doesn't kill own king
+                for (int x = 0; x < possibles.size(); x++){
+                        if (!movePutsOwnKingInDanger(possibles.get(x).x, possibles.get(x).y)){
+                                validPossibles.add(possibles.get(x));
+                        }
+                }
+		return validPossibles;
+	}
+
+	//Returns base possible move coordinates
+	public ArrayList<Tile> basePossibleMoves(){
+		ArrayList<Tile> possibles = new ArrayList<>();
 			
 		//Loop in line for each possible
 		if (type == "bishop" || type == "rook" || type == "queen"){
@@ -109,12 +123,12 @@ public class Piece extends Tile{
                                 possibles.add(grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]);
 			}
 		}
+
 		return possibles;	
 	}
 
 	//Move tile to new location
 	public void move(int newX, int newY){
-
 		if (grid.grid[newX][newY] instanceof Piece){ //Removed piece eaten from array
 			Set otherSet = color == 'w' ? grid.setB : grid.setW;
 			

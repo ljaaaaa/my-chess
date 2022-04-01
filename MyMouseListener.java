@@ -39,20 +39,20 @@ public class MyMouseListener implements MouseListener{
 				if (selected instanceof Piece){
 					state = State.SELECTED_PIECE;
 					lastSelected = (Piece)selected;
-					highlightPossibles((Piece)selected);
+					highlightPossibles(lastSelected);
 				}
 				break;
 
 			//Chess piece selected previously
 			case SELECTED_PIECE:
-				if (lastSelected.possibleMoves().contains(selected)){
+				if (lastSelected.validPossibleMoves().contains(selected)){
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
 				
 				//Don't move new selected piece
 				} else if (selected instanceof Piece){
                                         lastSelected = (Piece)selected;
-					highlightPossibles((Piece)selected);
+					highlightPossibles(lastSelected);
 
 				} else {
 					state = State.NO_SELECTION;
@@ -96,13 +96,11 @@ public class MyMouseListener implements MouseListener{
 
 	//Highlight possibles
 	public void highlightPossibles(Piece selected){
-		ArrayList<Tile> possibles = selected.possibleMoves();
+		ArrayList<Tile> possibles = selected.validPossibleMoves();
 
+		//Set boolean possible to true, so Painter paints it as possible
 		for (int x = 0; x < possibles.size(); x++){
-			//Move doesn't kill own king
-			if (!lastSelected.movePutsOwnKingInDanger(possibles.get(x).x, possibles.get(x).y)){
-				possibles.get(x).possible = true;
-			}
+			possibles.get(x).possible = true;
 		}
 	}
 	
