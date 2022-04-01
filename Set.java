@@ -20,11 +20,23 @@ public class Set {
 		return false;
 	}
 
+	//Return true if draw because of dead position (two kings left)
+	public boolean drawDeadPosition(Set otherSet){
+		if (this.pieces.size() == 1 && otherSet.pieces.size() == 1){
+			return true;
+		}
+		return false;
+	}
+
+	//Returns true if draw because of stalemate
+	public boolean drawStalemate(){
+
+
+	}
+
 	//Returns true if this color has died
-	public boolean gameOver(Set otherSet){
-		
-		//If king is in trouble AND no piece can move
-		if (kingCanBeEaten(otherSet)){
+	public boolean playerLost(Set otherSet){
+		if (kingCanBeEaten(otherSet)){ //If king in trouble and no piece can move
 			for (int x = 0; x < pieces.size(); x++){ //Loops through this set's pieces
                         	ArrayList<Tile> possibles = pieces.get(x).basePossibleMoves();
                         	for (int y = 0; y < possibles.size(); y++){ //Loops through possible moves for this piece

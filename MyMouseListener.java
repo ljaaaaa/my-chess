@@ -16,7 +16,6 @@ public class MyMouseListener implements MouseListener{
 	private Painter painter;
 	private State state;
 	private Piece lastSelected;
-	private boolean gameOver;
 
 	//Constructor
 	public MyMouseListener(Grid grid, Painter painter, MyFrame frame){
@@ -60,12 +59,29 @@ public class MyMouseListener implements MouseListener{
 				break;
 		}
 
-		if (grid.setW.gameOver(grid.setB)){
-			frame.setTitle("Game Over - Black");
+		//Black win
+		// - Checkmate ✓
+		if (grid.setW.playerLost(grid.setB)){
+			frame.setTitle("Black Wins");
 			frame.removeMouseListener(this);
-		} else if (grid.setB.gameOver(grid.setW)){
-			frame.setTitle("Game Over - White");
+		
+		//White win
+		// - Checkmate ✓
+		} else if (grid.setB.playerLost(grid.setW)){
+			frame.setTitle("White Wins");
                         frame.removeMouseListener(this);
+		
+		//Draw
+		// - Dead position (only two kings remaining) ✓
+		// - Stalmate
+		// - Threefold repition
+		// - Fifty move rule
+		} else if (grid.setW.drawDeadPosition(grid.setB)){
+			frame.setTitle("Draw - Dead Position");
+                        frame.removeMouseListener(this);
+		
+		} else if (false){
+
 		}
 
 		painter.repaint();
