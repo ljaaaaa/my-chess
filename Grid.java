@@ -72,16 +72,16 @@ public class Grid {
                 }
 
 		//Bishops
-		setW.pieces.add(new Piece(1, 0, 'w', "bishop", this));
-                setW.pieces.add(new Piece(6, 0, 'w', "bishop", this));
-                setB.pieces.add(new Piece(1, 7, 'b', "bishop", this));
-                setB.pieces.add(new Piece(6, 7, 'b', "bishop", this));
+		setW.pieces.add(new Piece(2, 0, 'w', "bishop", this));
+                setW.pieces.add(new Piece(5, 0, 'w', "bishop", this));
+                setB.pieces.add(new Piece(2, 7, 'b', "bishop", this));
+                setB.pieces.add(new Piece(5, 7, 'b', "bishop", this));
 
 		//Knights
-		setW.pieces.add(new Piece(2, 0, 'w', "knight", this));
-                setW.pieces.add(new Piece(5, 0, 'w', "knight", this));
-                setB.pieces.add(new Piece(2, 7, 'b', "knight", this));
-                setB.pieces.add(new Piece(5, 7, 'b', "knight", this));
+		setW.pieces.add(new Piece(1, 0, 'w', "knight", this));
+                setW.pieces.add(new Piece(6, 0, 'w', "knight", this));
+                setB.pieces.add(new Piece(1, 7, 'b', "knight", this));
+                setB.pieces.add(new Piece(6, 7, 'b', "knight", this));
 	
 		//Rooks
 		setW.pieces.add(new Piece(0, 0, 'w', "rook", this));
@@ -90,13 +90,13 @@ public class Grid {
                 setB.pieces.add(new Piece(7, 7, 'b', "rook", this));
 	
 		//Queens
-		setW.pieces.add(new Piece(3, 0, 'w', "queen", this));
-                setB.pieces.add(new Piece(3, 7, 'b', "queen", this));
+		setW.pieces.add(new Piece(4, 0, 'w', "queen", this));
+                setB.pieces.add(new Piece(4, 7, 'b', "queen", this));
                 
-		setW.king = new Piece(4, 0, 'w', "king", this);
+		setW.king = new Piece(3, 0, 'w', "king", this);
 		setW.pieces.add(setW.king);
 
-		setB.king = new Piece(4, 7, 'b', "king", this);
+		setB.king = new Piece(3, 7, 'b', "king", this);
                 setB.pieces.add(setB.king);
 	}
 
