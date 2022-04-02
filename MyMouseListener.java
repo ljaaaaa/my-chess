@@ -16,6 +16,7 @@ public class MyMouseListener implements MouseListener{
 	private Painter painter;
 	private State state;
 	private Piece lastSelected;
+	private int movesSinceLastEat;
 
 	//Constructor
 	public MyMouseListener(Grid grid, Painter painter, MyFrame frame){
@@ -44,10 +45,16 @@ public class MyMouseListener implements MouseListener{
 
 			//Chess piece selected previously
 			case SELECTED_PIECE:
+				//Move piece
 				if (lastSelected.validPossibleMoves().contains(selected)){
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
-				
+					movesSinceLastEat++;
+
+					if (selected instanceof Piece){
+						movesSinceLastEat = 0;	
+					}
+
 				//Don't move new selected piece
 				} else if (selected instanceof Piece){
                                         lastSelected = (Piece)selected;
@@ -83,7 +90,11 @@ public class MyMouseListener implements MouseListener{
 		} else if (grid.setW.drawStalemate(grid.setB) || grid.setB.drawStalemate(grid.setW)){
 			frame.setTitle("Draw - Stalemate");
                         frame.removeMouseListener(this);
-		}
+		
+		} else if (movesSinceLastEat >= 50){
+			frame.setTitle("Draw - 50 Move Rule");
+                        frame.removeMouseListener(this);
+		}	
 
 		painter.repaint();
 	}
