@@ -80,8 +80,9 @@ public class MyMouseListener implements MouseListener{
 			frame.setTitle("Draw - Dead Position");
                         frame.removeMouseListener(this);
 		
-		} else if (false){
-
+		} else if (grid.setW.drawStalemate(grid.setB) || grid.setB.drawStalemate(grid.setW)){
+			frame.setTitle("Draw - Stalemate");
+                        frame.removeMouseListener(this);
 		}
 
 		painter.repaint();

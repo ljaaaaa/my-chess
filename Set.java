@@ -29,9 +29,18 @@ public class Set {
 	}
 
 	//Returns true if draw because of stalemate
-	public boolean drawStalemate(){
+	public boolean drawStalemate(Set otherSet){
+		if (!playerLost(otherSet)){
+			for (int x = 0; x < pieces.size(); x++){
+				if (pieces.get(x).validPossibleMoves().size() > 0){
+					return false;
+				}
+			}
+			return true;
 
-
+		} else { //Player has lost already
+			return false;
+		}
 	}
 
 	//Returns true if this color has died
