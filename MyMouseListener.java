@@ -91,7 +91,7 @@ public class MyMouseListener implements MouseListener{
 			frame.setTitle("Draw - Stalemate");
                         frame.removeMouseListener(this);
 		
-		} else if (movesSinceLastEat >= 50){
+		} else if (movesSinceLastEat >= 100){
 			frame.setTitle("Draw - 50 Move Rule");
                         frame.removeMouseListener(this);
 		}	
