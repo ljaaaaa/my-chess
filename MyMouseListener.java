@@ -51,7 +51,8 @@ public class MyMouseListener implements MouseListener{
 					state = State.NO_SELECTION;
 					movesSinceLastEat++;
 
-					if (selected instanceof Piece){
+					//Reset count for 50 move rule for draw
+					if (selected instanceof Piece || (lastSelected instanceof Piece && lastSelected.type.equals("pawn"))){
 						movesSinceLastEat = 0;	
 					}
 
@@ -79,10 +80,10 @@ public class MyMouseListener implements MouseListener{
                         frame.removeMouseListener(this);
 		
 		//Draw
-		// - Dead position (only two kings remaining) ✓
-		// - Stalmate
-		// - Threefold repition
-		// - Fifty move rule
+		// - Insufficient material
+		// - Stalmate ✓
+		// - Threefold repition 
+		// - Fifty move rule ✓ 
 		} else if (grid.setW.drawDeadPosition(grid.setB)){
 			frame.setTitle("Draw - Dead Position");
                         frame.removeMouseListener(this);
@@ -91,7 +92,7 @@ public class MyMouseListener implements MouseListener{
 			frame.setTitle("Draw - Stalemate");
                         frame.removeMouseListener(this);
 		
-		} else if (movesSinceLastEat >= 100){
+		} else if (movesSinceLastEat >= 10){
 			frame.setTitle("Draw - 50 Move Rule");
                         frame.removeMouseListener(this);
 		}	
