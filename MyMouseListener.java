@@ -80,9 +80,9 @@ public class MyMouseListener implements MouseListener{
                         frame.removeMouseListener(this);
 		
 		//Draw
-		// - Insufficient material
+		// - Insufficient material ✓
 		// - Stalmate ✓
-		// - Threefold repition 
+		// - Threefold repition :(
 		// - Fifty move rule ✓ 
 		} else if (grid.setW.drawInsufficientMaterial(painter, grid.setB)){
 			frame.setTitle("Draw - Insufficient Material");
