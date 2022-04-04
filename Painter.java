@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 
 //Painter Class
 public class Painter extends JPanel {
+	public String[][] bgImages;
 	private ImageIcon[][] bg;
         private Grid grid;
 	final int SIZE = 100; //Icon size
@@ -52,13 +53,15 @@ public class Painter extends JPanel {
 	//Set checkered background
 	private void setBackground(){
 		bg = new ImageIcon[8][8];
-                for (int x = 0; x < bg.length; x++){
+                bgImages = new String[8][8];
+		for (int x = 0; x < bg.length; x++){
                         for (int y = 0; y < bg[x].length; y++){
                                 int num = y%2 + x%2;
                                 if (num > 1){
                                         num = 0;
                                 }
-                                bg[x][y] = new ImageIcon("images/tile" + num + ".png");
+				bgImages[x][y] = "images/tile" + num + ".png";
+                                bg[x][y] = new ImageIcon(bgImages[x][y]);
                         }
 
                 }

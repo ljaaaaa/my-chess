@@ -84,8 +84,8 @@ public class MyMouseListener implements MouseListener{
 		// - Stalmate ✓
 		// - Threefold repition 
 		// - Fifty move rule ✓ 
-		} else if (grid.setW.drawDeadPosition(grid.setB)){
-			frame.setTitle("Draw - Dead Position");
+		} else if (grid.setW.drawInsufficientMaterial(painter, grid.setB)){
+			frame.setTitle("Draw - Insufficient Material");
                         frame.removeMouseListener(this);
 		
 		} else if (grid.setW.drawStalemate(grid.setB) || grid.setB.drawStalemate(grid.setW)){
