@@ -21,16 +21,16 @@ public class Set {
 	}
 
 	//Return true if draw because of insufficient material
-	public boolean drawInsufficientMaterial(Painter painter, Set otherSet){
+	public boolean drawInsufficientMaterial(Painter painter, Set otherSet){	
 		if ((this.pieces.size() == 1 && otherSet.pieces.size() == 1) || //King vs King
-			(this.pieces.size() == 2 && this.pieces.get(1).type.equals("bishop") && otherSet.pieces.size() == 1) || //King + Bishop vs King
-			(otherSet.pieces.size() == 2 && otherSet.pieces.get(1).type.equals("bishop") && this.pieces.size() == 1) ||
+			(this.pieces.size() == 2 && this.pieces.get(0).type.equals("bishop") && otherSet.pieces.size() == 1) || //King + Bishop vs King
+			(otherSet.pieces.size() == 2 && otherSet.pieces.get(0).type.equals("bishop") && this.pieces.size() == 1) ||
 			
-			(this.pieces.size() == 2 && this.pieces.get(1).type.equals("knight") && otherSet.pieces.size() == 1) || //King + Knight vs King
-                        (otherSet.pieces.size() == 2 && otherSet.pieces.get(1).type.equals("knight") && this.pieces.size() == 1) ||
+			(this.pieces.size() == 2 && this.pieces.get(0).type.equals("knight") && otherSet.pieces.size() == 1) || //King + Knight vs King
+                        (otherSet.pieces.size() == 2 && otherSet.pieces.get(0).type.equals("knight") && this.pieces.size() == 1) ||
 
-			(this.pieces.size() == 2 && otherSet.pieces.size() == 2 && this.pieces.get(1).type.equals("bishop") && otherSet.pieces.get(1).type.equals("bishop") &&
-			 bishopsSameColor(painter, this.pieces.get(1), otherSet.pieces.get(1)))	
+			(this.pieces.size() == 2 && otherSet.pieces.size() == 2 && this.pieces.get(0).type.equals("bishop") && otherSet.pieces.get(0).type.equals("bishop") &&
+			 bishopsOnSameColor(painter, this.pieces.get(0), otherSet.pieces.get(0)))	//King + Bishop vs King + Bishop (on same color)
 				){
 			return true;
 		}
@@ -38,7 +38,7 @@ public class Set {
 	}
 
 	//Return true if two bishops are on same color tile
-	public boolean bishopsSameColor(Painter painter, Piece bishop1, Piece bishop2){
+	private boolean bishopsOnSameColor(Painter painter, Piece bishop1, Piece bishop2){
 		if (painter.bgImages[bishop1.x][bishop1.y].equals(painter.bgImages[bishop2.x][bishop2.y])){
 			return true;
 		}
