@@ -13,9 +13,8 @@ public class Main {
 	//Constructor
 	public Main(){
 		grid = new Grid();
-		painter = new Painter(grid);
-		
-		frame = new MyFrame("Chess", this);
+		frame = new MyFrame("Chess");
+		painter = new Painter(this);
 		mouseListener = new MyMouseListener(grid, painter, frame);
 	}
 }

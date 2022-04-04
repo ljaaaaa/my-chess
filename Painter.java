@@ -11,8 +11,9 @@ public class Painter extends JPanel {
         private Grid grid;
 	final int SIZE = 100; //Icon size
 
-	public Painter(Grid grid){
-		this.grid = grid;
+	public Painter(Main main){
+		this.grid = main.grid;
+		main.frame.add(this);
 		setBackground();
 	}
 
@@ -34,11 +35,14 @@ public class Painter extends JPanel {
                        	for (int y = 0; y < tiles[x].length; y++){
 				g2d.drawImage(tiles[x][y].icon.getImage(), tiles[x][y].x*SIZE, tiles[x][y].y*SIZE, null);
 
+				//Selected piece
 				if (tiles[x][y].selected){
 					g2d.drawImage(new ImageIcon("images/selected.png").getImage(), x*SIZE, y*SIZE, null);
 				}	
 
+				//Possible to move to
 				if (tiles[x][y].possible){
+					//Possible to eat
 					if (tiles[x][y] instanceof Piece){
 						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), x*SIZE, y*SIZE, null);
 						

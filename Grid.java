@@ -20,7 +20,7 @@ public class Grid {
 		}
 	}	
 
-	//Retrun a copy of this grid
+	//Return a copy of this grid
 	public Grid getDummyGrid(){
 		Grid copy = new Grid();
 		copy.grid = new Tile[8][8];
@@ -98,15 +98,5 @@ public class Grid {
 
 		setB.king = new Piece(3, 7, 'b', "king", this);
                 setB.pieces.add(setB.king);
-	}
-
-	//Print grid for debugging
-	public void printGrid(){
-		for (int x = 0; x < grid.length; x++){
-                        for (int y = 0; y < grid[0].length; y++){
-                                System.out.print("[" + grid[y][x] + "]");
-                        }
-			System.out.println("");
-                }
 	}
 }

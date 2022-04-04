@@ -19,13 +19,12 @@ public class MyMouseListener implements MouseListener{
 	private int movesSinceLastEat;
 
 	//Constructor
-	public MyMouseListener(Grid grid, Painter painter, MyFrame frame){
-		this.grid = grid;
-		this.frame = frame;
-		this.painter = painter;
+	public MyMouseListener(Main main){
+		grid = main.grid;
+		frame = main.frame;
+		painter = main.painter;
 		state = State.NO_SELECTION;
 		frame.addMouseListener(this);
-                frame.setTitle("Chess");
 	}
 
 	@Override
@@ -33,7 +32,7 @@ public class MyMouseListener implements MouseListener{
 		Tile selected = currentSelectedTile(e.getPoint());
 		
 		switch (state){
-			//No chess piece selected
+			//No chess piece selected previously
 			case NO_SELECTION:
 				//Chess piece selected
 				if (selected instanceof Piece){
@@ -67,14 +66,12 @@ public class MyMouseListener implements MouseListener{
 				break;
 		}
 
-		//Black win
-		// - Checkmate ✓
+		//Black Checkmate ✓
 		if (grid.setW.playerLost(grid.setB)){
 			frame.setTitle("Black Wins");
 			frame.removeMouseListener(this);
 		
-		//White win
-		// - Checkmate ✓
+		//White Checkmate ✓
 		} else if (grid.setB.playerLost(grid.setW)){
 			frame.setTitle("White Wins");
                         frame.removeMouseListener(this);
@@ -100,7 +97,7 @@ public class MyMouseListener implements MouseListener{
 		painter.repaint();
 	}
 
-	//Return selected tile and update tile selected and possible statuses
+	//Return selected tile and update variables based on selection
 	public Tile currentSelectedTile(Point mousePoint){
 		Tile selected = null;
 		

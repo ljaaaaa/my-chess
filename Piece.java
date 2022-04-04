@@ -149,12 +149,13 @@ public class Piece extends Tile{
 	public boolean movePutsOwnKingInDanger(int newX, int newY){
 		Grid dummy = grid.getDummyGrid();
 
-		((Piece)dummy.grid[this.x][this.y]).move(newX, newY);
-
+		//Move dummy piece
+		((Piece)dummy.grid[this.x][this.y]).move(newX, newY); 
 		Set thisSet = color == 'w' ? dummy.setW : dummy.setB;
 		Set otherSet = color == 'w' ? dummy.setB : dummy.setW;
 
-		if (thisSet.kingCanBeEaten(otherSet)){ //Will put king in danger
+		//Will put own king in danger
+		if (thisSet.kingCanBeEaten(otherSet)){
 			return true;
 		}
 		return false;

@@ -4,8 +4,8 @@ import javax.swing.ImageIcon;
 
 //MyFrame Class
 public class MyFrame extends JFrame {
-	public final int WIDTH = 800;
-	public final int HEIGHT = 800 + 36; 
+	public final int WIDTH = 800; //Screen width
+	public final int HEIGHT = 800 + 36; //Screen height
 
 	//Constructor
 	public MyFrame(String title, Main main){
@@ -16,7 +16,6 @@ public class MyFrame extends JFrame {
                 setResizable(false);
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 setVisible(true);
-		add(main.painter);
 		setIconImage(new ImageIcon("images/w_king.png").getImage());
-	}	
+	}
 }
