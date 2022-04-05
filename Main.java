@@ -1,9 +1,9 @@
 //Main Class
 public class Main {
-	Grid grid;
-	Painter painter;
-	MyFrame frame;
-	MyMouseListener mouseListener;
+	public Grid grid;
+	public Painter painter;
+	public MyFrame frame;
+	public MyMouseListener mouseListener;
 
 	//Run game
 	public static void main (String[] args) {
@@ -15,6 +15,6 @@ public class Main {
 		grid = new Grid();
 		frame = new MyFrame("Chess");
 		painter = new Painter(this);
-		mouseListener = new MyMouseListener(grid, painter, frame);
+		mouseListener = new MyMouseListener(this);
 	}
 }

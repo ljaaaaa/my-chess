@@ -8,7 +8,7 @@ public class MyFrame extends JFrame {
 	public final int HEIGHT = 800 + 36; //Screen height
 
 	//Constructor
-	public MyFrame(String title, Main main){
+	public MyFrame(String title){
 		super(title);
 		setLayout(new GridLayout(1, 1));
                 setSize(WIDTH, HEIGHT);

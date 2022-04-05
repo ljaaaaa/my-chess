@@ -65,11 +65,8 @@ public class Grid {
 		//Pawns
 		for (int x = 0; x < grid.length; x++){
                         setW.pieces.add(new Piece(x, 1, 'w', "pawn", this));
-                }
-
-                for (int x = 0; x < grid.length; x++){
-                        setB.pieces.add(new Piece(x, 6, 'b', "pawn", this));
-                }
+                	setB.pieces.add(new Piece(x, 6, 'b', "pawn", this));
+		}
 
 		//Bishops
 		setW.pieces.add(new Piece(2, 0, 'w', "bishop", this));

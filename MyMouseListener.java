@@ -124,7 +124,7 @@ public class MyMouseListener implements MouseListener{
 	public void highlightPossibles(Piece selected){
 		ArrayList<Tile> possibles = selected.validPossibleMoves();
 
-		//Set boolean possible to true, so Painter paints it as possible
+		//Set boolean possible to true, so painter paints it as possible
 		for (int x = 0; x < possibles.size(); x++){
 			possibles.get(x).possible = true;
 		}

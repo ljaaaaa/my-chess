@@ -24,7 +24,6 @@ public class Piece extends Tile{
 				} else { //Up
 					moves = new int[][] { {0, -1}, {0, -2}, {-1, -1}, {1, -1}, {6}};
 				}
-
 				break;
 			case "bishop":
 				moves = new int[][] { {-1, -1}, {1, -1}, {-1, 1}, {1, 1} };
@@ -52,7 +51,8 @@ public class Piece extends Tile{
 		//Check that move doesn't kill own king
                 for (int x = 0; x < possibles.size(); x++){
                         if (!movePutsOwnKingInDanger(possibles.get(x).x, possibles.get(x).y)){
-                                validPossibles.add(possibles.get(x));
+                              	possibles.remove(x);  
+				validPossibles.add(possibles.get(x));
                         }
                 }
 		return validPossibles;
@@ -95,7 +95,7 @@ public class Piece extends Tile{
                                         	&& ((grid.grid[currentX][currentY] instanceof Piece && ((Piece)grid.grid[currentX][currentY]).color != color) ||
                                 	                !(grid.grid[currentX][currentY] instanceof Piece))){
 
-                                	        possibles.add(grid.grid[currentX][currentY]);
+                          		possibles.add(grid.grid[currentX][currentY]);
                         	}
                 	}
 		//Pawn
@@ -108,17 +108,14 @@ public class Piece extends Tile{
 				if (this.y == moves[4][0] && !(grid.grid[this.x][this.y+moves[1][1]] instanceof Piece)){
 					possibles.add(grid.grid[this.x][this.y+moves[1][1]]);
 				}
-			}
-
+			
 			//Diagonal
-			if (this.y+moves[2][1] < 8 && this.y+moves[2][1] >= 0 && this.x+moves[2][0] < 8 && this.x+moves[2][0] >= 0 &&
+			} if (this.y+moves[2][1] < 8 && this.y+moves[2][1] >= 0 && this.x+moves[2][0] < 8 && this.x+moves[2][0] >= 0 &&
 					(grid.grid[this.x+moves[2][0]][this.y+moves[2][1]] instanceof Piece) && ((Piece)grid.grid[this.x+moves[2][0]][this.y+moves[2][1]]).color != color){
 				possibles.add(grid.grid[this.x+moves[2][0]][this.y+moves[2][1]]);
 
-			}
-
 			//Diagonal
-                        if (this.y+moves[3][1] < 8 && this.y+moves[3][1] >= 0 && this.x+moves[3][0] < 8 && this.x+moves[3][0] >= 0 &&
+			} if (this.y+moves[3][1] < 8 && this.y+moves[3][1] >= 0 && this.x+moves[3][0] < 8 && this.x+moves[3][0] >= 0 &&
                                         (grid.grid[this.x+moves[3][0]][this.y+moves[3][1]] instanceof Piece) && ((Piece)grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]).color != color){
                                 possibles.add(grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]);
 			}

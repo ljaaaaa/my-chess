@@ -7,10 +7,10 @@ public class Tile {
 	public ImageIcon icon;
 	public boolean possible;
 	public boolean selected;
+	public final int SIZE = 100; //Icon size
 	protected int x;
 	protected int y;
-	private final int SIZE = 100; //Icon size
-
+	
 	//Constructor
 	public Tile(int x, int y){
 		this.x = x;

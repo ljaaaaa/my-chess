@@ -9,7 +9,6 @@ public class Painter extends JPanel {
 	public String[][] bgImages;
 	private ImageIcon[][] bg;
         private Grid grid;
-	final int SIZE = 100; //Icon size
 
 	public Painter(Main main){
 		this.grid = main.grid;
@@ -21,6 +20,7 @@ public class Painter extends JPanel {
         protected void paintComponent(Graphics g){
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D)g;
+		final int SIZE = grid.grid[0][0].SIZE;
 
 		//Draw background
                 for (int x = 0; x < bg.length; x++){
