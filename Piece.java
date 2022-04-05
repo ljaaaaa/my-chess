@@ -50,8 +50,7 @@ public class Piece extends Tile{
 
 		//Check that move doesn't kill own king
                 for (int x = 0; x < possibles.size(); x++){
-                        if (!movePutsOwnKingInDanger(possibles.get(x).x, possibles.get(x).y)){
-                              	possibles.remove(x);  
+                        if (!movePutsOwnKingInDanger(possibles.get(x).x, possibles.get(x).y)){ 
 				validPossibles.add(possibles.get(x));
                         }
                 }

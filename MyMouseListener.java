@@ -76,22 +76,24 @@ public class MyMouseListener implements MouseListener{
 			frame.setTitle("White Wins");
                         frame.removeMouseListener(this);
 		
-		//Draw
-		// - Insufficient material ✓
-		// - Stalmate ✓
-		// - Threefold repition :(
-		// - Fifty move rule ✓ 
+		// Draw Insufficient Material ✓
 		} else if (grid.setW.drawInsufficientMaterial(painter, grid.setB)){
 			frame.setTitle("Draw - Insufficient Material");
                         frame.removeMouseListener(this);
 		
+		//Draw Stalemate ✓
 		} else if (grid.setW.drawStalemate(grid.setB) || grid.setB.drawStalemate(grid.setW)){
 			frame.setTitle("Draw - Stalemate");
                         frame.removeMouseListener(this);
 		
-		} else if (movesSinceLastEat >= 10){
+		//Draw Fifty Move Rule ✓
+		} else if (movesSinceLastEat >= 100){
 			frame.setTitle("Draw - 50 Move Rule");
                         frame.removeMouseListener(this);
+		
+		//Draw Threefold Repition.... ugh
+		} else if (false){
+
 		}	
 
 		painter.repaint();
