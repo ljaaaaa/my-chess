@@ -44,8 +44,8 @@ public class Piece extends Tile{
 	}
 
 	//Returns legal possible move coordinates, so king doesn't get eaten
-	public ArrayList<Tile> validPossibleMoves(ArrayList<History> history){
-		ArrayList<Tile> possibles = basePossibleMoves(history);
+	public ArrayList<Tile> validPossibleMoves(){
+		ArrayList<Tile> possibles = basePossibleMoves();
 		ArrayList<Tile> validPossibles = new ArrayList<>();
 
 		//Check that move doesn't kill own king
@@ -58,7 +58,7 @@ public class Piece extends Tile{
 	}
 
 	//Returns base possible move coordinates
-	public ArrayList<Tile> basePossibleMoves(ArrayList<History> history){
+	public ArrayList<Tile> basePossibleMoves(){
 		ArrayList<Tile> possibles = new ArrayList<>();
 			
 		//Loop in line for each possible
@@ -120,16 +120,17 @@ public class Piece extends Tile{
 			}
 
 			//En Passant is possible
-			if (extraEnPassantTile(history.get(history.size()-1)) != null){
-				possibles.add(extraEnPassantTile(history.get(history.size()-1)));
-			}
+			//if (extraEnPassantTile(history.get(history.size()-1)) != null){
+			//	possibles.add(extraEnPassantTile(history.get(history.size()-1)));
+			//}
 		}
 
 		return possibles;	
 	}
 
 	//Return extra tile to move to if En Passant is possible
-	public Tile extraEnPassantTile(History lastMove){
+	/*
+	private Tile extraEnPassantTile(History lastMove){
 		//Last moved piece is pawn and this piece is pawn
 		if (type.equals("pawn") && ((Piece)lastMove.pieceMoved).type.equals("pawn")){
 			
@@ -144,6 +145,7 @@ public class Piece extends Tile{
 		}
 		return null;
 	}
+	*/
 
 	//Move tile to new location
 	public void move(int newX, int newY){

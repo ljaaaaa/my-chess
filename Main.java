@@ -16,7 +16,7 @@ public class Main {
 	//Constructor
 	public Main(){
 		history = new ArrayList<>();
-		grid = new Grid(this);
+		grid = new Grid();
 		frame = new MyFrame("Chess");
 		painter = new Painter(this);
 		mouseListener = new MyMouseListener(this);

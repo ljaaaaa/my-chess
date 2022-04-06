@@ -13,7 +13,7 @@ public class MyMouseListener implements MouseListener{
 
 	private Grid grid;
 	private MyFrame frame;
-	//private Painter painter;
+	private Painter painter;
 	private State state;
 	private Piece lastSelected;
 	private int movesSinceLastEat;
@@ -25,9 +25,6 @@ public class MyMouseListener implements MouseListener{
 		painter = main.painter;
 		state = State.NO_SELECTION;
 		frame.addMouseListener(this);
-		history = new ArrayList<History>();
-		grid.setW.history = history;
-		grid.setB.history = history;
 	}
 
 	@Override
@@ -48,12 +45,11 @@ public class MyMouseListener implements MouseListener{
 			//Chess piece selected previously
 			case SELECTED_PIECE:
 				//Move piece
-				if (lastSelected.validPossibleMoves(history).contains(selected)){
+				if (lastSelected.validPossibleMoves().contains(selected)){
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
 					movesSinceLastEat++;
-					history.add(new History(lastSelected, selected));
-
+				
 					//Reset count for 50 move rule for draw
 					if (selected instanceof Piece || (lastSelected instanceof Piece && lastSelected.type.equals("pawn"))){
 						movesSinceLastEat = 0;
