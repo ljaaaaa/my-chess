@@ -123,7 +123,7 @@ public class Piece extends Tile{
 		return possibles;	
 	}
 
-	public void enPassantPossible(){
+	public boolean enPassantPossible(){
 		if (type.equals("pawn")){
 
 
