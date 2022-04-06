@@ -123,6 +123,18 @@ public class Piece extends Tile{
 		return possibles;	
 	}
 
+	public void enPassantPossible(){
+		if (type.equals("pawn")){
+
+
+
+
+
+		}
+
+		return false;
+	}
+
 	//Move tile to new location
 	public void move(int newX, int newY){
 		if (grid.grid[newX][newY] instanceof Piece){ //Removed piece eaten from array
