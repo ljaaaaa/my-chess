@@ -44,8 +44,8 @@ public class Piece extends Tile{
 	}
 
 	//Returns legal possible move coordinates, so king doesn't get eaten
-	public ArrayList<Tile> validPossibleMoves(){
-		ArrayList<Tile> possibles = basePossibleMoves();
+	public ArrayList<Tile> validPossibleMoves(ArrayList<History> history){
+		ArrayList<Tile> possibles = basePossibleMoves(history);
 		ArrayList<Tile> validPossibles = new ArrayList<>();
 
 		//Check that move doesn't kill own king
@@ -58,7 +58,7 @@ public class Piece extends Tile{
 	}
 
 	//Returns base possible move coordinates
-	public ArrayList<Tile> basePossibleMoves(){
+	public ArrayList<Tile> basePossibleMoves(ArrayList<History> history){
 		ArrayList<Tile> possibles = new ArrayList<>();
 			
 		//Loop in line for each possible
@@ -118,21 +118,31 @@ public class Piece extends Tile{
                                         (grid.grid[this.x+moves[3][0]][this.y+moves[3][1]] instanceof Piece) && ((Piece)grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]).color != color){
                                 possibles.add(grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]);
 			}
+
+			//En Passant is possible
+			if (extraEnPassantTile(history.get(history.size()-1)) != null){
+				possibles.add(extraEnPassantTile(history.get(history.size()-1)));
+			}
 		}
 
 		return possibles;	
 	}
 
-	public boolean enPassantPossible(){
-		if (type.equals("pawn")){
+	//Return extra tile to move to if En Passant is possible
+	public Tile extraEnPassantTile(History lastMove){
+		//Last moved piece is pawn and this piece is pawn
+		if (type.equals("pawn") && ((Piece)lastMove.pieceMoved).type.equals("pawn")){
+			
+			//If this piece is right next to lastMoved piece
+			if ((this.x > 0 && grid.grid[x-1][y] == lastMove.pieceMoved)){
+				return grid.grid[x-1][y];
+			}
 
-
-
-
-
+			else if (this.x < grid.length && grid.grid[x+1][y] == lastMove.pieceMoves){
+				return grid.grid[x+1][y];
+			}
 		}
-
-		return false;
+		return null;
 	}
 
 	//Move tile to new location
