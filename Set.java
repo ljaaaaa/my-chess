@@ -4,8 +4,9 @@ public class Set {
 	public char color;
 	public Piece king;
 	public ArrayList<Piece> pieces;
+	public ArrayList<History> history;
 
-	public Set(char color){
+	public Set(char color, ArrayList<History> history){
 		this.color = color;
 		pieces = new ArrayList<Piece>();
 	}
@@ -13,7 +14,7 @@ public class Set {
 	//Returns true if this set's king can be eaten
 	public boolean kingCanBeEaten(Set otherSet){
 		for (int x = 0; x < otherSet.pieces.size(); x++){
-			if (otherSet.pieces.get(x).basePossibleMoves().contains(king)){
+			if (otherSet.pieces.get(x).basePossibleMoves(history).contains(king)){
 				return true;
 			}
 		}
@@ -49,7 +50,7 @@ public class Set {
 	public boolean drawStalemate(Set otherSet){
 		if (!playerLost(otherSet)){
 			for (int x = 0; x < pieces.size(); x++){
-				if (pieces.get(x).validPossibleMoves().size() > 0){
+				if (pieces.get(x).validPossibleMoves(history).size() > 0){
 					return false;
 				}
 			}
