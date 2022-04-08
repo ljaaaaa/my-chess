@@ -7,7 +7,7 @@ public class Tile {
 	public ImageIcon icon;
 	public boolean possible;
 	public boolean selected;
-	public final int SIZE = 100; //Icon size
+	public final int SIZE = 50; //Icon size
 	protected int x;
 	protected int y;
 	
