@@ -4,9 +4,10 @@ import javax.swing.ImageIcon;
 //Piece Class
 public class Piece extends Tile{
 	public final char color;
-	public String type;
 	private Grid grid;
 	int[][] moves; //Possible moves for piece
+	public String type; //Like below character, but full name
+	char character; //Used for history chess notation
 
 	//Constructor
 	public Piece(int x, int y, char color, String type, Grid grid){
@@ -14,6 +15,13 @@ public class Piece extends Tile{
 		this.grid = grid;
 		this.color = color;
 		this.type = type;
+
+		if (!type.equals("knight")){
+			character = type.charAt(0);
+		} else {
+			character = type.charAt(1);
+		}
+
 		icon = new ImageIcon("images/" + color + "_" + type + ".png");
 	
 		switch (type){

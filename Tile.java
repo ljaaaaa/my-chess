@@ -9,6 +9,7 @@ public class Tile {
 	public boolean selected;
 	public final int SIZE = 100; //Icon size
 	public static final int STATIC_SIZE = 100;
+	
 	protected int x;
 	protected int y;
 	

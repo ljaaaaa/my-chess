@@ -1,9 +1,10 @@
 public class History {
+	String color;
+	String move;
 	Piece pieceMoved;
 	Tile location;
 
-	public History(Piece pieceMoved, Tile location){
-		this.pieceMoved = pieceMoved;
-		this.location = location;
+	public History(String color, String move){
+		this.move = move;
 	}
 }
