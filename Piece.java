@@ -17,9 +17,9 @@ public class Piece extends Tile{
 		this.type = type;
 
 		if (!type.equals("knight")){
-			character = type.charAt(0);
+			character = Character.toUpperCase(type.charAt(0));
 		} else {
-			character = type.charAt(1);
+			character = Character.toUpperCase(type.charAt(1));
 		}
 
 		icon = new ImageIcon("images/" + color + "_" + type + ".png");
