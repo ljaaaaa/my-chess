@@ -17,12 +17,14 @@ public class MyMouseListener implements MouseListener{
 	private State state;
 	private Piece lastSelected;
 	private int movesSinceLastEat;
+	private ArrayList<History> history;
 
 	//Constructor
 	public MyMouseListener(Main main){
 		grid = main.grid;
 		frame = main.frame;
 		painter = main.painter;
+		history = grid.history;
 		state = State.NO_SELECTION;
 		frame.addMouseListener(this);
 	}
@@ -46,10 +48,14 @@ public class MyMouseListener implements MouseListener{
 			case SELECTED_PIECE:
 				//Move piece
 				if (lastSelected.validPossibleMoves().contains(selected)){
+					//Add move to history
+                                        history.add(new History(lastSelected, selected));
+                                        System.out.println(history.get(history.size()-1).move);
+				
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
 					movesSinceLastEat++;
-				
+
 					//Reset count for 50 move rule for draw
 					if (selected instanceof Piece || (lastSelected instanceof Piece && lastSelected.type.equals("pawn"))){
 						movesSinceLastEat = 0;
@@ -93,7 +99,8 @@ public class MyMouseListener implements MouseListener{
 		
 		//Draw Threefold Repition.... ugh
 		} else if (false){
-
+			frame.setTitle("Draw - Threeforld Repitition");
+			frame.removeMouseListener(this);
 		}
 
 		painter.repaint();
@@ -106,7 +113,6 @@ public class MyMouseListener implements MouseListener{
 		for (int x = 0; x < grid.grid.length; x++){
                         for (int y = 0; y < grid.grid[x].length; y++){
 				Tile tile = grid.grid[x][y];
-
 				//Mouse on
 				if (tile.mouseOn(mousePoint)){
 					tile.selected = true;

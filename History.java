@@ -1,10 +1,15 @@
 public class History {
-	String color;
+	char color;
 	String move;
-	Piece pieceMoved;
-	Tile location;
 
-	public History(String color, String move){
-		this.move = move;
+	public History(Piece movedPiece, Tile location){
+		//Set move in proper chess notation here.
+		char startCharacter = movedPiece.character;
+		String startNotation = movedPiece.getNotation();
+		String endNotation = location.getNotation();
+
+		//Ex: Na2-c3
+		move = startCharacter + startNotation + "-" + endNotation;
+		color = movedPiece.color;
 	}
 }

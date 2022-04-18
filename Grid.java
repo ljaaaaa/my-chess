@@ -1,14 +1,18 @@
+import java.util.ArrayList;
+
 //Grid Class
 public class Grid {
 	public Tile[][] grid;
 	public Set setW;
 	public Set setB;
+	public ArrayList<History> history;
 
 	//Constructor
-	public Grid(){
+	public Grid(ArrayList<History> history){
 		grid = new Tile[8][8];
 		setW = new Set('w');
 		setB = new Set('b');
+		this.history = history;
 
 		setBaseGrid();
 		initPieces();
@@ -22,7 +26,7 @@ public class Grid {
 
 	//Return a copy of this grid
 	public Grid getDummyGrid(){
-		Grid copy = new Grid();
+		Grid copy = new Grid(history); //This might be sketchy... with this not technically perfect copy
 		copy.grid = new Tile[8][8];
 		copy.setW = new Set('w');
 		copy.setB = new Set('b');

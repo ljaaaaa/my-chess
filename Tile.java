@@ -9,7 +9,6 @@ public class Tile {
 	public boolean selected;
 	public final int SIZE = 100; //Icon size
 	public static final int STATIC_SIZE = 100;
-	
 	protected int x;
 	protected int y;
 	
@@ -18,6 +17,11 @@ public class Tile {
 		this.x = x;
 		this.y = y;
 		icon = new ImageIcon("images/clear.png");
+	}
+
+	public String getNotation(){
+                char[] letters = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+                return letters[x] + "" + (y+1);
 	}
 
 	//If mouse is touching area
