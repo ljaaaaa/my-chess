@@ -21,7 +21,7 @@ public class Main {
 	//Constructor
 	public Main(String arg){
 		TILE_SIZE = Integer.valueOf(arg);
-		SCREEN_WIDTH = 8*TILE_SIZE;
+		SCREEN_WIDTH = 8*TILE_SIZE + (TILE_SIZE*3);
 		SCREEN_HEIGHT = 8*TILE_SIZE;
 		
 		history = new ArrayList<>();
@@ -29,5 +29,8 @@ public class Main {
 		frame = new MyFrame("Chess", this);
 		painter = new Painter(this);
 		mouseListener = new MyMouseListener(this);
+
+		//JPanel historyPanel = new JPanel();
+
 	}
 }

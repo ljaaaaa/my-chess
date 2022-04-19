@@ -50,7 +50,6 @@ public class MyMouseListener implements MouseListener{
 				if (lastSelected.validPossibleMoves().contains(selected)){
 					//Add move to history
                                         history.add(new History(lastSelected, selected));
-                                        System.out.println(history.get(history.size()-1).move);
 				
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;

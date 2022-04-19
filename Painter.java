@@ -3,16 +3,20 @@ import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Font;
+import java.awt.Color;
+import java.util.ArrayList;
 
 //Painter Class
 public class Painter extends JPanel {
 	public String[][] bgImages;
 	private ImageIcon[][] bg;
         private Grid grid;
-
+	private ArrayList<History> history;
 
 	public Painter(Main main){
 		this.grid = main.grid;
+		this.history = main.history;
 		setBackground();
 		main.frame.add(this);
 	}
@@ -53,7 +57,21 @@ public class Painter extends JPanel {
 				}
 			}
 		}
-        }
+                
+		//Rectangle for history
+		g.setColor(new Color(46, 46, 46));
+		g.fillRect(SIZE*8, 0, SIZE*3, SIZE*8);
+
+		final int FONT_SIZE = SIZE/4;
+		g.setColor(new Color(255, 255, 255));
+		g.setFont(new Font("Roboto", Font.PLAIN, FONT_SIZE));
+                
+		//Draw history on side
+		for (int x = 0; x < history.size(); x++){
+			String text = history.get(x).color + " : " + history.get(x).move;
+                	g2d.drawString(text, SIZE*8 + FONT_SIZE/2, x*FONT_SIZE+FONT_SIZE+7);
+        	}
+	}
 
 	//Set checkered background
 	private void setBackground(){
