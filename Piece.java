@@ -10,8 +10,8 @@ public class Piece extends Tile{
 	char character; //Used for history chess notation
 
 	//Constructor
-	public Piece(int x, int y, char color, String type, Grid grid){
-		super(x, y);
+	public Piece(int x, int y, int TILE_SIZE, char color, String type, Grid grid){
+		super(x, y, TILE_SIZE);
 		this.grid = grid;
 		this.color = color;
 		this.type = type;
@@ -169,7 +169,7 @@ public class Piece extends Tile{
 		}
 
 		grid.grid[newX][newY] = this;
-		grid.grid[this.x][this.y] = new Tile(this.x, this.y);
+		grid.grid[this.x][this.y] = new Tile(this.x, this.y, TILE_SIZE);
 		this.x = newX;
 		this.y = newY;
 	}

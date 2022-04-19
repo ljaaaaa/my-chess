@@ -2,4 +2,4 @@
 
 javac -d compiled *.java
 cd compiled
-java Main 40
+java Main 100

@@ -10,6 +10,7 @@ public class Painter extends JPanel {
 	private ImageIcon[][] bg;
         private Grid grid;
 
+
 	public Painter(Main main){
 		this.grid = main.grid;
 		setBackground();
@@ -20,12 +21,12 @@ public class Painter extends JPanel {
         protected void paintComponent(Graphics g){
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D)g;
-		final int SIZE = grid.grid[0][0].SIZE;
+		final int SIZE = grid.grid[0][0].TILE_SIZE;
 
 		//Draw background
                 for (int x = 0; x < bg.length; x++){
                         for (int y = 0; y < bg[x].length; y++){
-                                g2d.drawImage(bg[x][y].getImage(), x*SIZE, y*SIZE, null);
+                                g2d.drawImage(bg[x][y].getImage(), x*SIZE, y*SIZE, SIZE, SIZE, null);
                         }
                 }
 
@@ -33,21 +34,21 @@ public class Painter extends JPanel {
 		Tile[][] tiles = grid.grid;
                 for (int x = 0; x < tiles.length; x++){
                        	for (int y = 0; y < tiles[x].length; y++){
-				g2d.drawImage(tiles[x][y].icon.getImage(), tiles[x][y].x*SIZE, tiles[x][y].y*SIZE, null);
+				g2d.drawImage(tiles[x][y].icon.getImage(), tiles[x][y].x*SIZE, tiles[x][y].y*SIZE, SIZE, SIZE, null);
 
 				//Selected piece
 				if (tiles[x][y].selected){
-					g2d.drawImage(new ImageIcon("images/selected.png").getImage(), x*SIZE, y*SIZE, null);
+					g2d.drawImage(new ImageIcon("images/selected.png").getImage(), x*SIZE, y*SIZE, SIZE, SIZE, null);
 				}	
 
 				//Possible to move to
 				if (tiles[x][y].possible){
 					//Possible to eat
 					if (tiles[x][y] instanceof Piece){
-						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), x*SIZE, y*SIZE, null);
+						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), x*SIZE, y*SIZE, SIZE, SIZE, null);
 						
 					} else {
-						g2d.drawImage(new ImageIcon("images/possible.png").getImage(), x*SIZE, y*SIZE, null);
+						g2d.drawImage(new ImageIcon("images/possible.png").getImage(), x*SIZE, y*SIZE, SIZE, SIZE, null);
 					}
 				}
 			}

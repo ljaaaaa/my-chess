@@ -7,15 +7,15 @@ public class Tile {
 	public ImageIcon icon;
 	public boolean possible;
 	public boolean selected;
-	public final int SIZE = 100; //Icon size
-	public static final int STATIC_SIZE = 100;
+	public final int TILE_SIZE;
 	protected int x;
 	protected int y;
 	
 	//Constructor
-	public Tile(int x, int y){
+	public Tile(int x, int y, int TILE_SIZE){
 		this.x = x;
 		this.y = y;
+		this.TILE_SIZE = TILE_SIZE;
 		icon = new ImageIcon("images/clear.png");
 	}
 
@@ -26,8 +26,8 @@ public class Tile {
 
 	//If mouse is touching area
         public boolean mouseOn(Point mouse){
-       		if (mouse.x >= this.x*SIZE && mouse.x <= this.x*SIZE+SIZE
-                        && mouse.y >= this.y*SIZE+38 && mouse.y <= this.y*SIZE+SIZE+38){
+       		if (mouse.x >= this.x*TILE_SIZE && mouse.x <= this.x*TILE_SIZE+TILE_SIZE &&
+                        mouse.y >= this.y*TILE_SIZE+38 && mouse.y <= this.y*TILE_SIZE+TILE_SIZE+38){
                         return true;
                 }
                 return false;
@@ -35,6 +35,6 @@ public class Tile {
 
 	//Return copy of this object
 	public Tile getCopy(){
-		return new Tile(this.x, this.y);
+		return new Tile(this.x, this.y, TILE_SIZE);
 	}
 }

@@ -9,7 +9,7 @@ public class MyFrame extends JFrame {
 	public MyFrame(String title, Main main){
 		super(title);
 		setLayout(new GridLayout(1, 1));
-                setSize(main.SCREEN_WIDTH, main.SCREEN_HEIGHT+38);
+                setSize(main.SCREEN_WIDTH, main.SCREEN_HEIGHT+36);
                 setLocationRelativeTo(null);
                 setResizable(false);
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

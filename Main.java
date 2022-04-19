@@ -23,11 +23,9 @@ public class Main {
 		TILE_SIZE = Integer.valueOf(arg);
 		SCREEN_WIDTH = 8*TILE_SIZE;
 		SCREEN_HEIGHT = 8*TILE_SIZE;
-		System.out.println(TILE_SIZE);
-		System.out.println(SCREEN_HEIGHT);
-
+		
 		history = new ArrayList<>();
-		grid = new Grid(history);
+		grid = new Grid(history, TILE_SIZE);
 		frame = new MyFrame("Chess", this);
 		painter = new Painter(this);
 		mouseListener = new MyMouseListener(this);
