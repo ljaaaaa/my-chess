@@ -1,3 +1,4 @@
+import javax.swing.JPanel;
 import java.util.ArrayList;
 
 //Main Class
@@ -30,7 +31,10 @@ public class Main {
 		painter = new Painter(this);
 		mouseListener = new MyMouseListener(this);
 
-		//JPanel historyPanel = new JPanel();
-
+		JPanel historyPanel = new JPanel();
+		panel.setLayout(null);
+		
+		JList historyList = new JList(
+				);	
 	}
 }

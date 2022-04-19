@@ -18,6 +18,10 @@ public class Painter extends JPanel {
 		this.grid = main.grid;
 		this.history = main.history;
 		setBackground();
+
+		final int SIZE = grid.grid[0][0].TILE_SIZE;
+
+		setBounds(0, 0, SIZE*8, SIZE*8);
 		main.frame.add(this);
 	}
 
@@ -56,21 +60,7 @@ public class Painter extends JPanel {
 					}
 				}
 			}
-		}
-                
-		//Rectangle for history
-		g.setColor(new Color(46, 46, 46));
-		g.fillRect(SIZE*8, 0, SIZE*3, SIZE*8);
-
-		final int FONT_SIZE = SIZE/4;
-		g.setColor(new Color(255, 255, 255));
-		g.setFont(new Font("Roboto", Font.PLAIN, FONT_SIZE));
-                
-		//Draw history on side
-		for (int x = 0; x < history.size(); x++){
-			String text = history.get(x).color + " : " + history.get(x).move;
-                	g2d.drawString(text, SIZE*8 + FONT_SIZE/2, x*FONT_SIZE+FONT_SIZE+7);
-        	}
+		} 
 	}
 
 	//Set checkered background
