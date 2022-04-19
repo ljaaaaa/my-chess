@@ -56,6 +56,7 @@ public class Painter extends JPanel {
 
 	//Set checkered background
 	private void setBackground(){
+		System.out.println("setting background");
 		bg = new ImageIcon[8][8];
                 bgImages = new String[8][8];
 		for (int x = 0; x < bg.length; x++){
@@ -65,7 +66,8 @@ public class Painter extends JPanel {
                                         num = 0;
                                 }
 				bgImages[x][y] = "images/tile" + num + ".png";
-                                bg[x][y] = new ImageIcon(bgImages[x][y]);
+				bg[x][y] = new ImageIcon(bgImages[x][y]);
+				System.out.println(bg[x][y]);
                         }
 
                 }

@@ -2,6 +2,11 @@ import java.util.ArrayList;
 
 //Main Class
 public class Main {
+	//Screen Scale Settings here
+	public final int SCREEN_WIDTH;
+	public final int SCREEN_HEIGHT;
+	public final int TILE_SIZE;
+
 	public Grid grid; //Grid on where game is played
 	public ArrayList<History> history; //Running list of moves
 	public Painter painter; //In charge of GUI
@@ -10,14 +15,20 @@ public class Main {
 
 	//Run game
 	public static void main (String[] args) {
-		new Main();
+		new Main(args[0]); //args[0] will be used for TILE_SIZE
 	}
 
 	//Constructor
-	public Main(){
+	public Main(String arg){
+		TILE_SIZE = Integer.valueOf(arg);
+		SCREEN_WIDTH = 8*TILE_SIZE;
+		SCREEN_HEIGHT = 8*TILE_SIZE;
+		System.out.println(TILE_SIZE);
+		System.out.println(SCREEN_HEIGHT);
+
 		history = new ArrayList<>();
 		grid = new Grid(history);
-		frame = new MyFrame("Chess");
+		frame = new MyFrame("Chess", this);
 		painter = new Painter(this);
 		mouseListener = new MyMouseListener(this);
 	}
