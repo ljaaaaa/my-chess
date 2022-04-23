@@ -12,17 +12,10 @@ public class Painter extends JPanel {
 	public String[][] bgImages;
 	private ImageIcon[][] bg;
         private Grid grid;
-	private ArrayList<History> history;
-
+	
 	public Painter(Main main){
 		this.grid = main.grid;
-		this.history = main.history;
 		setBackground();
-
-		final int SIZE = grid.grid[0][0].TILE_SIZE;
-
-		setBounds(0, 0, SIZE*8, SIZE*8);
-		main.frame.add(this);
 	}
 
 	@Override

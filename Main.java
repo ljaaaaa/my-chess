@@ -1,5 +1,7 @@
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JList;
+import javax.swing.ImageIcon;
+
 import java.util.ArrayList;
 
 //Main Class
@@ -9,11 +11,14 @@ public class Main {
 	public final int SCREEN_HEIGHT;
 	public final int TILE_SIZE;
 
-	public Grid grid; //Grid on where game is played
-	public ArrayList<History> history; //Running list of moves
-	public Painter painter; //In charge of GUI
-	public MyFrame frame; //Frame which painter paints on
-	public MyMouseListener mouseListener; //Responds to mouse clicks
+	//Visuals
+	public Painter painter;
+	public JFrame frame;
+	public MyMouseListener mouseListener;
+
+	//Game
+	public Grid grid;
+	public ArrayList<History> history;
 
 	//Run game
 	public static void main (String[] args) {
@@ -25,17 +30,30 @@ public class Main {
 		TILE_SIZE = Integer.valueOf(arg);
 		SCREEN_WIDTH = 8*TILE_SIZE + (TILE_SIZE*3);
 		SCREEN_HEIGHT = 8*TILE_SIZE;
-		
-		history = new ArrayList<>();
-		grid = new Grid(history, TILE_SIZE);
-		frame = new MyFrame("Chess", this);
-		painter = new Painter(this);
-		mouseListener = new MyMouseListener(this);
 
-		JPanel historyPanel = new JPanel();
-		historyPanel.setLayout(null);
-		
-		JList historyList = new JList(
-				);	
+		//Init main game variables		
+		history = new ArrayList<>();
+		grid = new Grid(TILE_SIZE);
+
+		//Init visuals
+		setUpFrame();
+		painter = new Painter(this);
+                painter.setBounds(0, 0, TILE_SIZE*8, TILE_SIZE*8);
+                frame.add(painter);
+
+		mouseListener = new MyMouseListener(this);
+		frame.addMouseListener(mouseListener);
+	}
+
+	//Set up frame object
+	public void setUpFrame(){
+		frame = new JFrame("Chess");
+		frame.setLayout(null);
+                frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT+36);
+                frame.setLocationRelativeTo(null);
+                frame.setResizable(false);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setVisible(true);
+                frame.setIconImage(new ImageIcon("images/w_king.png").getImage());
 	}
 }

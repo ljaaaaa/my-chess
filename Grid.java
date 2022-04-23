@@ -6,14 +6,12 @@ public class Grid {
 	public Tile[][] grid;
 	public Set setW;
 	public Set setB;
-	public ArrayList<History> history;
-
+	
 	//Constructor
-	public Grid(ArrayList<History> history, int TILE_SIZE){
+	public Grid(int TILE_SIZE){
 		grid = new Tile[8][8];
 		setW = new Set('w');
 		setB = new Set('b');
-		this.history = history;
 		this.TILE_SIZE = TILE_SIZE;
 
 		setBaseGrid();
@@ -28,14 +26,14 @@ public class Grid {
 
 	//Return a copy of this grid
 	public Grid getDummyGrid(){
-		Grid copy = new Grid(history, TILE_SIZE); //This might be sketchy... with history not technically being perfect copy
+		Grid copy = new Grid(TILE_SIZE);
 		copy.grid = new Tile[8][8];
 		copy.setW = new Set('w');
 		copy.setB = new Set('b');
-
 		copy.setBaseGrid();
 
-		for (int x = 0; x < this.setW.pieces.size(); x++){ //Copy whites
+		//Copy whites
+		for (int x = 0; x < this.setW.pieces.size(); x++){
 			Piece equivalentW = this.setW.pieces.get(x);
 			copy.setW.pieces.add(new Piece(equivalentW.x, equivalentW.y, TILE_SIZE, 'w', equivalentW.type, copy));	
 			copy.grid[copy.setW.pieces.get(x).x][copy.setW.pieces.get(x).y] = copy.setW.pieces.get(x);
@@ -45,7 +43,8 @@ public class Grid {
 			}
 		}
 
-		for (int x = 0; x < this.setB.pieces.size(); x++){ //Copy blacks
+		//Copy blacks
+		for (int x = 0; x < this.setB.pieces.size(); x++){
                         Piece equivalentB = this.setB.pieces.get(x);
                         copy.setB.pieces.add(new Piece(equivalentB.x, equivalentB.y, TILE_SIZE, 'b', equivalentB.type, copy));
                         copy.grid[copy.setB.pieces.get(x).x][copy.setB.pieces.get(x).y] = copy.setB.pieces.get(x);

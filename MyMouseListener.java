@@ -11,22 +11,15 @@ public class MyMouseListener implements MouseListener{
 		SELECTED_PIECE 
 	}
 
-	private Grid grid;
-	private MyFrame frame;
-	private Painter painter;
+	private Main main; //Where all game variables are
 	private State state;
 	private Piece lastSelected;
 	private int movesSinceLastEat;
-	private ArrayList<History> history;
 
 	//Constructor
 	public MyMouseListener(Main main){
-		grid = main.grid;
-		frame = main.frame;
-		painter = main.painter;
-		history = grid.history;
+		this.main = main;
 		state = State.NO_SELECTION;
-		frame.addMouseListener(this);
 	}
 
 	@Override
@@ -49,7 +42,7 @@ public class MyMouseListener implements MouseListener{
 				//Move piece
 				if (lastSelected.validPossibleMoves().contains(selected)){
 					//Add move to history
-                                        history.add(new History(lastSelected, selected));
+                                        main.history.add(new History(lastSelected, selected));
 				
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
@@ -70,45 +63,48 @@ public class MyMouseListener implements MouseListener{
 				}
 				break;
 		}
+		Grid grid = main.grid;
 
 		//Black Checkmate ✓
 		if (grid.setW.playerLost(grid.setB)){
-			frame.setTitle("Black Wins");
-			frame.removeMouseListener(this);
+			main.frame.setTitle("Black Wins");
+			main.frame.removeMouseListener(this);
 		
 		//White Checkmate ✓
 		} else if (grid.setB.playerLost(grid.setW)){
-			frame.setTitle("White Wins");
-                        frame.removeMouseListener(this);
+			main.frame.setTitle("White Wins");
+                        main.frame.removeMouseListener(this);
 		
 		// Draw Insufficient Material ✓
-		} else if (grid.setW.drawInsufficientMaterial(painter, grid.setB)){
-			frame.setTitle("Draw - Insufficient Material");
-                        frame.removeMouseListener(this);
+		} else if (grid.setW.drawInsufficientMaterial(main.painter, grid.setB)){
+			main.frame.setTitle("Draw - Insufficient Material");
+                        main.frame.removeMouseListener(this);
 		
 		//Draw Stalemate ✓
 		} else if (grid.setW.drawStalemate(grid.setB) || grid.setB.drawStalemate(grid.setW)){
-			frame.setTitle("Draw - Stalemate");
-                        frame.removeMouseListener(this);
+			main.frame.setTitle("Draw - Stalemate");
+                        main.frame.removeMouseListener(this);
 		
 		//Draw Fifty Move Rule ✓
 		} else if (movesSinceLastEat >= 100){
-			frame.setTitle("Draw - 50 Move Rule");
-                        frame.removeMouseListener(this);
+			main.frame.setTitle("Draw - 50 Move Rule");
+                        main.frame.removeMouseListener(this);
 		
 		//Draw Threefold Repition.... ugh
 		} else if (false){
-			frame.setTitle("Draw - Threeforld Repitition");
-			frame.removeMouseListener(this);
+			main.frame.setTitle("Draw - Threeforld Repitition");
+			main.frame.removeMouseListener(this);
 		}
 
-		painter.repaint();
+		main.painter.repaint();
 	}
 
 	//Return selected tile and update variables based on selection
 	public Tile currentSelectedTile(Point mousePoint){
 		Tile selected = null;
 		
+		Grid grid = main.grid;
+
 		for (int x = 0; x < grid.grid.length; x++){
                         for (int y = 0; y < grid.grid[x].length; y++){
 				Tile tile = grid.grid[x][y];

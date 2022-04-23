@@ -136,25 +136,6 @@ public class Piece extends Tile{
 		return possibles;	
 	}
 
-	//Return extra tile to move to if En Passant is possible
-	/*
-	private Tile extraEnPassantTile(History lastMove){
-		//Last moved piece is pawn and this piece is pawn
-		if (type.equals("pawn") && ((Piece)lastMove.pieceMoved).type.equals("pawn")){
-			
-			//If this piece is right next to lastMoved piece
-			if ((this.x > 0 && grid.grid[x-1][y] == lastMove.pieceMoved)){
-				return grid.grid[x-1][y];
-			}
-
-			else if (this.x < grid.length && grid.grid[x+1][y] == lastMove.pieceMoves){
-				return grid.grid[x+1][y];
-			}
-		}
-		return null;
-	}
-	*/
-
 	//Move tile to new location
 	public void move(int newX, int newY){
 		if (grid.grid[newX][newY] instanceof Piece){ //Removed piece eaten from array
