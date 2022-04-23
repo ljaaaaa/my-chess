@@ -19,6 +19,7 @@ public class Tile {
 		icon = new ImageIcon("images/clear.png");
 	}
 
+	//Get this square's chess notation
 	public String getNotation(){
                 char[] letters = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
                 return letters[x] + "" + (y+1);
@@ -32,9 +33,4 @@ public class Tile {
                 }
                 return false;
         }
-
-	//Return copy of this object
-	public Tile getCopy(){
-		return new Tile(this.x, this.y, TILE_SIZE);
-	}
 }
