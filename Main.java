@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JList;
 import javax.swing.ImageIcon;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Main {
 	public Painter painter;
 	public JFrame frame;
 	public MyMouseListener mouseListener;
+	public JList historyList;
 
 	//Game
 	public Grid grid;
@@ -44,6 +46,15 @@ public class Main {
 
 		mouseListener = new MyMouseListener(this);
 		frame.addMouseListener(mouseListener);
+	
+		//Set history panel
+		JPanel historyPanel = new JPanel();
+		historyPanel.setLayout(null);
+
+		historyList = new JList();
+		historyPanel.add(historyList);
+		historyPanel.setBounds(TILE_SIZE*8, 0, TILE_SIZE*3, TILE_SIZE*8);
+		frame.add(historyPanel);
 	}
 
 	//Set up frame object
