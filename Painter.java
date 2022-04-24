@@ -31,29 +31,37 @@ public class Painter extends JPanel {
                         }
                 }
 
-		//Draw grid
-		Tile[][] tiles = grid.grid;
-                for (int x = 0; x < tiles.length; x++){
-                       	for (int y = 0; y < tiles[x].length; y++){
-				g2d.drawImage(tiles[x][y].icon.getImage(), tiles[x][y].x*SIZE, tiles[x][y].y*SIZE, SIZE, SIZE, null);
+		//Draw Pieces
+		for (int x = 0; x < grid.setW.pieces.size(); x++){
+			Piece piece = grid.setW.pieces.get(x);
+			g2d.drawImage(piece.icon.getImage(), piece.x*SIZE, piece.y*SIZE, SIZE, SIZE, null);
+		}
 
-				//Selected piece
-				if (tiles[x][y].selected){
-					g2d.drawImage(new ImageIcon("images/selected.png").getImage(), x*SIZE, y*SIZE, SIZE, SIZE, null);
-				}	
+		for (int x = 0; x < grid.setB.pieces.size(); x++){
+                        Piece piece = grid.setB.pieces.get(x);
+                        g2d.drawImage(piece.icon.getImage(), piece.x*SIZE, piece.y*SIZE, SIZE, SIZE, null);
+                }
 
-				//Possible to move to
-				if (tiles[x][y].possible){
-					//Possible to eat
-					if (tiles[x][y] instanceof Piece){
-						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), x*SIZE, y*SIZE, SIZE, SIZE, null);
-						
+		//Selected piece
+		if (grid.selectedTile != null){
+			Tile selected = grid.selectedTile;
+			g2d.drawImage(new ImageIcon("images/selected.png").getImage(), selected.x*SIZE, selected.y*SIZE, SIZE, SIZE, null);
+		
+			//Draw possibles for selected
+			if (selected instanceof Piece){
+				ArrayList<Tile> possibles = ((Piece)selected).validPossibleMoves();
+				for (int x = 0; x < possibles.size(); x++){
+					Tile tile = possibles.get(x);
+
+					if (tile instanceof Piece){
+						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), tile.x*SIZE, tile.y*SIZE, SIZE, SIZE, null);
+
 					} else {
-						g2d.drawImage(new ImageIcon("images/possible.png").getImage(), x*SIZE, y*SIZE, SIZE, SIZE, null);
+						g2d.drawImage(new ImageIcon("images/possible.png").getImage(), tile.x*SIZE, tile.y*SIZE, SIZE, SIZE, null);
 					}
 				}
 			}
-		} 
+		}
 	}
 
 	//Set checkered background

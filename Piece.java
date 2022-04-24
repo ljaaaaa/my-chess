@@ -7,7 +7,7 @@ public class Piece extends Tile{
 	private Grid grid;
 	int[][] moves; //Possible moves for piece
 	public String type; //Like below character, but full name
-	char character; //Used for history chess notation
+	public char character; //Used for history chess notation
 
 	//Constructor
 	public Piece(int x, int y, int TILE_SIZE, char color, String type, Grid grid){

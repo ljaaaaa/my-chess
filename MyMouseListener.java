@@ -24,7 +24,9 @@ public class MyMouseListener implements MouseListener{
 
 	@Override
         public void mouseClicked(MouseEvent e) {
-		Tile selected = currentSelectedTile(e.getPoint());
+		Grid grid = main.grid;
+		updateSelectedTile(e.getPoint());
+		Tile selected = main.grid.selectedTile;
 		
 		switch (state){
 			//No chess piece selected previously
@@ -33,7 +35,7 @@ public class MyMouseListener implements MouseListener{
 				if (selected instanceof Piece){
 					state = State.SELECTED_PIECE;
 					lastSelected = (Piece)selected;
-					highlightPossibles(lastSelected);
+					grid.selectedTile = lastSelected;
 				}
 				break;
 
@@ -47,6 +49,7 @@ public class MyMouseListener implements MouseListener{
 					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
 					movesSinceLastEat++;
+					grid.selectedTile = null;
 
 					//Reset count for 50 move rule for draw
 					if (selected instanceof Piece || (lastSelected instanceof Piece && lastSelected.type.equals("pawn"))){
@@ -56,14 +59,13 @@ public class MyMouseListener implements MouseListener{
 				//Don't move new selected piece
 				} else if (selected instanceof Piece){
                                         lastSelected = (Piece)selected;
-					highlightPossibles(lastSelected);
+					grid.selectedTile = lastSelected;
 
 				} else {
 					state = State.NO_SELECTION;
 				}
 				break;
 		}
-		Grid grid = main.grid;
 
 		//Black Checkmate ✓
 		if (grid.setW.playerLost(grid.setB)){
@@ -100,9 +102,7 @@ public class MyMouseListener implements MouseListener{
 	}
 
 	//Return selected tile and update variables based on selection
-	public Tile currentSelectedTile(Point mousePoint){
-		Tile selected = null;
-		
+	public void updateSelectedTile(Point mousePoint){
 		Grid grid = main.grid;
 
 		for (int x = 0; x < grid.grid.length; x++){
@@ -110,26 +110,10 @@ public class MyMouseListener implements MouseListener{
 				Tile tile = grid.grid[x][y];
 				//Mouse on
 				if (tile.mouseOn(mousePoint)){
-					tile.selected = true;
-					tile.possible = false;
-					selected = tile;
-				//Mouse not on
-				} else {
-					tile.selected = false;
-					tile.possible = false;
+					grid.selectedTile = tile;
+					break;
 				}
 			}
-		}
-		return selected;
-	}
-
-	//Highlight possibles
-	public void highlightPossibles(Piece selected){
-		ArrayList<Tile> possibles = selected.validPossibleMoves();
-
-		//Set boolean possible to true, so painter paints it as possible
-		for (int x = 0; x < possibles.size(); x++){
-			possibles.get(x).possible = true;
 		}
 	}
 	

@@ -6,7 +6,8 @@ public class Grid {
 	public Tile[][] grid;
 	public Set setW;
 	public Set setB;
-	
+	public Tile selectedTile;
+
 	//Constructor
 	public Grid(int TILE_SIZE){
 		grid = new Tile[8][8];

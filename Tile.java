@@ -5,8 +5,6 @@ import javax.swing.ImageIcon;
 //Tile Class
 public class Tile {
 	public ImageIcon icon;
-	public boolean possible;
-	public boolean selected;
 	public final int TILE_SIZE;
 	protected int x;
 	protected int y;
