@@ -1,7 +1,6 @@
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.Point;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 
@@ -52,12 +51,7 @@ public class MyMouseListener implements MouseListener{
 					movesSinceLastEat++;
 					grid.selectedTile = null;
 
-					//Update historyList display
-					DefaultListModel listModel = new DefaultListModel();
-					for (int x = 0; x < main.history.size(); x++){
-    						listModel.addElement(main.history.get(x));
-					}
-					main.historyList.setModel(listModel);
+					main.updateHistoryModel();
 
 					//Reset count for 50 move rule for draw
 					if (selected instanceof Piece || (lastSelected instanceof Piece && lastSelected.type.equals("pawn"))){

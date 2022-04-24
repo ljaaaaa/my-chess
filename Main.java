@@ -1,8 +1,10 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
-
+import javax.swing.DefaultListModel;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 //Main Class
@@ -16,7 +18,7 @@ public class Main {
 	public Painter painter;
 	public JFrame frame;
 	public MyMouseListener mouseListener;
-	public JList historyList;
+	public JList<String> historyList;
 
 	//Game
 	public Grid grid;
@@ -44,21 +46,31 @@ public class Main {
                 frame.add(painter);
 		painter.repaint();
 
-		mouseListener = new MyMouseListener(this);
-		frame.addMouseListener(mouseListener);
-	
 		//Set history panel
-		JPanel historyPanel = new JPanel();
+                JPanel historyPanel = new JPanel();
 		historyPanel.setLayout(null);
-
-		historyList = new JList();
-		historyPanel.add(historyList);
 		historyPanel.setBounds(TILE_SIZE*8, 0, TILE_SIZE*3, TILE_SIZE*8);
 		frame.add(historyPanel);
+                
+                historyList = new JList<>(new DefaultListModel<>());
+
+		JScrollPane scrollPane = new JScrollPane(historyList);
+
+                scrollPane.setBounds(10, 10, TILE_SIZE*3-20, TILE_SIZE*8-20);
+		historyPanel.add(scrollPane);
+
+		mouseListener = new MyMouseListener(this);
+		frame.addMouseListener(mouseListener);
+	}
+
+	//Update historyList panel
+	public void updateHistoryModel(){
+		((DefaultListModel<String>) historyList.getModel()).addElement(
+			history.get(history.size()-1).color + " : " + history.get(history.size()-1).move);
 	}
 
 	//Set up frame object
-	public void setUpFrame(){
+	private void setUpFrame(){
 		frame = new JFrame("Chess");
 		frame.setLayout(null);
                 frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT+36);
