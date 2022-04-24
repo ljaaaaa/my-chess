@@ -40,6 +40,7 @@ public class Main {
 		painter = new Painter(this);
                 painter.setBounds(0, 0, TILE_SIZE*8, TILE_SIZE*8);
                 frame.add(painter);
+		painter.repaint();
 
 		mouseListener = new MyMouseListener(this);
 		frame.addMouseListener(mouseListener);
