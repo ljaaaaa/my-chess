@@ -126,11 +126,6 @@ public class Piece extends Tile{
                                         (grid.grid[this.x+moves[3][0]][this.y+moves[3][1]] instanceof Piece) && ((Piece)grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]).color != color){
                                 possibles.add(grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]);
 			}
-
-			//En Passant is possible
-			//if (extraEnPassantTile(history.get(history.size()-1)) != null){
-			//	possibles.add(extraEnPassantTile(history.get(history.size()-1)));
-			//}
 		}
 
 		return possibles;	
