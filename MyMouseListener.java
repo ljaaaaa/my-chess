@@ -80,7 +80,7 @@ public class MyMouseListener implements MouseListener{
                         main.frame.removeMouseListener(this);
 		
 		// Draw Insufficient Material ✓
-		} else if (grid.setW.drawInsufficientMaterial(main.painter, grid.setB)){
+		} else if (grid.setW.drawInsufficientMaterial(grid.setB)){
 			main.frame.setTitle("Draw - Insufficient Material");
                         main.frame.removeMouseListener(this);
 		

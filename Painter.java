@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 //Painter Class
 public class Painter extends JPanel {
-	public String[][] bgImages;
 	private ImageIcon[][] bg;
         private Grid grid;
 	
@@ -67,15 +66,9 @@ public class Painter extends JPanel {
 	//Set checkered background
 	private void setBackground(){
 		bg = new ImageIcon[8][8];
-                bgImages = new String[8][8];
 		for (int x = 0; x < bg.length; x++){
                         for (int y = 0; y < bg[x].length; y++){
-                                int num = y%2 + x%2;
-                                if (num > 1){
-                                        num = 0;
-                                }
-				bgImages[x][y] = "images/tile" + num + ".png";
-				bg[x][y] = new ImageIcon(bgImages[x][y]);
+				bg[x][y] = new ImageIcon("images/tile" + ((x%2 + y%2)%2) + ".png");
                         }
 
                 }

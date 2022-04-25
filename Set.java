@@ -21,7 +21,7 @@ public class Set {
 	}
 
 	//Return true if draw because of insufficient material
-	public boolean drawInsufficientMaterial(Painter painter, Set otherSet){	
+	public boolean drawInsufficientMaterial(Set otherSet){	
 		if ((this.pieces.size() == 1 && otherSet.pieces.size() == 1) || //King vs King
 			(this.pieces.size() == 2 && this.pieces.get(0).type.equals("bishop") && otherSet.pieces.size() == 1) || //King + Bishop vs King
 			(otherSet.pieces.size() == 2 && otherSet.pieces.get(0).type.equals("bishop") && this.pieces.size() == 1) ||
@@ -30,7 +30,7 @@ public class Set {
                         (otherSet.pieces.size() == 2 && otherSet.pieces.get(0).type.equals("knight") && this.pieces.size() == 1) ||
 
 			(this.pieces.size() == 2 && otherSet.pieces.size() == 2 && this.pieces.get(0).type.equals("bishop") && otherSet.pieces.get(0).type.equals("bishop") &&
-			 bishopsOnSameColor(painter, this.pieces.get(0), otherSet.pieces.get(0)))	//King + Bishop vs King + Bishop (on same color)
+			 bishopsOnSameColor(this.pieces.get(0), otherSet.pieces.get(0)))	//King + Bishop vs King + Bishop (on same color)
 				){
 			return true;
 		}
@@ -38,8 +38,8 @@ public class Set {
 	}
 
 	//Return true if two bishops are on same color tile
-	private boolean bishopsOnSameColor(Painter painter, Piece bishop1, Piece bishop2){
-		if (painter.bgImages[bishop1.x][bishop1.y].equals(painter.bgImages[bishop2.x][bishop2.y])){
+	private boolean bishopsOnSameColor(Piece bishop1, Piece bishop2){
+		if ((bishop1.x%2 + bishop1.y%2)%2 == (bishop2.x%2 + bishop2.y%2)%2){
 			return true;
 		}
 		return false;
