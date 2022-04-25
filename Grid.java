@@ -13,6 +13,8 @@ public class Grid {
 		grid = new Tile[8][8];
 		setW = new Set('w');
 		setB = new Set('b');
+		setW.setOtherSet(setB);
+		setB.setOtherSet(setW);
 		this.TILE_SIZE = TILE_SIZE;
 
 		setBaseGrid();
@@ -31,6 +33,10 @@ public class Grid {
 		copy.grid = new Tile[8][8];
 		copy.setW = new Set('w');
 		copy.setB = new Set('b');
+		
+		copy.setW.setOtherSet(copy.setB);
+		copy.setB.setOtherSet(copy.setW);
+		
 		copy.setBaseGrid();
 
 		//Copy whites

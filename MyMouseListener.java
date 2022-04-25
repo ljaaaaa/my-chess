@@ -70,22 +70,22 @@ public class MyMouseListener implements MouseListener{
 		}
 
 		//Black Checkmate ✓
-		if (grid.setW.playerLost(grid.setB)){
+		if (grid.setW.playerLost()){
 			main.frame.setTitle("Black Wins");
 			main.frame.removeMouseListener(this);
 		
 		//White Checkmate ✓
-		} else if (grid.setB.playerLost(grid.setW)){
+		} else if (grid.setB.playerLost()){
 			main.frame.setTitle("White Wins");
                         main.frame.removeMouseListener(this);
 		
 		// Draw Insufficient Material ✓
-		} else if (grid.setW.drawInsufficientMaterial(grid.setB)){
+		} else if (grid.setW.drawInsufficientMaterial()){
 			main.frame.setTitle("Draw - Insufficient Material");
                         main.frame.removeMouseListener(this);
 		
 		//Draw Stalemate ✓
-		} else if (grid.setW.drawStalemate(grid.setB) || grid.setB.drawStalemate(grid.setW)){
+		} else if (grid.setW.drawStalemate() || grid.setB.drawStalemate()){
 			main.frame.setTitle("Draw - Stalemate");
                         main.frame.removeMouseListener(this);
 		

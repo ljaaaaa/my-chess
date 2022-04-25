@@ -159,7 +159,7 @@ public class Piece extends Tile{
 		Set otherSet = color == 'w' ? dummy.setB : dummy.setW;
 
 		//Will put own king in danger
-		if (thisSet.kingCanBeEaten(otherSet)){
+		if (thisSet.kingCanBeEaten()){
 			return true;
 		}
 		return false;
