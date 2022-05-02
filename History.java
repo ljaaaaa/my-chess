@@ -10,6 +10,16 @@ public class History {
 
 		//Ex: Na2-c3
 		move = startCharacter + startNotation + "-" + endNotation;
-		color = movedPiece.color;
+		color = movedPiece.color;	
+	}
+
+	//
+	public static void parseHistory(History move){
+		
+	
+	}
+
+	public static String getHistoryPieceType(History move){
+		return move.move.substring(0, 1);
 	}
 }

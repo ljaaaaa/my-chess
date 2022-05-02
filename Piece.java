@@ -131,6 +131,14 @@ public class Piece extends Tile{
 		return possibles;	
 	}
 
+	public boolean enPassantPossible(){
+	//	History lastMove = main.history.get(main.history.size()-1);
+
+		
+
+		return false;
+	}
+
 	//Move tile to new location
 	public void move(int newX, int newY){
 		if (grid.grid[newX][newY] instanceof Piece){ //Removed piece eaten from array

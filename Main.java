@@ -59,6 +59,7 @@ public class Main {
                 scrollPane.setBounds(10, 10, TILE_SIZE*3-20, TILE_SIZE*8-20);
 		historyPanel.add(scrollPane);
 
+		//Add mouse listener
 		mouseListener = new MyMouseListener(this);
 		frame.addMouseListener(mouseListener);
 	}

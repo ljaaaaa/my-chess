@@ -24,9 +24,9 @@ public class MyMouseListener implements MouseListener{
 
 	@Override
         public void mouseClicked(MouseEvent e) {
-		Grid grid = main.grid;
+		Grid grid = main.grid; //Reference to grid
 		updateSelectedTile(e.getPoint());
-		Tile selected = main.grid.selectedTile;
+		Tile selected = grid.selectedTile;
 		
 		switch (state){
 			//No chess piece selected previously
