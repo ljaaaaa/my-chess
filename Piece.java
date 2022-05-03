@@ -5,14 +5,15 @@ import javax.swing.ImageIcon;
 public class Piece extends Tile{
 	public final char color;
 	private Grid grid;
+	private Main main;
 	int[][] moves; //Possible moves for piece
 	public String type; //Like below character, but full name
 	public char character; //Used for history chess notation
 
 	//Constructor
-	public Piece(int x, int y, int TILE_SIZE, char color, String type, Grid grid){
-		super(x, y, TILE_SIZE);
-		this.grid = grid;
+	public Piece(int x, int y, char color, String type, Main main){
+		super(x, y, main.TILE_SIZE);
+		this.main = main;
 		this.color = color;
 		this.type = type;
 
@@ -67,6 +68,7 @@ public class Piece extends Tile{
 
 	//Returns base possible move coordinates
 	public ArrayList<Tile> basePossibleMoves(){
+		Grid grid = main.grid;
 		ArrayList<Tile> possibles = new ArrayList<>();
 			
 		//Loop in line for each possible
@@ -90,7 +92,7 @@ public class Piece extends Tile{
                                 	currentY = this.y+(moves[x][1]*add);
                         	}
                 	}
-
+		
 		//Only loop through possibilities
 		} else if (type == "knight" || type == "king"){
 			for (int x = 0; x < moves.length; x++){
@@ -141,6 +143,7 @@ public class Piece extends Tile{
 
 	//Move tile to new location
 	public void move(int newX, int newY){
+		Grid grid = main.grid;
 		if (grid.grid[newX][newY] instanceof Piece){ //Removed piece eaten from array
 			Set otherSet = color == 'w' ? grid.setB : grid.setW;
 			
@@ -159,7 +162,7 @@ public class Piece extends Tile{
 	}
 
 	public boolean movePutsOwnKingInDanger(int newX, int newY){
-		Grid dummy = grid.getDummyGrid();
+		Grid dummy = main.grid.getDummyGrid();
 
 		//Move dummy piece
 		((Piece)dummy.grid[this.x][this.y]).move(newX, newY); 

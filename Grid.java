@@ -9,13 +9,14 @@ public class Grid {
 	public Tile selectedTile;
 
 	//Constructor
-	public Grid(int TILE_SIZE){
+	public Grid(Main main){
 		grid = new Tile[8][8];
 		setW = new Set('w');
 		setB = new Set('b');
 		setW.setOtherSet(setB);
 		setB.setOtherSet(setW);
-		this.TILE_SIZE = TILE_SIZE;
+		this.TILE_SIZE = main.TILE_SIZE;
+		this.main = main;
 
 		setBaseGrid();
 		initPieces();
@@ -81,10 +82,10 @@ public class Grid {
 		}
 
 		//Bishops
-		setW.pieces.add(new Piece(2, 0, TILE_SIZE, 'w', "bishop", this));
-                setW.pieces.add(new Piece(5, 0, TILE_SIZE, 'w', "bishop", this));
-                setB.pieces.add(new Piece(2, 7, TILE_SIZE, 'b', "bishop", this));
-                setB.pieces.add(new Piece(5, 7, TILE_SIZE, 'b', "bishop", this));
+		setW.pieces.add(new Piece(2, 0, 'w', "bishop", this));
+                setW.pieces.add(new Piece(5, 0, 'w', "bishop", this));
+                setB.pieces.add(new Piece(2, 7, 'b', "bishop", this));
+                setB.pieces.add(new Piece(5, 7, 'b', "bishop", this));
 
 		//Knights
 		setW.pieces.add(new Piece(1, 0, TILE_SIZE, 'w', "knight", this));
