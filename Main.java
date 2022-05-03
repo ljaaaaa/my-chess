@@ -37,7 +37,7 @@ public class Main {
 
 		//Init main game variables		
 		history = new ArrayList<>();
-		grid = new Grid(TILE_SIZE);
+		grid = new Grid(this);
 
 		//Init visuals
 		setUpFrame();
