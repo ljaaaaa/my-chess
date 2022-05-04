@@ -13,13 +13,8 @@ public class History {
 		color = movedPiece.color;	
 	}
 
-	//
-	public static void parseHistory(History move){
-		
-	
-	}
-
-	public static String getHistoryPieceType(History move){
-		return move.move.substring(0, 1);
+	//Get piece type of moving piece
+	public String getHistoryPieceType(){
+		return move.substring(0, 1);
 	}
 }

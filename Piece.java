@@ -134,8 +134,13 @@ public class Piece extends Tile{
 	}
 
 	public boolean enPassantPossible(){
-	//	History lastMove = main.history.get(main.history.size()-1);
+		History lastMove = history.get(history.size()-1);
 
+		//Last move was pawn of opposite color
+		if (lastMove.getHistoryPieceType().equals("P") && !lastMove.color.equals(this.color)){
+			
+			//If moved two squares and x positions are the same 	
+		}
 		
 
 		return false;
