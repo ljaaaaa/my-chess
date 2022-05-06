@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class History {
 	char color;
 	String move;
@@ -10,11 +12,27 @@ public class History {
 
 		//Ex: Na2-c3
 		move = startCharacter + startNotation + "-" + endNotation;
-		color = movedPiece.color;	
+		color = movedPiece.color;
 	}
 
 	//Get piece type of moving piece
-	public String getHistoryPieceType(){
-		return move.substring(0, 1);
+	public char getHistoryPieceType(){
+		return move.charAt(0);
 	}
+
+	//change in x for move
+	public int getXChange(){
+		char[] letters = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+
+		int x1 = new String(letters).indexOf(move.charAt(1))+1;
+		int x2 = new String(letters).indexOf(move.charAt(4))+1;
+		return Math.abs(x1-x2);
+	}
+
+	//change in y for move
+        public int getYChange(){
+                int y1 = move.charAt(2) - '0';
+                int y2 = move.charAt(5) - '0';
+                return Math.abs(y1-y2);
+        }
 }
