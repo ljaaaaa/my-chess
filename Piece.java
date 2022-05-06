@@ -146,12 +146,12 @@ public class Piece extends Tile{
 			if (lastMove.getHistoryPieceType() == 'P' && lastMove.color != this.color){
 				
 				//If moved two squares and x positions are the same
-				System.out.println(lastMove.getXChange());
-				System.out.println(lastMove.getYChange());
+				if (lastMove.getYChange() == 1 && lastMove.getXPos() == this.x){
+
+					return true;
+				}
 			}
 		}
-		
-
 		return false;
 	}
 

@@ -20,6 +20,16 @@ public class History {
 		return move.charAt(0);
 	}
 
+	public int getXPos(){
+		char[] letters = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+
+		return new String(letters).indexOf(move.charAt(4))+1;
+	}
+
+	public int getYPos(){
+		return move.charAt(5) - '0';
+	}
+
 	//change in x for move
 	public int getXChange(){
 		char[] letters = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
