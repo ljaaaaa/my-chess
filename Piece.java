@@ -108,9 +108,7 @@ public class Piece extends Tile{
                         	}
                 	}
 		//Pawn
-		} else { 
-			System.out.println(this.type);
-			//Forward
+		} else { //Forward
 			if (this.y+moves[0][1] < 8 && this.y+moves[0][1] >= 0 && 
 					!(grid.grid[this.x][this.y+moves[0][1]] instanceof Piece)){
 				possibles.add(grid.grid[this.x][this.y+moves[0][1]]);
@@ -133,7 +131,7 @@ public class Piece extends Tile{
 			//En Passant
 			} if (enPassantPossible()){
 				System.out.println(this.type);
-				System.out.println("En passant possible!");
+				System.out.println("En passant possible for: " + this.x + " : " + this.y);
 			}
 
 		}
@@ -142,15 +140,16 @@ public class Piece extends Tile{
 	}
 
 	public boolean enPassantPossible(){
-		System.out.println("en passant checkky");		
 		if (history.size() > 0){
 			History lastMove = history.get(history.size()-1);
 
 			//Last move was pawn of opposite color
 			if (lastMove.getHistoryPieceType() == 'P' && lastMove.color != this.color){
 				
-				//If moved two squares and x positions are the same
-				if (lastMove.getYChange() == 2 && lastMove.getXPos() == this.x){
+				//If pieces are next to each other AND moved two squares
+				if (lastMove.getYPos() == this.y && 
+						(lastMove.getXPos() == this.x+1 || lastMove.getXPos() == this.x-1) && 
+						lastMove.getXChange() == 2){
 					
 					return true;
 				}
