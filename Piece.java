@@ -139,6 +139,7 @@ public class Piece extends Tile{
 	}
 
 	public boolean enPassantPossible(){
+		
 		if (history.size() > 0){
 			History lastMove = history.get(history.size()-1);
 
@@ -146,10 +147,12 @@ public class Piece extends Tile{
 			if (lastMove.getHistoryPieceType() == 'P' && lastMove.color != this.color){
 				
 				//If moved two squares and x positions are the same
-				if (lastMove.getYChange() == 1 && lastMove.getXPos() == this.x){
-
+				if (lastMove.getYChange() == 2 && lastMove.getXPos() == this.x){
+					
 					return true;
 				}
+
+				//Also check if square in front of that piece is taken, then a move can't be done
 			}
 		}
 		return false;
@@ -157,6 +160,9 @@ public class Piece extends Tile{
 
 	//Move tile to new location
 	public void move(int newX, int newY){
+
+		//!!!! - here check if en passant move is being done, then kind of move twice 
+
 		if (grid.grid[newX][newY] instanceof Piece){ //Removed piece eaten from array
 			Set otherSet = color == 'w' ? grid.setB : grid.setW;
 			
