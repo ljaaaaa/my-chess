@@ -108,7 +108,9 @@ public class Piece extends Tile{
                         	}
                 	}
 		//Pawn
-		} else { //Forward
+		} else { 
+			System.out.println(this.type);
+			//Forward
 			if (this.y+moves[0][1] < 8 && this.y+moves[0][1] >= 0 && 
 					!(grid.grid[this.x][this.y+moves[0][1]] instanceof Piece)){
 				possibles.add(grid.grid[this.x][this.y+moves[0][1]]);
@@ -130,6 +132,7 @@ public class Piece extends Tile{
 			
 			//En Passant
 			} if (enPassantPossible()){
+				System.out.println(this.type);
 				System.out.println("En passant possible!");
 			}
 
@@ -139,7 +142,7 @@ public class Piece extends Tile{
 	}
 
 	public boolean enPassantPossible(){
-		
+		System.out.println("en passant checkky");		
 		if (history.size() > 0){
 			History lastMove = history.get(history.size()-1);
 
@@ -161,7 +164,8 @@ public class Piece extends Tile{
 	//Move tile to new location
 	public void move(int newX, int newY){
 
-		//!!!! - here check if en passant move is being done, then kind of move twice 
+		//!!!! - here check if en passant move is being done, then kind of move piece twice 
+		//As in eat piece on side, then move up one
 
 		if (grid.grid[newX][newY] instanceof Piece){ //Removed piece eaten from array
 			Set otherSet = color == 'w' ? grid.setB : grid.setW;

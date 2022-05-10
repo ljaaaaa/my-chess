@@ -32,7 +32,7 @@ public class Grid {
 	//Return a copy of this grid
 	public Grid getDummyGrid(){
 		Grid copy = new Grid(main);
-		copy.grid = new Tile[8][8];
+		copy.grid = new Tile[8][8]; 
 		copy.setW = new Set('w');
 		copy.setB = new Set('b');
 		

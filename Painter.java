@@ -34,9 +34,8 @@ public class Painter extends JPanel {
 		for (int x = 0; x < grid.setW.pieces.size(); x++){
 			Piece piece = grid.setW.pieces.get(x);
 			g2d.drawImage(piece.icon.getImage(), piece.x*SIZE, piece.y*SIZE, SIZE, SIZE, null);
-		}
-
-		for (int x = 0; x < grid.setB.pieces.size(); x++){
+		
+		} for (int x = 0; x < grid.setB.pieces.size(); x++){
                         Piece piece = grid.setB.pieces.get(x);
                         g2d.drawImage(piece.icon.getImage(), piece.x*SIZE, piece.y*SIZE, SIZE, SIZE, null);
                 }
