@@ -68,6 +68,7 @@ public class MyMouseListener implements MouseListener{
 				}
 				break;
 		}
+		main.painter.repaint();
 
 		//Black Checkmate ✓
 		if (grid.setW.playerLost()){
@@ -99,8 +100,6 @@ public class MyMouseListener implements MouseListener{
 			main.frame.setTitle("Draw - Threeforld Repitition");
 			main.frame.removeMouseListener(this);
 		}
-
-		main.painter.repaint();
 	}
 
 	//Return selected tile and update variables based on selection
