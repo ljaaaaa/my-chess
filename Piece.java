@@ -150,12 +150,9 @@ public class Piece extends Tile{
 				if (lastMove.endY == this.y && 
 						(lastMove.endX == this.x+1 || lastMove.endX == this.x-1) && 
 						lastMove.getYChange() == 2){
-				
-					System.out.println("EN PASSANT POSSIBLE!!!");	
+							
 					return true;
 				}
-
-				//Also check if square in front of that piece is taken, then a move can't be done
 			}
 		}
 		return false;
@@ -163,19 +160,21 @@ public class Piece extends Tile{
 
 	//Move tile to new location
 	public void move(int newX, int newY){
+		Set otherSet = color == 'w' ? grid.setB : grid.setW;
 
-		//!!!! - here check if en passant move is being done, then kind of move piece twice 
-		//As in eat piece on side, then move up one
+		//Remove normal piece being eaten
+		if (grid.grid[newX][newY] instanceof Piece){
+			otherSet.pieces.remove(grid.grid[newX][newY]);
+		}
 
-		if (grid.grid[newX][newY] instanceof Piece){ //Removed piece eaten from array
-			Set otherSet = color == 'w' ? grid.setB : grid.setW;
-			
-			for (int x = 0; x < otherSet.pieces.size(); x++){
-				if (otherSet.pieces.get(x) == grid.grid[newX][newY]){
-					otherSet.pieces.remove(x);
-				}
-			}	
-
+		//Remove piece being eaten [En Passant]
+		if (history.size() > 0){
+			History lastMove = history.get(history.size()-1);
+		
+			if (newX == lastMove.endX && newY == lastMove.endY+moves[0][1]){ //Remove piece being eaten [En Passant]
+				otherSet.pieces.remove(grid.grid[newX][newY]);
+				System.out.println("REMOVING!!!");
+			}
 		}
 
 		grid.grid[newX][newY] = this;
