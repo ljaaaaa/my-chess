@@ -20,14 +20,16 @@ public class History {
 		return move.charAt(0);
 	}
 
+	//Return end X Coordinate of move
 	public int getXPos(){
 		char[] letters = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 
 		return new String(letters).indexOf(move.charAt(4))+1;
 	}
 
+	//Return end Y coordinate of move
 	public int getYPos(){
-		return move.charAt(5) - '0';
+		return move.charAt(5) - '1';
 	}
 
 	//change in x for move
