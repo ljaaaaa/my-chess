@@ -51,7 +51,7 @@ public class Painter extends JPanel {
 				for (int x = 0; x < possibles.size(); x++){
 					Tile tile = possibles.get(x);
 
-					if (tile instanceof Piece){
+					if (tile instanceof Piece){ //Include En Passant here
 						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), tile.x*SIZE, tile.y*SIZE, SIZE, SIZE, null);
 
 					} else {
