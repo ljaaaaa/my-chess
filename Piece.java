@@ -159,7 +159,7 @@ public class Piece extends Tile{
 	}
 
 	//Move tile to new location
-	public void move(int newX, int newY){
+	public void move(int newX, int newY, boolean test){
 		Set otherSet = color == 'w' ? grid.setB : grid.setW;
 
 		//Remove normal piece being eaten
@@ -171,9 +171,14 @@ public class Piece extends Tile{
 		if (history.size() > 0){
 			History lastMove = history.get(history.size()-1);
 		
+			if (!test){
+				System.out.println("moving for real");
+                                System.out.println(otherSet.pieces.contains(grid.grid[lastMove.endX][lastMove.endY]));
+				System.out.println(grid.grid[lastMove.endX][lastMove.endY]);
+                        }
+
 			if (newX == lastMove.endX && newY == lastMove.endY+moves[0][1]){ //Remove piece being eaten [En Passant]
-				otherSet.pieces.remove(grid.grid[newX][newY]);
-				System.out.println("REMOVING!!!");
+				otherSet.pieces.remove(grid.grid[lastMove.endX][lastMove.endY]);	
 			}
 		}
 
@@ -187,7 +192,7 @@ public class Piece extends Tile{
 		Grid dummy = grid.getDummyGrid();
 
 		//Move dummy piece
-		((Piece)dummy.grid[this.x][this.y]).move(newX, newY); 
+		((Piece)dummy.grid[this.x][this.y]).move(newX, newY, true); 
 		Set thisSet = color == 'w' ? dummy.setW : dummy.setB;
 		Set otherSet = color == 'w' ? dummy.setB : dummy.setW;
 
