@@ -65,11 +65,6 @@ public class Piece extends Tile{
                         }
                 }
 
-		if (enPassantPossible()){
-                                System.out.println(this.type);
-                                System.out.println("En passant possible for: " + this.x + " : " + this.y);
-                }
-
 		return validPossibles;
 	}
 
@@ -135,6 +130,9 @@ public class Piece extends Tile{
                                 possibles.add(grid.grid[this.x+moves[3][0]][this.y+moves[3][1]]);
 			
 			//En Passant
+			} if (enPassantPossible()){
+				History lastMove = history.get(history.size()-1);
+				possibles.add(grid.grid[lastMove.endX][lastMove.endY+moves[0][1]]);
 			}
 
 		}
