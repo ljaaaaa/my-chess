@@ -147,18 +147,10 @@ public class Piece extends Tile{
 			History lastMove = history.get(history.size()-1);
 
 			//Last move was pawn of opposite color
-			System.out.println(this.color);
-			System.out.println(lastMove.color);
-			if (lastMove.getHistoryPieceType() == 'P' && lastMove.color != this.color){	
+			if (lastMove.type == 'P' && lastMove.color != this.color){	
 
-			//	If pieces are next to each other AND moved two squares
-				System.out.println("---");
-				System.out.println(lastMove.getYPos() + " : " + this.y);
-				System.out.println(lastMove.getXPos() + " : " + this.x);
-				System.out.println(lastMove.getYChange());
-				System.out.println("---");
-				if (lastMove.getYPos() == this.y && 
-						(lastMove.getXPos() == this.x+1 || lastMove.getXPos() == this.x-1) && 
+				if (lastMove.endY == this.y && 
+						(lastMove.endX == this.x+1 || lastMove.endX == this.x-1) && 
 						lastMove.getYChange() == 2){
 				
 					System.out.println("EN PASSANT POSSIBLE!!!");	
