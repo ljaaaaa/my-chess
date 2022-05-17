@@ -168,13 +168,14 @@ public class Piece extends Tile{
 		}
 
 		//Remove piece being eaten [En Passant]
-		if (history.size() > 0){
-			History lastMove = history.get(history.size()-1);
+		if (history.size() > 1){
+			History lastMove = history.get(history.size()-2);
 		
 			if (!test){
 				System.out.println("moving for real");
                                 System.out.println(otherSet.pieces.contains(grid.grid[lastMove.endX][lastMove.endY]));
 				System.out.println(grid.grid[lastMove.endX][lastMove.endY]);
+				System.out.println(lastMove.endX + " : " + lastMove.endY); //maybe history is updated before this! - so last move is two before not one before!
                         }
 
 			if (newX == lastMove.endX && newY == lastMove.endY+moves[0][1]){ //Remove piece being eaten [En Passant]
