@@ -52,18 +52,8 @@ public class Painter extends JPanel {
 				ArrayList<Tile> possibles = ((Piece)selected).validPossibleMoves();
 				for (int x = 0; x < possibles.size(); x++){
 					Tile tile = possibles.get(x);
-
-					if (tile instanceof Piece){ //Can be eaten tile
-						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), tile.x*SIZE, tile.y*SIZE, SIZE, SIZE, null);
-
-					} else if (((Piece)selected).enPassantPossible() && history.get(history.size()-1).endX == tile.x) { //Check En Passant [Special Case]
-						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), tile.x*SIZE, tile.y*SIZE, SIZE, SIZE, null);	
-
-					} else { //Possible to move to tile
-						g2d.drawImage(new ImageIcon("images/possible.png").getImage(), tile.x*SIZE, tile.y*SIZE, SIZE, SIZE, null);
 					
-						//Here if En Passant highlight red instead
-					}
+					g2d.drawImage(new ImageIcon("images/possible.png").getImage(), tile.x*SIZE, tile.y*SIZE, SIZE, SIZE, null);
 				}
 			}
 		}
