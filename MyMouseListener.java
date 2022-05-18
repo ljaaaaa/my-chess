@@ -46,7 +46,7 @@ public class MyMouseListener implements MouseListener{
 					//Add move to history
                                         main.history.add(new History(lastSelected, selected));
 				
-					lastSelected.move(selected.x, selected.y, false); //Move last selected piece
+					lastSelected.move(selected.x, selected.y); //Move last selected piece
 					state = State.NO_SELECTION;
 					movesSinceLastEat++;
 					grid.selectedTile = null;

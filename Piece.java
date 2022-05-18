@@ -6,7 +6,7 @@ public class Piece extends Tile{
 	public final char color;
 	private Grid grid;
 	private ArrayList<History> history;
-	int[][] moves; //Possible moves for piece
+	public int[][] moves; //Possible moves for piece
 	public String type; //Like below character, but full name
 	public char character; //Used for history chess notation
 
@@ -134,9 +134,7 @@ public class Piece extends Tile{
 				History lastMove = history.get(history.size()-1);
 				possibles.add(grid.grid[lastMove.endX][lastMove.endY+moves[0][1]]);
 			}
-
 		}
-
 		return possibles;	
 	}
 
@@ -145,11 +143,10 @@ public class Piece extends Tile{
 			History lastMove = history.get(history.size()-1);
 
 			//Last move was pawn of opposite color
-			if (lastMove.type == 'P' && lastMove.color != this.color){	
+			if (this.character == 'P' && lastMove.type == 'P' && lastMove.color != this.color){	
 
 				if (lastMove.endY == this.y && 
-						(lastMove.endX == this.x+1 || lastMove.endX == this.x-1) && 
-						lastMove.getYChange() == 2){
+					(lastMove.endX == this.x+1 || lastMove.endX == this.x-1) && lastMove.getYChange() == 2){
 							
 					return true;
 				}
@@ -159,7 +156,7 @@ public class Piece extends Tile{
 	}
 
 	//Move tile to new location
-	public void move(int newX, int newY, boolean test){
+	public void move(int newX, int newY){
 		Set otherSet = color == 'w' ? grid.setB : grid.setW;
 
 		//Remove normal piece being eaten
@@ -169,14 +166,7 @@ public class Piece extends Tile{
 
 		//Remove piece being eaten [En Passant]
 		if (history.size() > 1){
-			History lastMove = history.get(history.size()-2);
-		
-			if (!test){
-				System.out.println("moving for real");
-                                System.out.println(otherSet.pieces.contains(grid.grid[lastMove.endX][lastMove.endY]));
-				System.out.println(grid.grid[lastMove.endX][lastMove.endY]);
-				System.out.println(lastMove.endX + " : " + lastMove.endY); //maybe history is updated before this! - so last move is two before not one before!
-                        }
+			History lastMove = history.get(history.size()-2);	
 
 			if (newX == lastMove.endX && newY == lastMove.endY+moves[0][1]){ //Remove piece being eaten [En Passant]
 				otherSet.pieces.remove(grid.grid[lastMove.endX][lastMove.endY]);	
@@ -193,7 +183,7 @@ public class Piece extends Tile{
 		Grid dummy = grid.getDummyGrid();
 
 		//Move dummy piece
-		((Piece)dummy.grid[this.x][this.y]).move(newX, newY, true); 
+		((Piece)dummy.grid[this.x][this.y]).move(newX, newY); 
 		Set thisSet = color == 'w' ? dummy.setW : dummy.setB;
 		Set otherSet = color == 'w' ? dummy.setB : dummy.setW;
 

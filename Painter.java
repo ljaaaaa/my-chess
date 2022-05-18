@@ -11,9 +11,11 @@ import java.util.ArrayList;
 public class Painter extends JPanel {
 	private ImageIcon[][] bg;
         private Grid grid;
+	private ArrayList<History> history;
 	
 	public Painter(Main main){
 		this.grid = main.grid;
+		this.history = main.history;
 		setBackground();
 	}
 
@@ -44,18 +46,23 @@ public class Painter extends JPanel {
 		if (grid.selectedTile != null){
 			Tile selected = grid.selectedTile;
 			g2d.drawImage(new ImageIcon("images/selected.png").getImage(), selected.x*SIZE, selected.y*SIZE, SIZE, SIZE, null);
-		
+
 			//Draw possibles for selected
 			if (selected instanceof Piece){
 				ArrayList<Tile> possibles = ((Piece)selected).validPossibleMoves();
 				for (int x = 0; x < possibles.size(); x++){
 					Tile tile = possibles.get(x);
 
-					if (tile instanceof Piece){ //Include En Passant here
+					if (tile instanceof Piece){ //Can be eaten tile
 						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), tile.x*SIZE, tile.y*SIZE, SIZE, SIZE, null);
 
-					} else {
+					} else if (((Piece)selected).enPassantPossible() && history.get(history.size()-1).endX == tile.x) { //Check En Passant [Special Case]
+						g2d.drawImage(new ImageIcon("images/possible_eat.png").getImage(), tile.x*SIZE, tile.y*SIZE, SIZE, SIZE, null);	
+
+					} else { //Possible to move to tile
 						g2d.drawImage(new ImageIcon("images/possible.png").getImage(), tile.x*SIZE, tile.y*SIZE, SIZE, SIZE, null);
+					
+						//Here if En Passant highlight red instead
 					}
 				}
 			}
