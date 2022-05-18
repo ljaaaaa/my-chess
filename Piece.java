@@ -183,14 +183,19 @@ public class Piece extends Tile{
 		Grid dummy = grid.getDummyGrid();
 
 		//Move dummy piece
-		((Piece)dummy.grid[this.x][this.y]).move(newX, newY); 
-		Set thisSet = color == 'w' ? dummy.setW : dummy.setB;
-		Set otherSet = color == 'w' ? dummy.setB : dummy.setW;
+		try {
+			((Piece)dummy.grid[this.x][this.y]).move(newX, newY); 
+			Set thisSet = color == 'w' ? dummy.setW : dummy.setB;
+			Set otherSet = color == 'w' ? dummy.setB : dummy.setW;
 
-		//Will put own king in danger
-		if (thisSet.kingCanBeEaten()){
-			return true;
-		}
+			//Will put own king in danger
+			if (thisSet.kingCanBeEaten()){
+				return true;
+			}
+		} catch (ClassCastException e){
+			System.out.println(grid.grid[x][y]);
+			System.out.println(dummy.grid[x][y]);
+		}	
 		return false;
 	}
 }
