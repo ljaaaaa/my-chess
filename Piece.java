@@ -193,6 +193,7 @@ public class Piece extends Tile{
 				return true;
 			}
 		} catch (ClassCastException e){
+			e.printStackTrace();
 			System.out.println(grid.grid[x][y]);
 			System.out.println(dummy.grid[x][y]);
 		}	
