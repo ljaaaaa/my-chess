@@ -66,8 +66,7 @@ public class Main {
 
 	//Update historyList panel
 	public void updateHistoryModel(){
-		((DefaultListModel<String>) historyList.getModel()).addElement(
-			history.get(history.size()-1).color + " : " + history.get(history.size()-1).move);
+		((DefaultListModel<String>) historyList.getModel()).addElement(history.get(history.size()-1).color + " : " + history.get(history.size()-1).move);
 	}
 
 	//Set up frame object
