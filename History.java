@@ -13,7 +13,7 @@ public class History {
 	public History(Piece movedPiece, Tile location){
 		//Set move in proper chess notation here.
 		//Ex: Na2-c3
-		move = movedPiece.character + movedPiece.getNotation() + " - " + location.getNotation();
+		move = Character.toUpperCase(movedPiece.type) + movedPiece.getNotation() + " - " + location.getNotation();
 		color = movedPiece.color;
 
 		//Init helper variables
@@ -21,7 +21,7 @@ public class History {
 		endX = location.x;
 		startY = movedPiece.y;
 		endY = location.y;
-		type = movedPiece.character;
+		type = movedPiece.type;
 	}
 
 	//change in x for move

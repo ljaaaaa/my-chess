@@ -14,7 +14,7 @@ public class Tile {
 		this.x = x;
 		this.y = y;
 		this.TILE_SIZE = TILE_SIZE;
-		icon = new ImageIcon("images/clear.png");
+		icon = new ImageIcon("no image for blank tiles :/");
 	}
 
 	//Get this square's chess notation

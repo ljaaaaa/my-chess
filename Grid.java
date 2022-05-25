@@ -47,7 +47,7 @@ public class Grid {
 			copy.setW.pieces.add(new Piece(equivalentW.x, equivalentW.y, 'w', equivalentW.type, TILE_SIZE, copy, main.history));	
 			copy.grid[copy.setW.pieces.get(x).x][copy.setW.pieces.get(x).y] = copy.setW.pieces.get(x);
                        
-			if (equivalentW.type.equals("king")){
+			if (equivalentW.type == 'k'){
 				copy.setW.king = copy.setW.pieces.get(x);
 			}
 		}
@@ -58,7 +58,7 @@ public class Grid {
                         copy.setB.pieces.add(new Piece(equivalentB.x, equivalentB.y, 'b', equivalentB.type, TILE_SIZE, copy, main.history));
                         copy.grid[copy.setB.pieces.get(x).x][copy.setB.pieces.get(x).y] = copy.setB.pieces.get(x);
 
-                        if (equivalentB.type.equals("king")){
+                        if (equivalentB.type == 'k'){
                                 copy.setB.king = copy.setB.pieces.get(x);
                         }
 		}
@@ -78,36 +78,36 @@ public class Grid {
 	private void initPieces(){
 		//Pawns
 		for (int x = 0; x < grid.length; x++){
-                        setW.pieces.add(new Piece(x, 1, 'w', "pawn", TILE_SIZE, this, main.history));
-                	setB.pieces.add(new Piece(x, 6, 'b', "pawn", TILE_SIZE, this, main.history));
+                        setW.pieces.add(new Piece(x, 1, 'w', 'p', TILE_SIZE, this, main.history));
+                	setB.pieces.add(new Piece(x, 6, 'b', 'p', TILE_SIZE, this, main.history));
 		}
 
 		//Bishops
-		setW.pieces.add(new Piece(2, 0, 'w', "bishop", TILE_SIZE, this, main.history));
-                setW.pieces.add(new Piece(5, 0, 'w', "bishop", TILE_SIZE, this, main.history));
-                setB.pieces.add(new Piece(2, 7, 'b', "bishop", TILE_SIZE, this, main.history));
-                setB.pieces.add(new Piece(5, 7, 'b', "bishop", TILE_SIZE, this, main.history));
+		setW.pieces.add(new Piece(2, 0, 'w', 'b', TILE_SIZE, this, main.history));
+                setW.pieces.add(new Piece(5, 0, 'w', 'b', TILE_SIZE, this, main.history));
+                setB.pieces.add(new Piece(2, 7, 'b', 'b', TILE_SIZE, this, main.history));
+                setB.pieces.add(new Piece(5, 7, 'b', 'b', TILE_SIZE, this, main.history));
 
 		//Knights
-		setW.pieces.add(new Piece(1, 0, 'w', "knight", TILE_SIZE, this, main.history));
-                setW.pieces.add(new Piece(6, 0, 'w', "knight", TILE_SIZE, this, main.history));
-                setB.pieces.add(new Piece(1, 7, 'b', "knight", TILE_SIZE, this, main.history));
-                setB.pieces.add(new Piece(6, 7, 'b', "knight", TILE_SIZE, this, main.history));
+		setW.pieces.add(new Piece(1, 0, 'w', 'n', TILE_SIZE, this, main.history));
+                setW.pieces.add(new Piece(6, 0, 'w', 'n', TILE_SIZE, this, main.history));
+                setB.pieces.add(new Piece(1, 7, 'b', 'n', TILE_SIZE, this, main.history));
+                setB.pieces.add(new Piece(6, 7, 'b', 'n', TILE_SIZE, this, main.history));
 	
 		//Rooks
-		setW.pieces.add(new Piece(0, 0, 'w', "rook", TILE_SIZE, this, main.history));
-                setW.pieces.add(new Piece(7, 0, 'w', "rook", TILE_SIZE, this, main.history));
-                setB.pieces.add(new Piece(0, 7, 'b', "rook", TILE_SIZE, this, main.history));
-                setB.pieces.add(new Piece(7, 7, 'b', "rook", TILE_SIZE, this, main.history));
+		setW.pieces.add(new Piece(0, 0, 'w', 'r', TILE_SIZE, this, main.history));
+                setW.pieces.add(new Piece(7, 0, 'w', 'r', TILE_SIZE, this, main.history));
+                setB.pieces.add(new Piece(0, 7, 'b', 'r', TILE_SIZE, this, main.history));
+                setB.pieces.add(new Piece(7, 7, 'b', 'r', TILE_SIZE, this, main.history));
 	
 		//Queens
-		setW.pieces.add(new Piece(4, 0, 'w', "queen", TILE_SIZE, this, main.history));
-                setB.pieces.add(new Piece(4, 7, 'b', "queen", TILE_SIZE, this, main.history));
+		setW.pieces.add(new Piece(4, 0, 'w', 'q', TILE_SIZE, this, main.history));
+                setB.pieces.add(new Piece(4, 7, 'b', 'q', TILE_SIZE, this, main.history));
                 
-		setW.king = new Piece(3, 0, 'w', "king", TILE_SIZE, this, main.history);
+		setW.king = new Piece(3, 0, 'w', 'k', TILE_SIZE, this, main.history);
 		setW.pieces.add(setW.king);
 
-		setB.king = new Piece(3, 7, 'b', "king", TILE_SIZE, this, main.history);
+		setB.king = new Piece(3, 7, 'b', 'k', TILE_SIZE, this, main.history);
                 setB.pieces.add(setB.king);
 	}
 }

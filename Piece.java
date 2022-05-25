@@ -7,27 +7,20 @@ public class Piece extends Tile{
 	private Grid grid;
 	private ArrayList<History> history;
 	public int[][] moves; //Possible moves for piece
-	public String type; //Like below character, but full name
-	public char character; //Used for history chess notation
+	public char type; //Character for piece chess notation
 
 	//Constructor
-	public Piece(int x, int y, char color, String type, int TILE_SIZE, Grid grid, ArrayList<History> history){
+	public Piece(int x, int y, char color, char type, int TILE_SIZE, Grid grid, ArrayList<History> history){
 		super(x, y, TILE_SIZE);
 		this.grid = grid;
 		this.history = history;
 		this.color = color;
 		this.type = type;
 
-		if (!type.equals("knight")){
-			character = Character.toUpperCase(type.charAt(0));
-		} else {
-			character = Character.toUpperCase(type.charAt(1));
-		}
-
 		icon = new ImageIcon("images/" + color + "_" + type + ".png");
 	
 		switch (type){
-			case "pawn":
+			case 'p': //Pawn
 				if (color == 'w'){ //Down
 					moves = new int[][] { {0, 1}, {0, 2}, {-1, 1}, {1, 1}, {1}};
 		
@@ -35,19 +28,19 @@ public class Piece extends Tile{
 					moves = new int[][] { {0, -1}, {0, -2}, {-1, -1}, {1, -1}, {6}};
 				}
 				break;
-			case "bishop":
+			case 'b': //Bishop
 				moves = new int[][] { {-1, -1}, {1, -1}, {-1, 1}, {1, 1} };
 				break;
-			case "knight":
+			case 'n': //Knight
 				moves = new int[][] { {-2, -1}, {-1, -2}, {1, -2}, {2, -1}, {2, 1}, {1, 2}, {-1, 2}, {-2, 1} };
 				break;
-			case "rook": 
+			case 'r': //Rook
 				moves = new int[][] { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 				break;
-			case "queen":
+			case 'q': //Queen
 				moves = new int[][] { {-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {1, -1}, {-1, 1}, {1, 1} };
 				break;
-			case "king":
+			case 'k': //King
 				moves = new int[][] { {-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1} };
 				break;
 		}
@@ -73,7 +66,7 @@ public class Piece extends Tile{
 		ArrayList<Tile> possibles = new ArrayList<>();
 			
 		//Loop in line for each possible
-		if (type == "bishop" || type == "rook" || type == "queen"){
+		if (type == 'b' || type == 'r' || type == 'q'){
 			for (int x = 0; x < moves.length; x++){
                         	int add = 1;
                         	int currentX = this.x+(moves[x][0]*add);
@@ -95,7 +88,7 @@ public class Piece extends Tile{
                 	}
 		
 		//Only loop through possibilities
-		} else if (type == "knight" || type == "king"){
+		} else if (type == 'n' || type == 'k'){
 			for (int x = 0; x < moves.length; x++){
                         	int add = 1;
                         	int currentX = this.x+(moves[x][0]*add);
@@ -148,7 +141,7 @@ public class Piece extends Tile{
 			History lastMove = history.get(history.size()-1);
 
 			//Last move was pawn of opposite color
-			if (this.character == 'P' && lastMove.type == 'P' && lastMove.color != this.color){	
+			if (this.type == 'p' && lastMove.type == 'p' && lastMove.color != this.color){	
 
 				if (lastMove.endY == this.y && 
 					(lastMove.endX == this.x+1 || lastMove.endX == this.x-1) && lastMove.getYChange() == 2){

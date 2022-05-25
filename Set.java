@@ -29,13 +29,13 @@ public class Set {
 	//Return true if draw because of insufficient material
 	public boolean drawInsufficientMaterial(){	
 		if ((this.pieces.size() == 1 && otherSet.pieces.size() == 1) || //King vs King
-			(this.pieces.size() == 2 && this.pieces.get(0).type.equals("bishop") && otherSet.pieces.size() == 1) || //King + Bishop vs King
-			(otherSet.pieces.size() == 2 && otherSet.pieces.get(0).type.equals("bishop") && this.pieces.size() == 1) ||
+			(this.pieces.size() == 2 && this.pieces.get(0).type == 'b' && otherSet.pieces.size() == 1) || //King + Bishop vs King
+			(otherSet.pieces.size() == 2 && otherSet.pieces.get(0).type == 'b' && this.pieces.size() == 1) ||
 			
-			(this.pieces.size() == 2 && this.pieces.get(0).type.equals("knight") && otherSet.pieces.size() == 1) || //King + Knight vs King
-                        (otherSet.pieces.size() == 2 && otherSet.pieces.get(0).type.equals("knight") && this.pieces.size() == 1) ||
+			(this.pieces.size() == 2 && this.pieces.get(0).type == 'n' && otherSet.pieces.size() == 1) || //King + Knight vs King
+                        (otherSet.pieces.size() == 2 && otherSet.pieces.get(0).type == 'n' && this.pieces.size() == 1) ||
 
-			(this.pieces.size() == 2 && otherSet.pieces.size() == 2 && this.pieces.get(0).type.equals("bishop") && otherSet.pieces.get(0).type.equals("bishop") &&
+			(this.pieces.size() == 2 && otherSet.pieces.size() == 2 && this.pieces.get(0).type == 'b' && otherSet.pieces.get(0).type == 'b' &&
 			 bishopsOnSameColor(this.pieces.get(0), otherSet.pieces.get(0)))	//King + Bishop vs King + Bishop (on same color)
 				){
 			return true;

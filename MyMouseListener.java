@@ -54,7 +54,7 @@ public class MyMouseListener implements MouseListener{
 					main.updateHistoryModel();
 
 					//Reset count for 50 move rule for draw
-					if (selected instanceof Piece || (lastSelected instanceof Piece && lastSelected.type.equals("pawn"))){
+					if (selected instanceof Piece || (lastSelected instanceof Piece && lastSelected.type == 'p')){
 						movesSinceLastEat = 0;
 					}
 
