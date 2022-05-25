@@ -1,0 +1,11 @@
+so maybe after en passant a remnant of the old piece is left?
+
+that's why after en passant "piece" seems to stay though doesn't show
+
+wait but why wouldn't it show?
+
+because it's on the grid but not in the pieces arrays
+
+wait no that doesn't make sense.
+
+
