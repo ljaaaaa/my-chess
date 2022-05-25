@@ -1,11 +1,5 @@
-so maybe after en passant a remnant of the old piece is left?
+Yes, I believe remnant of piece is left after en passant eat
 
-that's why after en passant "piece" seems to stay though doesn't show
+Check what happens when piece is eaten
 
-wait but why wouldn't it show?
-
-because it's on the grid but not in the pieces arrays
-
-wait no that doesn't make sense.
-
-
+Wait the piece isn't removed from grid, but is removed from pieces!

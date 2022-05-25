@@ -169,6 +169,8 @@ public class Piece extends Tile{
 			History lastMove = history.get(history.size()-2);	
 
 			if (newX == lastMove.endX && newY == lastMove.endY+moves[0][1]){ //Remove piece being eaten [En Passant]
+				//Here... is piece being removed?
+				grid.grid[lastMove.endX][lastMove.endY] = new Tile(lastMove.endX, lastMove.endY, TILE_SIZE);
 				otherSet.pieces.remove(grid.grid[lastMove.endX][lastMove.endY]);	
 			}
 		}
