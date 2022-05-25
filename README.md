@@ -8,3 +8,4 @@ This is my attempt at making a working chess program
 	- So just K.png for King, etc.
 	- Removes extra variable in Piece
 - Remember pawn turns to queen(or other chosen piece) when reaches end
+- Implement seeing game in certain part of history

@@ -138,6 +138,11 @@ public class Piece extends Tile{
 		return possibles;	
 	}
 
+	public boolean castlingPossible(){
+		//Only implement this after numbers are on chess grid
+		return false;
+	}
+
 	public boolean enPassantPossible(){
 		if (history.size() > 0){
 			History lastMove = history.get(history.size()-1);
