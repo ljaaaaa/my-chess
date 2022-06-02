@@ -32,6 +32,16 @@ public class Painter extends JPanel {
                         }
                 }
 
+		final int FONT_SIZE = SIZE/5;
+		//Draw 1-8 and A-H on grid
+		char[] letters = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+		g.setFont(new Font("Roboto", Font.PLAIN, FONT_SIZE));
+
+		for (int x = 0; x < grid.grid.length; x++){
+			g2d.drawString(letters[x] + "", (x+1)*SIZE-FONT_SIZE, FONT_SIZE);
+			g2d.drawString(x+1 + "", 0, x*SIZE+FONT_SIZE);
+		}
+
 		//Draw Pieces
 		for (int x = 0; x < grid.setW.pieces.size(); x++){
 			Piece piece = grid.setW.pieces.get(x);

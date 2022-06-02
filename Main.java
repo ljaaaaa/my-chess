@@ -78,6 +78,6 @@ public class Main {
                 frame.setResizable(false);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);
-                frame.setIconImage(new ImageIcon("images/w_king.png").getImage());
+                frame.setIconImage(new ImageIcon("images/w_k.png").getImage());
 	}
 }
