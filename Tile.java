@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 

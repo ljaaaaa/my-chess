@@ -4,7 +4,6 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.DefaultListModel;
-import java.awt.GridLayout;
 import java.util.ArrayList;
 
 //Main Class

@@ -1,21 +1,17 @@
 import javax.swing.JPanel;
-import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Font;
-import java.awt.Color;
 import java.util.ArrayList;
 
 //Painter Class
 public class Painter extends JPanel {
 	private ImageIcon[][] bg;
         private Grid grid;
-	private ArrayList<History> history;
 	
 	public Painter(Main main){
 		this.grid = main.grid;
-		this.history = main.history;
 		setBackground();
 	}
 

@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 //Grid Class
 public class Grid {
 	public final int TILE_SIZE;

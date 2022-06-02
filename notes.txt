@@ -1,5 +1,0 @@
-Yes, I believe remnant of piece is left after en passant eat
-
-Check what happens when piece is eaten
-
-Wait the piece isn't removed from grid, but is removed from pieces!

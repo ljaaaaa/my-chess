@@ -1,8 +1,6 @@
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.Point;
-import javax.swing.ImageIcon;
-import java.util.ArrayList;
 
 //MyMouseListener Class
 public class MyMouseListener implements MouseListener{

@@ -185,7 +185,6 @@ public class Piece extends Tile{
 		try {
 			((Piece)dummy.grid[this.x][this.y]).move(newX, newY); 
 			Set thisSet = color == 'w' ? dummy.setW : dummy.setB;
-			Set otherSet = color == 'w' ? dummy.setB : dummy.setW;
 
 			//Will put own king in danger
 			if (thisSet.kingCanBeEaten()){
